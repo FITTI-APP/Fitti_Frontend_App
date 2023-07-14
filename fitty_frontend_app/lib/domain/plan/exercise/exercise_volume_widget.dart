@@ -11,7 +11,7 @@ class ExerciseVolumeWidget extends StatelessWidget {
       child: Center(
         child: Container(
             height: 150,
-            width: 300,
+            width: 400,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Colors.white,

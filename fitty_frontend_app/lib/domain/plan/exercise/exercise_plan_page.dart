@@ -1,8 +1,8 @@
-import 'package:fitty_frontend_app/domain/plan/exercise/ExerciseVolumeWidget.dart';
+import 'package:fitty_frontend_app/domain/plan/exercise/exercise_volume_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'ExerciseListPage.dart';
+import 'exercise_list_page.dart';
 
 class ExercisePlan extends StatefulWidget {
   const ExercisePlan({super.key});

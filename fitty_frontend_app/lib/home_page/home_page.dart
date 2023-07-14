@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'tab_page/MyExercise.dart';
-import 'tab_page/MyFitty.dart';
-import 'tab_page/MyManagement.dart';
+import 'tab_page/my_exercise.dart';
+import 'tab_page/my_fitty.dart';
+import 'tab_page/my_management.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
