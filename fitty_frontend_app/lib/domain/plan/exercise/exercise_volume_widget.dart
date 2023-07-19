@@ -1,143 +1,101 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tuple/tuple.dart';
 
-class ExerciseVolumeWidget extends StatelessWidget {
+import 'kg_and_reps_text_box.dart';
+
+class ExerciseVolumeWidget extends StatefulWidget {
   const ExerciseVolumeWidget({super.key});
+
+  @override
+  State<ExerciseVolumeWidget> createState() => _ExerciseVolumeWidgetState();
+}
+
+class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
+  List<Tuple2> kgAndRepsList = [];
+
+  void deleteKgAndRepsTextBox(int index) {
+    setState(() {
+      kgAndRepsList.removeAt(index);
+    });
+  }
+
+  void changeKgAndReps(int index, int kg, int reps) {
+    setState(() {
+      kgAndRepsList[index] = Tuple2(kg, reps);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
-        child: Container(
-            height: 150,
-            width: 400,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10.0),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  offset: Offset(0, 1),
-                  blurRadius: 6.0,
-                ),
-              ],
-            ),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  '벤치프레스',
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
+        child: FittedBox(
+          fit: BoxFit.fitHeight,
+          child: Container(
+              width: 400,
+              alignment: Alignment.center,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    offset: Offset(0, 1),
+                    blurRadius: 6.0,
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          '55 kg',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          '8 reps',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    '벤치프레스',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          '55 kg',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          '8 reps',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: kgAndRepsList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return KgAndRepsTextBox(
+                        deleteKgAndRepsTextBox: deleteKgAndRepsTextBox,
+                        changeKgAndReps: changeKgAndReps,
+                        index: index,
+                        kg: kgAndRepsList[index].item1,
+                        reps: kgAndRepsList[index].item2,
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        kgAndRepsList.add(Tuple2(0, 0));
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      foregroundColor:
+                          Colors.blue, // Set button background color
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          '55 kg',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          '8 reps',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                    child: const Text(
+                      '추가',
+                      style: TextStyle(color: Colors.white),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          '55 kg',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          '8 reps',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          '55 kg',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          '8 reps',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            )),
+                  )
+                ],
+              )),
+        ),
       ),
     );
   }

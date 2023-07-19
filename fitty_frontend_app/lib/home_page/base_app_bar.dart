@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -28,7 +27,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
           Tab(icon: Icon(Icons.directions_bike)),
         ],
       ),
-      title: Center(child: Text('FITTY')),
+      title: const Center(child: Text('FITTY')),
     );
   }
 

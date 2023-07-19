@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'tab_page/my_exercise.dart';
@@ -42,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             Tab(text: "Fitty"),
           ],
         ),
-        title: Center(child: Text('FITTY')),
+        title: const Center(child: Text('FITTY')),
       ),
       body: const TabBarView(
         children: [
