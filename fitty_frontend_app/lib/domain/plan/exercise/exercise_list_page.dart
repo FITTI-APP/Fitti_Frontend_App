@@ -85,6 +85,30 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
               onPressed: () {},
               child: const Text('사이드 레터럴 레이즈'),
             ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('사이드 레터럴 레이즈'),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('사이드 레터럴 레이즈'),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('사이드 레터럴 레이즈'),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('사이드 레터럴 레이즈'),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('사이드 레터럴 레이즈'),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('사이드 레터럴 레이즈'),
+            ),
           ],
         ),
       ),
