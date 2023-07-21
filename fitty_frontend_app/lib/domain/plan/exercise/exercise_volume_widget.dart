@@ -4,8 +4,11 @@ import 'package:tuple/tuple.dart';
 import 'kg_and_reps_text_box.dart';
 
 class ExerciseVolumeWidget extends StatefulWidget {
-  const ExerciseVolumeWidget({super.key});
-
+  const ExerciseVolumeWidget({
+    super.key,
+    required this.exerciseName,
+  });
+  final String exerciseName;
   @override
   State<ExerciseVolumeWidget> createState() => _ExerciseVolumeWidgetState();
 }
@@ -51,7 +54,7 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    '벤치프레스',
+                    widget.exerciseName,
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
