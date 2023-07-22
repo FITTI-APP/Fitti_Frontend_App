@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:fitty_frontend_app/domain/plan/exercise/exercise_volume_widget.dart';
+import 'package:fitty_frontend_app/domain/plan/exercise/widget/exercise_volume_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'exercise_list_page.dart';
