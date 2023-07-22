@@ -6,27 +6,28 @@ import 'one-set-info-widget.dart';
 class ExerciseVolumeWidget extends StatefulWidget {
   const ExerciseVolumeWidget({
     super.key,
-    required this.exerciseName,
-    required this.deleteExerciseVolumeWidget,
-  });
-  final String exerciseName;
-  final Function deleteExerciseVolumeWidget;
+    required String exerciseName,
+    required Function deleteExerciseVolumeWidget,
+  })  : _deleteExerciseVolumeWidget = deleteExerciseVolumeWidget,
+        _exerciseName = exerciseName;
+  final String _exerciseName;
+  final Function _deleteExerciseVolumeWidget;
   @override
   State<ExerciseVolumeWidget> createState() => _ExerciseVolumeWidgetState();
 }
 
 class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
-  List<Tuple2> kgAndRepsList = [];
+  List<Tuple2> _kgAndRepsList = [];
 
   void deleteKgAndRepsTextBox(int index) {
     setState(() {
-      kgAndRepsList.removeAt(index);
+      _kgAndRepsList.removeAt(index);
     });
   }
 
   void changeKgAndReps(int index, int kg, int reps) {
     setState(() {
-      kgAndRepsList[index] = Tuple2(kg, reps);
+      _kgAndRepsList[index] = Tuple2(kg, reps);
     });
   }
 
@@ -60,7 +61,7 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
                     children: [
                       Expanded(child: Container()),
                       Text(
-                        widget.exerciseName,
+                        widget._exerciseName,
                         style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -72,7 +73,7 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
                           children: [
                             IconButton(
                               onPressed: () {
-                                widget.deleteExerciseVolumeWidget(widget.key);
+                                widget._deleteExerciseVolumeWidget(widget.key);
                               },
                               icon: const Icon(Icons.close),
                             ),
@@ -86,14 +87,14 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
                   ),
                   ListView.builder(
                     shrinkWrap: true,
-                    itemCount: kgAndRepsList.length,
+                    itemCount: _kgAndRepsList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return OneSetInfoWidget(
                         deleteKgAndRepsTextBox: deleteKgAndRepsTextBox,
                         changeKgAndReps: changeKgAndReps,
                         index: index,
-                        kg: kgAndRepsList[index].item1,
-                        reps: kgAndRepsList[index].item2,
+                        kg: _kgAndRepsList[index].item1,
+                        reps: _kgAndRepsList[index].item2,
                       );
                     },
                   ),
@@ -103,7 +104,7 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        kgAndRepsList.add(Tuple2(0, 0));
+                        _kgAndRepsList.add(Tuple2(0, 0));
                       });
                     },
                     style: ElevatedButton.styleFrom(

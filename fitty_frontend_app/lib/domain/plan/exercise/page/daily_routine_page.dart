@@ -1,6 +1,5 @@
 import 'package:fitty_frontend_app/domain/plan/exercise/widget/exercise_volume_widget.dart';
 import 'package:flutter/material.dart';
-
 import 'exercise_list_page.dart';
 
 class DailyRoutinePage extends StatefulWidget {
@@ -11,11 +10,11 @@ class DailyRoutinePage extends StatefulWidget {
 }
 
 class _DailyRoutinePageState extends State<DailyRoutinePage> {
-  List<ExerciseVolumeWidget> exerciseVolumeWidgets = [];
+  List<ExerciseVolumeWidget> _exerciseVolumeWidgets = [];
 
   void deleteExerciseVolumeWidget(Key key) {
     setState(() {
-      exerciseVolumeWidgets.removeWhere((element) => element.key == key);
+      _exerciseVolumeWidgets.removeWhere((element) => element.key == key);
     });
   }
 
@@ -37,9 +36,9 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: exerciseVolumeWidgets.length,
+                itemCount: _exerciseVolumeWidgets.length,
                 itemBuilder: (context, index) {
-                  return exerciseVolumeWidgets[index];
+                  return _exerciseVolumeWidgets[index];
                 },
               ),
               Padding(
@@ -61,7 +60,7 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                           deleteExerciseVolumeWidget:
                               deleteExerciseVolumeWidget,
                         );
-                        exerciseVolumeWidgets.add(exerciseVolumeWidget);
+                        _exerciseVolumeWidgets.add(exerciseVolumeWidget);
                       });
                     },
                     style: ElevatedButton.styleFrom(
