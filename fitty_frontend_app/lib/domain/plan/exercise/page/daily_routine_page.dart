@@ -13,6 +13,12 @@ class DailyRoutinePage extends StatefulWidget {
 class _DailyRoutinePageState extends State<DailyRoutinePage> {
   List<ExerciseVolumeWidget> exerciseVolumeWidgets = [];
 
+  void deleteExerciseVolumeWidget(Key key) {
+    setState(() {
+      exerciseVolumeWidgets.removeWhere((element) => element.key == key);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -49,8 +55,12 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                           MaterialPageRoute(
                               builder: (context) => const ExerciseListPage()));
                       setState(() {
-                        var exerciseVolumeWidget =
-                            ExerciseVolumeWidget(exerciseName: exerciseName);
+                        var exerciseVolumeWidget = ExerciseVolumeWidget(
+                          key: UniqueKey(),
+                          exerciseName: exerciseName,
+                          deleteExerciseVolumeWidget:
+                              deleteExerciseVolumeWidget,
+                        );
                         exerciseVolumeWidgets.add(exerciseVolumeWidget);
                       });
                     },
@@ -73,7 +83,7 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      // Handle 'Save' button press
+                      // Handle 'Load' button press
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
