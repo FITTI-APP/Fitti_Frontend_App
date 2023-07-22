@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class KgAndRepsTextBox extends StatefulWidget {
+class OneSetInfoWidget extends StatefulWidget {
   final Function deleteKgAndRepsTextBox;
   final Function changeKgAndReps;
   final int index;
   int kg = 0;
   int reps = 0;
 
-  KgAndRepsTextBox(
+  OneSetInfoWidget(
       {super.key,
       required this.deleteKgAndRepsTextBox,
       required this.changeKgAndReps,
@@ -16,10 +16,10 @@ class KgAndRepsTextBox extends StatefulWidget {
       required this.reps});
 
   @override
-  State<KgAndRepsTextBox> createState() => _KgAndRepsTextBoxState();
+  State<OneSetInfoWidget> createState() => _OneSetInfoWidgetState();
 }
 
-class _KgAndRepsTextBoxState extends State<KgAndRepsTextBox> {
+class _OneSetInfoWidgetState extends State<OneSetInfoWidget> {
   TextEditingController kgController = TextEditingController();
   TextEditingController repsController = TextEditingController();
   @override

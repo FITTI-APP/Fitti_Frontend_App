@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 
-import 'kg_and_reps_text_box.dart';
+import 'one-set-info-widget.dart';
 
 class ExerciseVolumeWidget extends StatefulWidget {
   const ExerciseVolumeWidget({
@@ -67,7 +67,7 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
                     shrinkWrap: true,
                     itemCount: kgAndRepsList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return KgAndRepsTextBox(
+                      return OneSetInfoWidget(
                         deleteKgAndRepsTextBox: deleteKgAndRepsTextBox,
                         changeKgAndReps: changeKgAndReps,
                         index: index,
