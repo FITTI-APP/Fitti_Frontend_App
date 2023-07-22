@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 
-import 'kg_and_reps_text_box.dart';
+import 'one-set-info-widget.dart';
 
 class ExerciseVolumeWidget extends StatefulWidget {
   const ExerciseVolumeWidget({
     super.key,
     required this.exerciseName,
+    required this.deleteExerciseVolumeWidget,
   });
   final String exerciseName;
+  final Function deleteExerciseVolumeWidget;
   @override
   State<ExerciseVolumeWidget> createState() => _ExerciseVolumeWidgetState();
 }
@@ -53,12 +55,31 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.exerciseName,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(child: Container()),
+                      Text(
+                        widget.exerciseName,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                widget.deleteExerciseVolumeWidget(widget.key);
+                              },
+                              icon: const Icon(Icons.close),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 10,
@@ -67,7 +88,7 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
                     shrinkWrap: true,
                     itemCount: kgAndRepsList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return KgAndRepsTextBox(
+                      return OneSetInfoWidget(
                         deleteKgAndRepsTextBox: deleteKgAndRepsTextBox,
                         changeKgAndReps: changeKgAndReps,
                         index: index,
