@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MyDiet extends StatelessWidget {
-  const MyDiet({
+class MyDietHome extends StatelessWidget {
+  const MyDietHome({
     super.key,
   });
 
