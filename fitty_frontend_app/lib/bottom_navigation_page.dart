@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
+import 'bottom_menu/calendar_page/calendar_page.dart';
+import 'bottom_menu/home_page/home_page.dart';
 
-import 'tab_page/my_exercise.dart';
-import 'tab_page/my_fitty.dart';
-import 'tab_page/my_management.dart';
-
-class HomePage extends StatefulWidget {
-  const HomePage({
+class BottomNavigationPage extends StatefulWidget {
+  const BottomNavigationPage({
     super.key,
   });
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<BottomNavigationPage> createState() => _BottomNavigationPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _BottomNavigationPageState extends State<BottomNavigationPage> {
+  int selectedIndex = 0;
+  List<Widget> navBarPages = [
+    HomePage(),
+    CalendarPage(),
+    const Text('Changes'),
+    const Text('MY'),
+  ];
+  void onBottomNavTap(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,24 +43,9 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ],
-        bottom: const TabBar(
-          tabs: [
-            Tab(
-              text: "My 운동",
-            ),
-            Tab(text: "My 관리"),
-            Tab(text: "Fitty"),
-          ],
-        ),
         title: const Center(child: Text('FITTY')),
       ),
-      body: const TabBarView(
-        children: [
-          MyExercise(),
-          MyManagement(),
-          MyFitty(),
-        ],
-      ),
+      body: navBarPages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
@@ -59,7 +55,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_month),
-            label: 'Calender',
+            label: 'Calendar',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.area_chart_outlined),
@@ -70,6 +66,8 @@ class _HomePageState extends State<HomePage> {
             label: 'MY',
           ),
         ],
+        currentIndex: selectedIndex,
+        onTap: onBottomNavTap,
       ),
     );
   }
