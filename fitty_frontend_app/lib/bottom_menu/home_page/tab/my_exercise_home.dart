@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/plan/exercise/daily_routine_page.dart';
+import '../../../domain/plan/exercise/page/daily_routine_page.dart';
 
 class MyExerciseHome extends StatelessWidget {
   const MyExerciseHome({
