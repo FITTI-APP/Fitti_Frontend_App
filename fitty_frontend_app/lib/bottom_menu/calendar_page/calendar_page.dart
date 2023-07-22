@@ -1,3 +1,5 @@
+import 'package:fitty_frontend_app/bottom_menu/calendar_page/tab/my_diet_calendar.dart';
+import 'package:fitty_frontend_app/bottom_menu/calendar_page/tab/my_exercise_calendar.dart';
 import 'package:flutter/material.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -50,8 +52,8 @@ class _CalendarPageState extends State<CalendarPage>
           child: TabBarView(
             controller: tabController,
             children: [
-              Text("My 운동"),
-              Text("My 식단"),
+              MyExerciseCalendar(),
+              MyDietCalendar(),
             ],
           ),
         ),
