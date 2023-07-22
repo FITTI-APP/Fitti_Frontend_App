@@ -1,16 +1,20 @@
+import 'dart:math';
+
 import 'package:fitty_frontend_app/domain/plan/exercise/exercise_volume_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'exercise_list_page.dart';
 
-class ExercisePlan extends StatefulWidget {
-  const ExercisePlan({super.key});
+class DailyRoutinePage extends StatefulWidget {
+  const DailyRoutinePage({super.key});
 
   @override
-  State<ExercisePlan> createState() => _ExercisePlanState();
+  State<DailyRoutinePage> createState() => _DailyRoutinePageState();
 }
 
-class _ExercisePlanState extends State<ExercisePlan> {
+class _DailyRoutinePageState extends State<DailyRoutinePage> {
+  List<ExerciseVolumeWidget> exerciseVolumeWidgets = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +26,13 @@ class _ExercisePlanState extends State<ExercisePlan> {
             child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Column(
-              children: [
-                ExerciseVolumeWidget(),
-                ExerciseVolumeWidget(),
-                ExerciseVolumeWidget(),
-              ],
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: exerciseVolumeWidgets.length,
+              itemBuilder: (context, index) {
+                return exerciseVolumeWidgets[index];
+              },
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -36,11 +41,16 @@ class _ExercisePlanState extends State<ExercisePlan> {
               child: SizedBox(
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
+                  onPressed: () async {
+                    String exerciseName = await Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const ExerciseListPage()));
+                    setState(() {
+                      var exerciseVolumeWidget =
+                          ExerciseVolumeWidget(exerciseName: exerciseName);
+                      exerciseVolumeWidgets.add(exerciseVolumeWidget);
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                     // minimumSize: Size.fromWidth(10000),
