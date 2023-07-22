@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'tab_page/my_exercise.dart';
-import 'tab_page/my_fitty.dart';
-import 'tab_page/my_management.dart';
+import 'tab_page/my_diet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -13,7 +11,19 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  late TabController tabController;
+
+  @override
+  void initState() {
+    tabController = TabController(
+      initialIndex: 0,
+      length: 2,
+      vsync: this,
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,22 +42,38 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ],
-        bottom: const TabBar(
-          tabs: [
-            Tab(
-              text: "My 운동",
-            ),
-            Tab(text: "My 관리"),
-            Tab(text: "Fitty"),
-          ],
-        ),
         title: const Center(child: Text('FITTY')),
       ),
-      body: const TabBarView(
+      body: Column(
         children: [
-          MyExercise(),
-          MyManagement(),
-          MyFitty(),
+          TabBar(
+            controller: tabController,
+            tabs: [
+              Container(
+                height: 60,
+                child: Tab(
+                  text: "My 운동",
+                ),
+              ),
+              Container(
+                height: 60,
+                child: Tab(
+                  text: "My 식단",
+                ),
+              ),
+            ],
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.grey,
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: tabController,
+              children: [
+                MyExercise(),
+                MyDiet(),
+              ],
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
