@@ -4,7 +4,6 @@ import 'bottom_navigation_page.dart';
 
 void main() async {
   await initializeDateFormatting();
-  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

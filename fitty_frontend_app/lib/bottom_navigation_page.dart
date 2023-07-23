@@ -12,16 +12,16 @@ class BottomNavigationPage extends StatefulWidget {
 }
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
-  int selectedIndex = 0;
+  int _selectedIndex = 0;
   List<Widget> navBarPages = [
     HomePage(),
     CalendarPage(),
     const Text('Changes'),
     const Text('MY'),
   ];
-  void onBottomNavTap(int index) {
+  void onBottomNavTap(int _index) {
     setState(() {
-      selectedIndex = index;
+      _selectedIndex = _index;
     });
   }
 
@@ -45,7 +45,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         ],
         title: const Center(child: Text('FITTY')),
       ),
-      body: navBarPages[selectedIndex],
+      body: navBarPages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
@@ -66,7 +66,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             label: 'MY',
           ),
         ],
-        currentIndex: selectedIndex,
+        currentIndex: _selectedIndex,
         onTap: onBottomNavTap,
       ),
     );
