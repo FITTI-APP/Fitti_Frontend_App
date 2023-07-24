@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
                 Text(
-                  '당신의 작은 피트니스 친구',
+                  '당신의 피트니스 친구',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
