@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'bottom_navigation_page.dart';
+import 'navigation_page.dart';
 
 void main() async {
   await initializeDateFormatting();
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomNavigationPage(),
+      home: NavigationPage(),
     );
   }
 }
