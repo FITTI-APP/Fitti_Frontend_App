@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../bottom_navigation_page.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -18,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Color.fromARGB(255, 218, 213, 213),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -103,7 +105,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => const BottomNavigationPage());
+                  },
                   child: Container(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 25.0),

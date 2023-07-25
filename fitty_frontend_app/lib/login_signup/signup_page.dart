@@ -87,22 +87,21 @@ class _SignupPageState extends State<SignupPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.card_travel_outlined,
-                  color: Colors.deepPurple,
+                  Icons.account_circle_outlined,
+                  color: Color.fromARGB(255, 6, 6, 6),
                   size: 100,
                 ),
                 SizedBox(
                   height: 30,
                 ),
                 Text(
-                  'Sign Up',
-                  style: GoogleFonts.bebasNeue(fontSize: 36.0),
+                  'F I T T Y',
+                  style: GoogleFonts.bebasNeue(fontSize: 50.0),
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                Text('Thank you for join us',
-                    style: GoogleFonts.bebasNeue(fontSize: 28)),
+                Text('회원 가입', style: GoogleFonts.bebasNeue(fontSize: 28)),
                 SizedBox(
                   height: 50,
                 ),
