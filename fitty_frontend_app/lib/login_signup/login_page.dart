@@ -106,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 GestureDetector(
                   onTap: () {
+                    //todo 유효성검사
                     Get.to(() => const BottomNavigationPage());
                   },
                   child: Container(
