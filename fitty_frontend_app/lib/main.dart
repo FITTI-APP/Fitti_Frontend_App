@@ -6,7 +6,7 @@ import 'bottom_navigation_page.dart';
 import 'login_signup/login_page.dart';
 
 void main() async {
-  await initializeDateFormatting('ko_KR', null);
+  await initializeDateFormatting();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
