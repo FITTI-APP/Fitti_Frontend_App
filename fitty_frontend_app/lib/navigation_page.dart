@@ -14,8 +14,8 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> {
   int selectedIndex = 0;
   List<Widget> navBarPages = [
-    HomePage(),
-    CalendarPage(),
+    const HomePage(),
+    const CalendarPage(),
     const Text('Changes'),
     const Text('MY'),
   ];
