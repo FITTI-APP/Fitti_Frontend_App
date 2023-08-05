@@ -32,14 +32,14 @@ class _HomePageState extends State<HomePage>
       children: [
         TabBar(
           controller: tabController,
-          tabs: [
-            Container(
+          tabs: const [
+            SizedBox(
               height: 60,
               child: Tab(
                 text: "My 운동",
               ),
             ),
-            Container(
+            SizedBox(
               height: 60,
               child: Tab(
                 text: "My 식단",
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage>
         Expanded(
           child: TabBarView(
             controller: tabController,
-            children: [
+            children: const [
               MyExerciseHome(),
               MyDietHome(),
             ],

@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'bottom_menu/calendar_page/calendar_page.dart';
 import 'bottom_menu/home_page/home_page.dart';
 
-class BottomNavigationPage extends StatefulWidget {
-  const BottomNavigationPage({
+class NavigationPage extends StatefulWidget {
+  const NavigationPage({
     super.key,
   });
 
   @override
-  State<BottomNavigationPage> createState() => _BottomNavigationPageState();
+  State<NavigationPage> createState() => _NavigationPageState();
 }
 
-class _BottomNavigationPageState extends State<BottomNavigationPage> {
+class _NavigationPageState extends State<NavigationPage> {
   int selectedIndex = 0;
   List<Widget> navBarPages = [
-    HomePage(),
-    CalendarPage(),
+    const HomePage(),
+    const CalendarPage(),
     const Text('Changes'),
     const Text('MY'),
   ];
