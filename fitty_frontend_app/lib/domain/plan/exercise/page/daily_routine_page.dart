@@ -46,7 +46,6 @@ class DailyRoutinePage extends StatelessWidget {
                         exerciseRecord:
                             exerciseRecordsOfTheDay.exerciseRecords[index],
                       );
-                      // todo : exerciseVolumeWidgets를 exerciseRecordsOfToday.exerciseRecords로 생성해서 리스트뷰에 추가
                     },
                   ),
                   Padding(

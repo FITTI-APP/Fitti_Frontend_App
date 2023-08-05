@@ -77,6 +77,7 @@ class ExerciseRecordWidget extends StatelessWidget {
                   ),
                   ListView.builder(
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: exerciseRecord.setRecords.length,
                     itemBuilder: (BuildContext context, int index) {
                       return SetRecordWidget(
