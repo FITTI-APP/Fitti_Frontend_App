@@ -19,9 +19,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     const Text('Changes'),
     const Text('MY'),
   ];
-  void onBottomNavTap(int _index) {
+  void onBottomNavTap(int index) {
     setState(() {
-      _selectedIndex = _index;
+      _selectedIndex = index;
     });
   }
 
