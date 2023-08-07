@@ -17,16 +17,16 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  var formKey = GlobalKey<FormState>();
+  var _formKey = GlobalKey<FormState>();
 
-  var userNameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+  var _userNameController = TextEditingController();
+  var _emailController = TextEditingController();
+  var _passwordController = TextEditingController();
 
   checkUserEmail() async {
     try {
       var response = await http.post(Uri.parse(API.validateEmail), body: {
-        'user_email': emailController.text.trim(),
+        'user_email': _emailController.text.trim(),
       });
 
       if (response.statusCode == 200) {
@@ -54,9 +54,9 @@ class _SignupPageState extends State<SignupPage> {
   saveInfo() async {
     User userModel = User(
       1,
-      userNameController.text.trim(),
-      emailController.text.trim(),
-      passwordController.text.trim(),
+      _userNameController.text.trim(),
+      _emailController.text.trim(),
+      _passwordController.text.trim(),
     );
 
     try {
@@ -106,7 +106,7 @@ class _SignupPageState extends State<SignupPage> {
                   height: 50,
                 ),
                 Form(
-                  key: formKey,
+                  key: _formKey,
                   child: Column(
                     children: [
                       Padding(
@@ -120,7 +120,7 @@ class _SignupPageState extends State<SignupPage> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: TextFormField(
-                              controller: userNameController,
+                              controller: _userNameController,
                               validator: (val) =>
                                   val == "" ? "Please enter username " : null,
                               decoration: InputDecoration(
@@ -143,7 +143,7 @@ class _SignupPageState extends State<SignupPage> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: TextFormField(
-                              controller: emailController,
+                              controller: _emailController,
                               validator: (val) =>
                                   val == "" ? "Please enter email" : null,
                               decoration: InputDecoration(
@@ -165,7 +165,7 @@ class _SignupPageState extends State<SignupPage> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: TextFormField(
-                              controller: passwordController,
+                              controller: _passwordController,
                               validator: (val) =>
                                   val == "" ? "Please enter password" : null,
                               obscureText: true,
@@ -184,7 +184,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    if (formKey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate()) {
                       checkUserEmail();
                     }
                   },

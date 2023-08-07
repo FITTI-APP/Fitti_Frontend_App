@@ -13,9 +13,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  var formKey = GlobalKey<FormState>();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+  var _formKey = GlobalKey<FormState>();
+  var _emailController = TextEditingController();
+  var _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 50,
                 ),
                 Form(
-                  key: formKey,
+                  key: _formKey,
                   child: Column(
                     children: [
                       Padding(
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: TextFormField(
-                              controller: emailController,
+                              controller: _emailController,
                               validator: (val) =>
                                   val == "" ? "Please enter email" : null,
                               decoration: InputDecoration(
@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: TextFormField(
-                              controller: passwordController,
+                              controller: _passwordController,
                               validator: (val) =>
                                   val == "" ? "Please enter password" : null,
                               obscureText: true,
@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                 GestureDetector(
                   onTap: () {
                     //todo 유효성검사
-                    Get.to(() => const BottomNavigationPage());
+                    Get.off(() => const BottomNavigationPage());
                   },
                   child: Container(
                     child: Padding(
@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('우리의 친구가 아니십니까?'),
+                    const Text('회원이 아니십니까?'),
                     GestureDetector(
                       onTap: () => Get.to(() => const SignupPage()),
                       child: Text(
