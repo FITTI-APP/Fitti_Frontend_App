@@ -95,7 +95,7 @@ class _SignupPageState extends State<SignupPage> {
                   height: 30,
                 ),
                 Text(
-                  'F I T T Y',
+                  'F I T T I',
                   style: GoogleFonts.bebasNeue(fontSize: 50.0),
                 ),
                 SizedBox(
@@ -198,7 +198,7 @@ class _SignupPageState extends State<SignupPage> {
                             borderRadius: BorderRadius.circular(12)),
                         child: Center(
                           child: Text(
-                            'Sign up',
+                            '회원가입',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -215,11 +215,11 @@ class _SignupPageState extends State<SignupPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Already registered?'),
+                    Text('이미 등록하셨습니까?'),
                     GestureDetector(
                       onTap: () => Get.back(),
                       child: Text(
-                        ' Go back Login page!',
+                        ' 로그인 페이지로 돌아가기!',
                         style: TextStyle(
                             color: Colors.blue, fontWeight: FontWeight.bold),
                       ),

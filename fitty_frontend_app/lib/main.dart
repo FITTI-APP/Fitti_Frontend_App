@@ -2,9 +2,7 @@ import 'package:fitty_frontend_app/login_signup/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'bottom_navigation_page.dart';
 import 'intro_screen.dart';
-import 'login_signup/login_page.dart';
 
 void main() async {
   await initializeDateFormatting();

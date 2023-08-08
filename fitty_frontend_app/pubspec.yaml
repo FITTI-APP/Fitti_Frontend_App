@@ -69,6 +69,8 @@ flutter:
   
   assets:
     - asset/flankggg.gif
+    - asset/clockhealth.gif
+    - asset/giphy.gif
 
   # To add assets to your application, add an assets section, like this:
   # assets:

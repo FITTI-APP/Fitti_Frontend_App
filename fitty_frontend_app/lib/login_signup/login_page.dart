@@ -2,7 +2,6 @@ import 'package:fitty_frontend_app/login_signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../bottom_navigation_page.dart';
 
 class LoginPage extends StatefulWidget {
