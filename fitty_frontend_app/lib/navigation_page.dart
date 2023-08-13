@@ -2,26 +2,26 @@ import 'package:flutter/material.dart';
 import 'bottom_menu/calendar_page/calendar_page.dart';
 import 'bottom_menu/home_page/home_page.dart';
 
-class BottomNavigationPage extends StatefulWidget {
-  const BottomNavigationPage({
+class NavigationPage extends StatefulWidget {
+  const NavigationPage({
     super.key,
   });
 
   @override
-  State<BottomNavigationPage> createState() => _BottomNavigationPageState();
+  State<NavigationPage> createState() => _NavigationPageState();
 }
 
-class _BottomNavigationPageState extends State<BottomNavigationPage> {
-  int _selectedIndex = 0;
+class _NavigationPageState extends State<NavigationPage> {
+  int selectedIndex = 0;
   List<Widget> navBarPages = [
-    HomePage(),
-    CalendarPage(),
+    const HomePage(),
+    const CalendarPage(),
     const Text('Changes'),
     const Text('MY'),
   ];
   void onBottomNavTap(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
     });
   }
 
@@ -45,7 +45,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         ],
         title: const Center(child: Text('FITTY')),
       ),
-      body: navBarPages[_selectedIndex],
+      body: navBarPages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
@@ -66,7 +66,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             label: 'MY',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: selectedIndex,
         onTap: onBottomNavTap,
       ),
     );

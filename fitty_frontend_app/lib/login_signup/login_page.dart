@@ -2,7 +2,8 @@ import 'package:fitty_frontend_app/login_signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../bottom_navigation_page.dart';
+
+import '../navigation_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -106,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                 GestureDetector(
                   onTap: () {
                     //todo 유효성검사
-                    Get.off(() => const BottomNavigationPage());
+                    Get.off(() => const NavigationPage());
                   },
                   child: Container(
                     child: Padding(

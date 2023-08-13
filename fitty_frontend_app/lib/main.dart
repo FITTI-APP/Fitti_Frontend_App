@@ -2,12 +2,18 @@ import 'package:fitty_frontend_app/login_signup/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:provider/provider.dart';
+import 'domain/plan/exercise/all_exercise_record.dart';
+import 'navigation_page.dart';
 import 'intro_screen.dart';
 
 void main() async {
   await initializeDateFormatting();
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => AllExerciseRecord(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

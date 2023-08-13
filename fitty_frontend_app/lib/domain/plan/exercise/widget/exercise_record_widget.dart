@@ -1,38 +1,28 @@
+import 'package:fitty_frontend_app/domain/plan/exercise/all_exercise_record.dart';
 import 'package:flutter/material.dart';
-import 'package:tuple/tuple.dart';
+import 'set_record_widget.dart';
 
-import 'one-set-info-widget.dart';
-
-class ExerciseVolumeWidget extends StatefulWidget {
-  const ExerciseVolumeWidget({
+class ExerciseRecordWidget extends StatelessWidget {
+  const ExerciseRecordWidget({
     super.key,
-    required String exerciseName,
-    required Function deleteExerciseVolumeWidget,
-  })  : _deleteExerciseVolumeWidget = deleteExerciseVolumeWidget,
-        _exerciseName = exerciseName;
-  final String _exerciseName;
-  final Function _deleteExerciseVolumeWidget;
-  @override
-  State<ExerciseVolumeWidget> createState() => _ExerciseVolumeWidgetState();
-}
+    required this.index,
+    required this.exerciseRecord,
+    required this.deleteExerciseRecord,
+    required this.updateExerciseRecords,
+  });
 
-class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
-  List<Tuple2> _kgAndRepsList = [];
-
-  void deleteKgAndRepsTextBox(int index) {
-    setState(() {
-      _kgAndRepsList.removeAt(index);
-    });
-  }
-
-  void changeKgAndReps(int index, int kg, int reps) {
-    setState(() {
-      _kgAndRepsList[index] = Tuple2(kg, reps);
-    });
-  }
+  final int index;
+  final ExerciseRecord exerciseRecord;
+  final Function deleteExerciseRecord;
+  final Function updateExerciseRecords;
 
   @override
   Widget build(BuildContext context) {
+    void deleteSet(int index) {
+      exerciseRecord.setRecords.removeAt(index);
+      updateExerciseRecords();
+    }
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
@@ -41,7 +31,7 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
           child: Container(
               width: 400,
               alignment: Alignment.center,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10.0),
@@ -61,7 +51,7 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
                     children: [
                       Expanded(child: Container()),
                       Text(
-                        widget._exerciseName,
+                        exerciseRecord.exerciseName,
                         style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -73,7 +63,7 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
                           children: [
                             IconButton(
                               onPressed: () {
-                                widget._deleteExerciseVolumeWidget(widget.key);
+                                deleteExerciseRecord(index);
                               },
                               icon: const Icon(Icons.close),
                             ),
@@ -82,30 +72,29 @@ class _ExerciseVolumeWidgetState extends State<ExerciseVolumeWidget> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ListView.builder(
                     shrinkWrap: true,
-                    itemCount: _kgAndRepsList.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: exerciseRecord.setRecords.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return OneSetInfoWidget(
-                        deleteKgAndRepsTextBox: deleteKgAndRepsTextBox,
-                        changeKgAndReps: changeKgAndReps,
+                      return SetRecordWidget(
                         index: index,
-                        kg: _kgAndRepsList[index].item1,
-                        reps: _kgAndRepsList[index].item2,
+                        deleteThis: deleteSet,
+                        updateExerciseRecords: updateExerciseRecords,
+                        oneSetInfo: exerciseRecord.setRecords[index],
                       );
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        _kgAndRepsList.add(Tuple2(0, 0));
-                      });
+                      exerciseRecord.setRecords.add(SetRecord(kg: 0, reps: 0));
+                      updateExerciseRecords();
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
