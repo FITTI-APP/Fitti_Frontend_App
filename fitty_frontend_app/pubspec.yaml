@@ -29,7 +29,10 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
-    sdk: flutter
+    sdk: flutter 
+    
+  
+  
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -37,6 +40,10 @@ dependencies:
   tuple: ^2.0.2
   table_calendar: ^3.0.9
   intl: ^0.18.1
+  get: ^4.6.5
+  google_fonts: ^5.1.0
+  http: ^1.1.0
+  fluttertoast: ^8.2.2
   provider: ^6.0.5
 
 dev_dependencies:
@@ -60,6 +67,11 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  
+  assets:
+    - asset/flankggg.gif
+    - asset/clockhealth.gif
+    - asset/giphy.gif
 
   # To add assets to your application, add an assets section, like this:
   # assets:
