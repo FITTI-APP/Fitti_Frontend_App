@@ -93,7 +93,8 @@ class ExerciseRecordWidget extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      int kg, reps = exerciseRecord.setRecords.length + 1;
+                      int kg = exerciseRecord.setRecords.last.kg;
+                      int reps = exerciseRecord.setRecords.last.reps;
                       exerciseRecord.setRecords
                           .add(SetRecord(kg: kg, reps: reps));
                       updateExerciseRecords();
