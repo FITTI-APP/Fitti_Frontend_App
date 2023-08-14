@@ -30,10 +30,11 @@ class SetRecordWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SizedBox(
-          width: 55,
+          width: 60,
           height: 25,
           child: TextField(
             controller: kgController,
+            textAlign: TextAlign.center,
             onChanged: (value) => {
               oneSetInfo.kg = int.parse(value),
               updateExerciseRecords(),
@@ -49,6 +50,7 @@ class SetRecordWidget extends StatelessWidget {
           height: 25,
           child: TextField(
             controller: repsController,
+            textAlign: TextAlign.center,
             onChanged: (value) => {
               oneSetInfo.reps = int.parse(value),
               updateExerciseRecords(),
