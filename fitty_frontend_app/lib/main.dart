@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'domain/plan/exercise/all_exercise_record.dart';
-import 'navigation_page.dart';
 import 'intro_screen.dart';
 
 void main() async {
   await initializeDateFormatting();
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(ChangeNotifierProvider(
-    create: (context) => AllExerciseRecord(),
+    create: (context) => AllExerciseRecord(prefs),
     child: const MyApp(),
   ));
 }

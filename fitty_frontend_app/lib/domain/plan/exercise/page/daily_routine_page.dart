@@ -61,9 +61,8 @@ class DailyRoutinePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const ExerciseListPage()));
-                          var exerciseRecord = ExerciseRecord(
-                            exerciseName: exerciseName,
-                          );
+                          var exerciseRecord = ExerciseRecord();
+                          exerciseRecord.exerciseName = exerciseName;
                           exerciseRecordsOfTheDay.exerciseRecords
                               .add(exerciseRecord);
                           exerciseRecordsOfDays.updateExerciseRecords();
