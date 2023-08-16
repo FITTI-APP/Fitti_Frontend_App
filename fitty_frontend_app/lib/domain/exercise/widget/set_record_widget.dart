@@ -1,9 +1,9 @@
-import 'package:fitty_frontend_app/domain/plan/exercise/all_exercise_record.dart';
+import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class SetRecordWidget extends StatelessWidget {
-  SetRecordWidget({
+class OneSetRecordWidget extends StatelessWidget {
+  OneSetRecordWidget({
     required this.oneSetInfo,
     required this.index,
     required this.deleteThis,
@@ -11,7 +11,7 @@ class SetRecordWidget extends StatelessWidget {
     super.key,
   });
 
-  final SetRecord oneSetInfo;
+  final OneSetRecord oneSetInfo;
   final int index;
   final Function deleteThis;
   final Function updateExerciseRecords;

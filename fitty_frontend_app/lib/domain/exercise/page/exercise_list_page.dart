@@ -1,4 +1,4 @@
-import 'package:fitty_frontend_app/domain/plan/exercise/widget/exercise_widget.dart';
+import 'package:fitty_frontend_app/domain/exercise/widget/exercise_widget.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseListPage extends StatefulWidget {
@@ -9,7 +9,24 @@ class ExerciseListPage extends StatefulWidget {
 }
 
 class _ExerciseListPageState extends State<ExerciseListPage> {
-  List<String> _exercises = ["벤치프레스", "스쿼트", "데드리프트", "오버헤드프레스", "바벨로우"];
+  List<String> _exercises = [
+    "벤치프레스",
+    "스쿼트",
+    "데드리프트",
+    "오버헤드 프레스",
+    "바벨 로우",
+    "풀업",
+    "펜들레이 로우",
+    "라잉 트라이셉스 익스텐션",
+    "바벨 컬",
+    "인클라인 덤벨 벤치프레스",
+    "인클라인 벤치프레스",
+    "덤벨 벤치프레스",
+    "덤벨 플라이",
+    "덤벨 숄더 프레스",
+    "시티드 케이블 로우",
+    "해머 컬",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

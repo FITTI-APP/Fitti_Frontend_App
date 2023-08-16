@@ -1,9 +1,9 @@
-import 'package:fitty_frontend_app/domain/plan/exercise/all_exercise_record.dart';
+import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
 import 'package:flutter/material.dart';
 import 'set_record_widget.dart';
 
-class ExerciseRecordWidget extends StatelessWidget {
-  const ExerciseRecordWidget({
+class VolumeRecordWidget extends StatelessWidget {
+  const VolumeRecordWidget({
     super.key,
     required this.index,
     required this.exerciseRecord,
@@ -12,14 +12,14 @@ class ExerciseRecordWidget extends StatelessWidget {
   });
 
   final int index;
-  final ExerciseRecord exerciseRecord;
+  final VolumeRecord exerciseRecord;
   final Function deleteExerciseRecord;
   final Function updateExerciseRecords;
 
   @override
   Widget build(BuildContext context) {
     void deleteSet(int index) {
-      exerciseRecord.setRecords.removeAt(index);
+      exerciseRecord.oneSetRecords.removeAt(index);
       updateExerciseRecords();
     }
 
@@ -78,13 +78,13 @@ class ExerciseRecordWidget extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: exerciseRecord.setRecords.length,
+                    itemCount: exerciseRecord.oneSetRecords.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return SetRecordWidget(
+                      return OneSetRecordWidget(
                         index: index,
                         deleteThis: deleteSet,
                         updateExerciseRecords: updateExerciseRecords,
-                        oneSetInfo: exerciseRecord.setRecords[index],
+                        oneSetInfo: exerciseRecord.oneSetRecords[index],
                       );
                     },
                   ),
@@ -93,16 +93,16 @@ class ExerciseRecordWidget extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      int kg = exerciseRecord.setRecords.isEmpty
+                      int kg = exerciseRecord.oneSetRecords.isEmpty
                           ? 0
-                          : exerciseRecord.setRecords.last.kg;
-                      int reps = exerciseRecord.setRecords.isEmpty
+                          : exerciseRecord.oneSetRecords.last.kg;
+                      int reps = exerciseRecord.oneSetRecords.isEmpty
                           ? 0
-                          : exerciseRecord.setRecords.last.reps;
-                      var setRecord = SetRecord();
+                          : exerciseRecord.oneSetRecords.last.reps;
+                      var setRecord = OneSetRecord();
                       setRecord.kg = kg;
                       setRecord.reps = reps;
-                      exerciseRecord.setRecords.add(setRecord);
+                      exerciseRecord.oneSetRecords.add(setRecord);
                       updateExerciseRecords();
                     },
                     style: ElevatedButton.styleFrom(

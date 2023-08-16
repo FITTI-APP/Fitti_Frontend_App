@@ -1,5 +1,5 @@
-import 'package:fitty_frontend_app/domain/plan/exercise/all_exercise_record.dart';
-import 'package:fitty_frontend_app/domain/plan/exercise/widget/exercise_record_widget.dart';
+import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
+import 'package:fitty_frontend_app/domain/exercise/widget/volume_record_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'exercise_list_page.dart';
@@ -23,7 +23,7 @@ class DailyRoutinePage extends StatelessWidget {
               var exerciseRecordsOfTheDay =
                   exerciseRecordsOfDays.getExerciseRecords(DateTime.now());
               void deleteExerciseRecord(int index) {
-                exerciseRecordsOfTheDay.exerciseRecords.removeAt(index);
+                exerciseRecordsOfTheDay.volumeRecords.removeAt(index);
                 exerciseRecordsOfDays.updateExerciseRecords();
               }
 
@@ -37,14 +37,14 @@ class DailyRoutinePage extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: exerciseRecordsOfTheDay.exerciseRecords.length,
+                    itemCount: exerciseRecordsOfTheDay.volumeRecords.length,
                     itemBuilder: (context, index) {
-                      return ExerciseRecordWidget(
+                      return VolumeRecordWidget(
                         index: index,
                         deleteExerciseRecord: deleteExerciseRecord,
                         updateExerciseRecords: updateExerciseRecords,
                         exerciseRecord:
-                            exerciseRecordsOfTheDay.exerciseRecords[index],
+                            exerciseRecordsOfTheDay.volumeRecords[index],
                       );
                     },
                   ),
@@ -61,9 +61,9 @@ class DailyRoutinePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const ExerciseListPage()));
-                          var exerciseRecord = ExerciseRecord();
+                          var exerciseRecord = VolumeRecord();
                           exerciseRecord.exerciseName = exerciseName;
-                          exerciseRecordsOfTheDay.exerciseRecords
+                          exerciseRecordsOfTheDay.volumeRecords
                               .add(exerciseRecord);
                           exerciseRecordsOfDays.updateExerciseRecords();
                         },

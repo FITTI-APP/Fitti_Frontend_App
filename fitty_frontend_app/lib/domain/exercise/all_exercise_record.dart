@@ -7,7 +7,7 @@ class AllExerciseRecord extends ChangeNotifier {
   SharedPreferences prefs;
 
   AllExerciseRecord(this.prefs) {
-    var encodedData = prefs.getString('exerciseRecords');
+    var encodedData = prefs.getString('dateTimeToDayExerciseRecordMap');
     if (encodedData != null) {
       var decodedData = jsonDecode(encodedData);
       _dateTimeToDayExerciseRecordMap =
@@ -29,48 +29,48 @@ class AllExerciseRecord extends ChangeNotifier {
   }
 
   void updateExerciseRecords() {
-    prefs.setString(
-        'exerciseRecords', jsonEncode(_dateTimeToDayExerciseRecordMap));
+    prefs.setString('dateTimeToDayExerciseRecordMap',
+        jsonEncode(_dateTimeToDayExerciseRecordMap));
     notifyListeners();
   }
 }
 
 class DayExerciseRecord {
-  List<ExerciseRecord> exerciseRecords = [];
+  List<VolumeRecord> volumeRecords = [];
   // todo : 시간 등등 기록
   DayExerciseRecord();
   DayExerciseRecord.fromJson(Map<String, dynamic> json)
-      : exerciseRecords = List<ExerciseRecord>.from(json['exerciseRecords']
-            .map((value) => ExerciseRecord.fromJson(value)));
+      : volumeRecords = List<VolumeRecord>.from(
+            json['volumeRecords'].map((value) => VolumeRecord.fromJson(value)));
   Map<String, dynamic> toJson() {
     return {
-      'exerciseRecords': exerciseRecords,
+      'volumeRecords': volumeRecords,
     };
   }
 }
 
-class ExerciseRecord {
+class VolumeRecord {
   String exerciseName = "";
-  List<SetRecord> setRecords = [];
-  ExerciseRecord();
-  ExerciseRecord.fromJson(Map<String, dynamic> json)
+  List<OneSetRecord> oneSetRecords = [];
+  VolumeRecord();
+  VolumeRecord.fromJson(Map<String, dynamic> json)
       : exerciseName = json['exerciseName'],
-        setRecords = List<SetRecord>.from(
-            json['setRecords'].map((value) => SetRecord.fromJson(value)));
+        oneSetRecords = List<OneSetRecord>.from(
+            json['oneSetRecords'].map((value) => OneSetRecord.fromJson(value)));
   Map<String, dynamic> toJson() {
     return {
       'exerciseName': exerciseName,
-      'setRecords': setRecords,
+      'oneSetRecords': oneSetRecords,
     };
   }
   // todo : 얘도 시간 등등 기록
 }
 
-class SetRecord {
+class OneSetRecord {
   int kg = 0;
   int reps = 0;
-  SetRecord();
-  SetRecord.fromJson(Map<String, dynamic> json)
+  OneSetRecord();
+  OneSetRecord.fromJson(Map<String, dynamic> json)
       : kg = json['kg'],
         reps = json['reps'];
   Map<String, dynamic> toJson() => {

@@ -4,7 +4,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'domain/plan/exercise/all_exercise_record.dart';
+import 'domain/exercise/all_exercise_record.dart';
 import 'intro_screen.dart';
 
 void main() async {
