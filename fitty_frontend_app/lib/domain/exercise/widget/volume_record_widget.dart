@@ -1,6 +1,6 @@
 import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
 import 'package:flutter/material.dart';
-import 'set_record_widget.dart';
+import 'one_set_record_widget.dart';
 
 class VolumeRecordWidget extends StatelessWidget {
   const VolumeRecordWidget({
