@@ -32,6 +32,8 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         ],
       ),
       child: TableCalendar(
+          // 캘린더가 SingleScrollView 에서 수직 스크롤 안되는 문제 해결
+          availableGestures: AvailableGestures.horizontalSwipe,
           firstDay: DateTime.utc(2000, 1, 1),
           lastDay: DateTime.utc(2999, 12, 31),
           focusedDay: _focusedDay,
