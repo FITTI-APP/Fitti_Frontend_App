@@ -14,12 +14,12 @@ class VolumeSummaryWidget extends StatelessWidget {
     var oneSetRecords = exerciseRecord.oneSetRecords;
     int totalVolume = 0;
     for (var element in oneSetRecords) {
-      totalVolume += element.kg * element.reps;
+      totalVolume += element.weight * element.reps;
     }
     int maxWeight = 0;
     for (var element in oneSetRecords) {
-      if (element.kg > maxWeight) {
-        maxWeight = element.kg;
+      if (element.weight > maxWeight) {
+        maxWeight = element.weight;
       }
     }
     return Container(
@@ -57,7 +57,7 @@ class VolumeSummaryWidget extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Text(
-                        '${index + 1}세트 : ${oneSetRecords[index].kg}kg x ${oneSetRecords[index].reps}',
+                        '${index + 1}세트 : ${oneSetRecords[index].weight}kg x ${oneSetRecords[index].reps}',
                         style: const TextStyle(
                           fontSize: 15,
                         ),

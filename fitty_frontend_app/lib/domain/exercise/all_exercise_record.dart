@@ -67,14 +67,14 @@ class VolumeRecord {
 }
 
 class OneSetRecord {
-  int kg = 0;
+  int weight = 0;
   int reps = 0;
   OneSetRecord();
   OneSetRecord.fromJson(Map<String, dynamic> json)
-      : kg = json['kg'],
+      : weight = json['weight'],
         reps = json['reps'];
   Map<String, dynamic> toJson() => {
-        'kg': kg,
+        'weight': weight,
         'reps': reps,
       };
 }

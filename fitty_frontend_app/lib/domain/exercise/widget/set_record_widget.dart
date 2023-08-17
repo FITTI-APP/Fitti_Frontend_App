@@ -21,7 +21,7 @@ class OneSetRecordWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    kgController.text = oneSetInfo.kg.toString();
+    kgController.text = oneSetInfo.weight.toString();
     repsController.text = oneSetInfo.reps.toString();
     kgController.selection = TextSelection.fromPosition(
         TextPosition(offset: kgController.text.length));
@@ -42,7 +42,7 @@ class OneSetRecordWidget extends StatelessWidget {
             ],
             maxLength: 4,
             onChanged: (value) => {
-              oneSetInfo.kg = int.parse(value),
+              oneSetInfo.weight = int.parse(value),
               updateExerciseRecords(),
             },
             decoration: const InputDecoration(

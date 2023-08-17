@@ -95,12 +95,12 @@ class VolumeRecordWidget extends StatelessWidget {
                     onPressed: () {
                       int kg = exerciseRecord.oneSetRecords.isEmpty
                           ? 0
-                          : exerciseRecord.oneSetRecords.last.kg;
+                          : exerciseRecord.oneSetRecords.last.weight;
                       int reps = exerciseRecord.oneSetRecords.isEmpty
                           ? 0
                           : exerciseRecord.oneSetRecords.last.reps;
                       var setRecord = OneSetRecord();
-                      setRecord.kg = kg;
+                      setRecord.weight = kg;
                       setRecord.reps = reps;
                       exerciseRecord.oneSetRecords.add(setRecord);
                       updateExerciseRecords();
