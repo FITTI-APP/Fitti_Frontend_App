@@ -12,10 +12,10 @@ class MyExerciseHome extends StatelessWidget {
     return Center(
       child: TextButton(
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const DailyRoutinePage()));
+          Get.to(() => DailyRoutinePage(
+                title: "오늘의 운동",
+                selectedDay: DateTime.now(),
+              ));
         },
         child: const Text('오늘의 운동 시작하기'),
       ),
