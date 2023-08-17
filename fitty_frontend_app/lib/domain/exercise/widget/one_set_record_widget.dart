@@ -34,6 +34,8 @@ class OneSetRecordWidget extends StatelessWidget {
           width: 65,
           height: 25,
           child: TextField(
+            onTap: () => kgController.selection = TextSelection(
+                baseOffset: 0, extentOffset: kgController.text.length),
             controller: kgController,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
@@ -56,6 +58,8 @@ class OneSetRecordWidget extends StatelessWidget {
           width: 65,
           height: 25,
           child: TextField(
+            onTap: () => repsController.selection = TextSelection(
+                baseOffset: 0, extentOffset: repsController.text.length),
             controller: repsController,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
