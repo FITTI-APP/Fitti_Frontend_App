@@ -5,8 +5,11 @@ import 'package:provider/provider.dart';
 import 'exercise_list_page.dart';
 
 class DailyRoutinePage extends StatelessWidget {
-  const DailyRoutinePage({super.key});
+  const DailyRoutinePage(
+      {super.key, required this.title, required this.selectedDay});
 
+  final String title;
+  final DateTime selectedDay;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -15,45 +18,44 @@ class DailyRoutinePage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('오늘의 운동'),
+          title: Text(title),
         ),
         body: SingleChildScrollView(
           child: Center(child: Consumer<AllExerciseRecord>(
-            builder: (context, exerciseRecordsOfDays, child) {
-              var exerciseRecordsOfTheDay =
-                  exerciseRecordsOfDays.getExerciseRecords(DateTime.now());
+            builder: (context, allExerciseRecord, child) {
+              var selectedDayExerciseRecord =
+                  allExerciseRecord.getExerciseRecords(selectedDay);
               void deleteExerciseRecord(int index) {
-                exerciseRecordsOfTheDay.volumeRecords.removeAt(index);
-                exerciseRecordsOfDays.updateExerciseRecords();
+                selectedDayExerciseRecord.volumeRecords.removeAt(index);
+                allExerciseRecord.updateExerciseRecords();
               }
 
               void updateExerciseRecords() {
-                exerciseRecordsOfDays.updateExerciseRecords();
+                allExerciseRecord.updateExerciseRecords();
               }
 
               return Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: exerciseRecordsOfTheDay.volumeRecords.length,
+                    itemCount: selectedDayExerciseRecord.volumeRecords.length,
                     itemBuilder: (context, index) {
                       return VolumeRecordWidget(
                         index: index,
                         deleteExerciseRecord: deleteExerciseRecord,
                         updateExerciseRecords: updateExerciseRecords,
                         exerciseRecord:
-                            exerciseRecordsOfTheDay.volumeRecords[index],
+                            selectedDayExerciseRecord.volumeRecords[index],
                       );
                     },
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 20.0,
+                      vertical: 10.0,
                     ),
                     child: SizedBox(
-                      width: 300,
+                      width: 150,
                       child: ElevatedButton(
                         onPressed: () async {
                           String exerciseName = await Navigator.push(
@@ -63,16 +65,14 @@ class DailyRoutinePage extends StatelessWidget {
                                       const ExerciseListPage()));
                           var exerciseRecord = VolumeRecord();
                           exerciseRecord.exerciseName = exerciseName;
-                          exerciseRecordsOfTheDay.volumeRecords
+                          selectedDayExerciseRecord.volumeRecords
                               .add(exerciseRecord);
-                          exerciseRecordsOfDays.updateExerciseRecords();
+                          allExerciseRecord.updateExerciseRecords();
                         },
                         style: ElevatedButton.styleFrom(
-                          // minimumSize: Size.fromWidth(10000),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
-                          foregroundColor:
-                              Colors.blue, // Set button background color
+                          foregroundColor: Colors.blue,
                         ),
                         child: const Text(
                           '운동 추가하기',

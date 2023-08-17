@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../domain/exercise/page/daily_routine_page.dart';
 
@@ -10,7 +11,7 @@ class MyExerciseHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: TextButton(
+      child: ElevatedButton(
         onPressed: () {
           Get.to(() => DailyRoutinePage(
                 title: "오늘의 운동",
