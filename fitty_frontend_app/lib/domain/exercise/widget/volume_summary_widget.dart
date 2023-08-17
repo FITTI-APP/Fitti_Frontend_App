@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +23,10 @@ class VolumeSummaryWidget extends StatelessWidget {
       if (element.weight > maxWeight) {
         maxWeight = element.weight;
       }
+    }
+    double expected1RM = 0;
+    for (var element in oneSetRecords) {
+      expected1RM = max(expected1RM, element.weight * (1 + element.reps / 30));
     }
     return Container(
       margin: const EdgeInsets.all(10.0),
@@ -78,6 +84,7 @@ class VolumeSummaryWidget extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 15,
                         )),
+                    Text("예상 1RM : ${expected1RM.toStringAsFixed(1)}kg"),
                   ],
                 ),
               )
