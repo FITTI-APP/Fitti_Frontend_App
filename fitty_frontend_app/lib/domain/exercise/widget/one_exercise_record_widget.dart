@@ -2,8 +2,8 @@ import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
 import 'package:flutter/material.dart';
 import 'one_set_record_widget.dart';
 
-class VolumeRecordWidget extends StatelessWidget {
-  const VolumeRecordWidget({
+class OneExerciseRecordWidget extends StatelessWidget {
+  const OneExerciseRecordWidget({
     super.key,
     required this.index,
     required this.exerciseRecord,
@@ -12,7 +12,7 @@ class VolumeRecordWidget extends StatelessWidget {
   });
 
   final int index;
-  final VolumeRecord exerciseRecord;
+  final OneExerciseRecord exerciseRecord;
   final Function deleteExerciseRecord;
   final Function updateExerciseRecords;
 

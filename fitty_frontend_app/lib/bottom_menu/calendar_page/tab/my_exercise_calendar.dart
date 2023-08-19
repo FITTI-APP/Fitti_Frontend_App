@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../calendar_widget.dart';
-import '../../../domain/exercise/widget/volume_summary_widget.dart';
+import '../../../domain/exercise/widget/one_exercise_summary_widget.dart';
 
 class MyExerciseCalendar extends StatefulWidget {
   const MyExerciseCalendar({super.key});
@@ -45,15 +45,15 @@ class _MyExerciseCalendarState extends State<MyExerciseCalendar> {
           Consumer<AllExerciseRecord>(
             builder: (context, allExerciseRecord, child) {
               var selectedDayExerciseRecord =
-                  allExerciseRecord.getExerciseRecords(_selectedDay);
+                  allExerciseRecord.getDayExerciseRecord(_selectedDay);
               return ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: selectedDayExerciseRecord.volumeRecords.length,
+                itemCount: selectedDayExerciseRecord.oneExerciseRecords.length,
                 itemBuilder: (context, index) {
                   return VolumeSummaryWidget(
                     exerciseRecord:
-                        selectedDayExerciseRecord.volumeRecords[index],
+                        selectedDayExerciseRecord.oneExerciseRecords[index],
                   );
                 },
               );

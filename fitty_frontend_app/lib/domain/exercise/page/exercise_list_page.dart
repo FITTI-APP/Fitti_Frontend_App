@@ -31,7 +31,7 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Exercise List'),
+        title: const Text('운동 목록'),
       ),
       body: Center(
         child: ListView.builder(

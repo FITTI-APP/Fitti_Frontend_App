@@ -19,7 +19,16 @@ class AllExerciseRecord extends ChangeNotifier {
     }
   }
 
-  DayExerciseRecord getExerciseRecords(DateTime dateTime) {
+  List<MapEntry<String, DayExerciseRecord>> get recordExistingEntries {
+    var entries = _dateTimeToDayExerciseRecordMap.entries.toList();
+    List<MapEntry<String, DayExerciseRecord>> result = [];
+    for (var entry in entries) {
+      if (entry.value.oneExerciseRecords.isNotEmpty) result.add(entry);
+    }
+    return result;
+  }
+
+  DayExerciseRecord getDayExerciseRecord(DateTime dateTime) {
     var dateOnly = DateUtils.dateOnly(dateTime);
     if (_dateTimeToDayExerciseRecordMap[dateOnly.toString()] == null) {
       _dateTimeToDayExerciseRecordMap[dateOnly.toString()] =
@@ -36,24 +45,25 @@ class AllExerciseRecord extends ChangeNotifier {
 }
 
 class DayExerciseRecord {
-  List<VolumeRecord> volumeRecords = [];
+  List<OneExerciseRecord> oneExerciseRecords = [];
   // todo : 시간 등등 기록
   DayExerciseRecord();
   DayExerciseRecord.fromJson(Map<String, dynamic> json)
-      : volumeRecords = List<VolumeRecord>.from(
-            json['volumeRecords'].map((value) => VolumeRecord.fromJson(value)));
+      : oneExerciseRecords = List<OneExerciseRecord>.from(
+            json['oneExerciseRecords']
+                .map((value) => OneExerciseRecord.fromJson(value)));
   Map<String, dynamic> toJson() {
     return {
-      'volumeRecords': volumeRecords,
+      'oneExerciseRecords': oneExerciseRecords,
     };
   }
 }
 
-class VolumeRecord {
+class OneExerciseRecord {
   String exerciseName = "";
   List<OneSetRecord> oneSetRecords = [];
-  VolumeRecord();
-  VolumeRecord.fromJson(Map<String, dynamic> json)
+  OneExerciseRecord();
+  OneExerciseRecord.fromJson(Map<String, dynamic> json)
       : exerciseName = json['exerciseName'],
         oneSetRecords = List<OneSetRecord>.from(
             json['oneSetRecords'].map((value) => OneSetRecord.fromJson(value)));

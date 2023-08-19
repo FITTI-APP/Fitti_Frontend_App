@@ -1,6 +1,8 @@
 import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
-import 'package:fitty_frontend_app/domain/exercise/widget/volume_record_widget.dart';
+import 'package:fitty_frontend_app/domain/exercise/page/exercise_record_list_page.dart';
+import 'package:fitty_frontend_app/domain/exercise/widget/one_exercise_record_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'exercise_list_page.dart';
 
@@ -24,9 +26,9 @@ class DailyRoutinePage extends StatelessWidget {
           child: Center(child: Consumer<AllExerciseRecord>(
             builder: (context, allExerciseRecord, child) {
               var selectedDayExerciseRecord =
-                  allExerciseRecord.getExerciseRecords(selectedDay);
+                  allExerciseRecord.getDayExerciseRecord(selectedDay);
               void deleteExerciseRecord(int index) {
-                selectedDayExerciseRecord.volumeRecords.removeAt(index);
+                selectedDayExerciseRecord.oneExerciseRecords.removeAt(index);
                 allExerciseRecord.updateExerciseRecords();
               }
 
@@ -39,14 +41,15 @@ class DailyRoutinePage extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: selectedDayExerciseRecord.volumeRecords.length,
+                    itemCount:
+                        selectedDayExerciseRecord.oneExerciseRecords.length,
                     itemBuilder: (context, index) {
-                      return VolumeRecordWidget(
+                      return OneExerciseRecordWidget(
                         index: index,
                         deleteExerciseRecord: deleteExerciseRecord,
                         updateExerciseRecords: updateExerciseRecords,
                         exerciseRecord:
-                            selectedDayExerciseRecord.volumeRecords[index],
+                            selectedDayExerciseRecord.oneExerciseRecords[index],
                       );
                     },
                   ),
@@ -63,10 +66,10 @@ class DailyRoutinePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const ExerciseListPage()));
-                          var exerciseRecord = VolumeRecord();
-                          exerciseRecord.exerciseName = exerciseName;
-                          selectedDayExerciseRecord.volumeRecords
-                              .add(exerciseRecord);
+                          var oneExerciseRecord = OneExerciseRecord();
+                          oneExerciseRecord.exerciseName = exerciseName;
+                          selectedDayExerciseRecord.oneExerciseRecords
+                              .add(oneExerciseRecord);
                           allExerciseRecord.updateExerciseRecords();
                         },
                         style: ElevatedButton.styleFrom(
@@ -85,14 +88,27 @@ class DailyRoutinePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton(
-                        onPressed: () {
-                          // Handle 'Load' button press
+                        onPressed: () async {
+                          var recordExistingEntries =
+                              allExerciseRecord.recordExistingEntries;
+                          recordExistingEntries
+                              .sort((a, b) => b.key.compareTo(a.key));
+                          var selectedExerciseRecords =
+                              await Get.to(() => ExerciseRecordListPage(
+                                    recordExistingEntries:
+                                        recordExistingEntries,
+                                  ));
+                          for (var selectedExerciseRecord
+                              in selectedExerciseRecords) {
+                            selectedDayExerciseRecord.oneExerciseRecords
+                                .add(selectedExerciseRecord);
+                          }
+                          allExerciseRecord.updateExerciseRecords();
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
-                          foregroundColor:
-                              Colors.blue, // Set button background color
+                          foregroundColor: Colors.blue,
                         ),
                         child: const Text(
                           '불러오기',
