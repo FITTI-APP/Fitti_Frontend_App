@@ -1,7 +1,6 @@
+import 'package:fitty_frontend_app/page/exercise/daily_routine_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../domain/exercise/page/daily_routine_page.dart';
 
 class MyExerciseHome extends StatelessWidget {
   const MyExerciseHome({

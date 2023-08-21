@@ -1,6 +1,6 @@
-import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
-import 'package:fitty_frontend_app/domain/exercise/page/exercise_record_list_page.dart';
-import 'package:fitty_frontend_app/domain/exercise/widget/one_exercise_record_widget.dart';
+import 'package:fitty_frontend_app/data/all_exercise_record.dart';
+import 'package:fitty_frontend_app/page/exercise/exercise_record_list_page.dart';
+import 'package:fitty_frontend_app/widget/exercise/one_exercise_record_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -61,16 +61,15 @@ class DailyRoutinePage extends StatelessWidget {
                       width: 150,
                       child: ElevatedButton(
                         onPressed: () async {
-                          String exerciseName = await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ExerciseListPage()));
-                          var oneExerciseRecord = OneExerciseRecord();
-                          oneExerciseRecord.exerciseName = exerciseName;
-                          selectedDayExerciseRecord.oneExerciseRecords
-                              .add(oneExerciseRecord);
-                          allExerciseRecord.updateExerciseRecords();
+                          String? exerciseName =
+                              await Get.to(() => const ExerciseListPage());
+                          if (exerciseName != null) {
+                            var oneExerciseRecord = OneExerciseRecord();
+                            oneExerciseRecord.exerciseName = exerciseName;
+                            selectedDayExerciseRecord.oneExerciseRecords
+                                .add(oneExerciseRecord);
+                            allExerciseRecord.updateExerciseRecords();
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(

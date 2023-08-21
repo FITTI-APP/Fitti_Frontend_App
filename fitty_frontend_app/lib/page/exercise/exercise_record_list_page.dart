@@ -1,9 +1,8 @@
 import 'dart:convert';
+import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
-import '../all_exercise_record.dart';
 
 class ExerciseRecordListPage extends StatefulWidget {
   ExerciseRecordListPage({super.key, required this.recordExistingEntries}) {

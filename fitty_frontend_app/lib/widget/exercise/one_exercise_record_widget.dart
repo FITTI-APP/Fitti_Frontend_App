@@ -1,4 +1,4 @@
-import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
+import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:flutter/material.dart';
 import 'one_set_record_widget.dart';
 
