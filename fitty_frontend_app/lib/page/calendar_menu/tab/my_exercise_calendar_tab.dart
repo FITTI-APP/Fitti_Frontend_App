@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../../../../widget/calendar_widget.dart';
+import '../../../widget/common/calendar_widget.dart';
 
 class MyExerciseCalendarTab extends StatefulWidget {
   const MyExerciseCalendarTab({super.key});
