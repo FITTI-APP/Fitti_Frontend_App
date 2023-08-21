@@ -1,9 +1,9 @@
 import 'dart:math';
-import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
+import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:flutter/material.dart';
 
-class VolumeSummaryWidget extends StatelessWidget {
-  const VolumeSummaryWidget({
+class OneExerciseRecordSummaryWidget extends StatelessWidget {
+  const OneExerciseRecordSummaryWidget({
     super.key,
     required this.exerciseRecord,
   });

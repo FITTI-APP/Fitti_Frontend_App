@@ -1,17 +1,17 @@
+import 'package:fitty_frontend_app/page/calendar_menu/calendar_page.dart';
+import 'package:fitty_frontend_app/page/home_menu/home_page.dart';
 import 'package:flutter/material.dart';
-import 'bottom_menu/calendar_page/calendar_page.dart';
-import 'bottom_menu/home_page/home_page.dart';
 
-class NavigationPage extends StatefulWidget {
-  const NavigationPage({
+class MenuRoutingPage extends StatefulWidget {
+  const MenuRoutingPage({
     super.key,
   });
 
   @override
-  State<NavigationPage> createState() => _NavigationPageState();
+  State<MenuRoutingPage> createState() => _MenuRoutingPageState();
 }
 
-class _NavigationPageState extends State<NavigationPage> {
+class _MenuRoutingPageState extends State<MenuRoutingPage> {
   int selectedIndex = 0;
   List<Widget> navBarPages = [
     const HomePage(),

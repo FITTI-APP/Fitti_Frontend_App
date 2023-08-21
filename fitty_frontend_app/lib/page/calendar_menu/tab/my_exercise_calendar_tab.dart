@@ -1,20 +1,20 @@
-import 'package:fitty_frontend_app/domain/exercise/all_exercise_record.dart';
-import 'package:fitty_frontend_app/domain/exercise/page/daily_routine_page.dart';
+import 'package:fitty_frontend_app/data/all_exercise_record.dart';
+import 'package:fitty_frontend_app/page/exercise/daily_routine_page.dart';
+import 'package:fitty_frontend_app/widget/exercise/one_exercise_record_summary_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../calendar_widget.dart';
-import '../../../domain/exercise/widget/one_exercise_summary_widget.dart';
+import '../../../../widget/calendar_widget.dart';
 
-class MyExerciseCalendar extends StatefulWidget {
-  const MyExerciseCalendar({super.key});
+class MyExerciseCalendarTab extends StatefulWidget {
+  const MyExerciseCalendarTab({super.key});
 
   @override
-  State<MyExerciseCalendar> createState() => _MyExerciseCalendarState();
+  State<MyExerciseCalendarTab> createState() => _MyExerciseCalendarTabState();
 }
 
-class _MyExerciseCalendarState extends State<MyExerciseCalendar> {
+class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
   DateTime _selectedDay = DateTime.now();
   bool isDateTimeLaterThanToday(DateTime dateTime) {
     DateTime currentDateWithoutTime =
@@ -51,7 +51,7 @@ class _MyExerciseCalendarState extends State<MyExerciseCalendar> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: selectedDayExerciseRecord.oneExerciseRecords.length,
                 itemBuilder: (context, index) {
-                  return VolumeSummaryWidget(
+                  return OneExerciseRecordSummaryWidget(
                     exerciseRecord:
                         selectedDayExerciseRecord.oneExerciseRecords[index],
                   );

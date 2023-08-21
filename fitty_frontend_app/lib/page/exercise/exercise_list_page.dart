@@ -1,4 +1,4 @@
-import 'package:fitty_frontend_app/domain/exercise/widget/exercise_widget.dart';
+import 'package:fitty_frontend_app/widget/exercise/exercise_widget.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseListPage extends StatefulWidget {
