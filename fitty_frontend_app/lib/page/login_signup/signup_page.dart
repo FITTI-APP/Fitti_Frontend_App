@@ -17,11 +17,11 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
-  var _userNameController = TextEditingController();
-  var _emailController = TextEditingController();
-  var _passwordController = TextEditingController();
+  final _userNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   checkUserEmail() async {
     try {
@@ -86,23 +86,23 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.account_circle_outlined,
                   color: Color.fromARGB(255, 6, 6, 6),
                   size: 100,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Text(
                   'F I T T I',
                   style: GoogleFonts.bebasNeue(fontSize: 50.0),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text('회원 가입', style: GoogleFonts.bebasNeue(fontSize: 28)),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Form(
@@ -123,13 +123,13 @@ class _SignupPageState extends State<SignupPage> {
                               controller: _userNameController,
                               validator: (val) =>
                                   val == "" ? "Please enter username " : null,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   border: InputBorder.none, hintText: 'User'),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Padding(
@@ -146,13 +146,13 @@ class _SignupPageState extends State<SignupPage> {
                               controller: _emailController,
                               validator: (val) =>
                                   val == "" ? "Please enter email" : null,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   border: InputBorder.none, hintText: 'Email'),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Padding(
@@ -169,7 +169,7 @@ class _SignupPageState extends State<SignupPage> {
                               validator: (val) =>
                                   val == "" ? "Please enter password" : null,
                               obscureText: true,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   hintText: 'Password'),
                             ),
@@ -179,7 +179,7 @@ class _SignupPageState extends State<SignupPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 GestureDetector(
@@ -190,13 +190,13 @@ class _SignupPageState extends State<SignupPage> {
                   },
                   child: Container(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: Container(
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                             color: Colors.red,
                             borderRadius: BorderRadius.circular(12)),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             '회원가입',
                             style: TextStyle(
@@ -209,16 +209,16 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('이미 등록하셨습니까?'),
+                    const Text('이미 등록하셨습니까?'),
                     GestureDetector(
                       onTap: () => Get.back(),
-                      child: Text(
+                      child: const Text(
                         ' 로그인 페이지로 돌아가기!',
                         style: TextStyle(
                             color: Colors.blue, fontWeight: FontWeight.bold),

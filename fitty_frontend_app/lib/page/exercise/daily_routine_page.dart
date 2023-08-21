@@ -48,7 +48,7 @@ class DailyRoutinePage extends StatelessWidget {
                         index: index,
                         deleteExerciseRecord: deleteExerciseRecord,
                         updateExerciseRecords: updateExerciseRecords,
-                        exerciseRecord:
+                        oneExerciseRecord:
                             selectedDayExerciseRecord.oneExerciseRecords[index],
                       );
                     },

@@ -9,7 +9,7 @@ class ExerciseListPage extends StatefulWidget {
 }
 
 class _ExerciseListPageState extends State<ExerciseListPage> {
-  List<String> _exercises = [
+  final List<String> _exercises = [
     "벤치프레스",
     "스쿼트",
     "데드리프트",

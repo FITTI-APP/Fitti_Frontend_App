@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AllExerciseRecord extends ChangeNotifier {
-  Map<String, DayExerciseRecord> _dateTimeToDayExerciseRecordMap = {};
+  Map<String, DayExerciseRecord> dateTimeToDayExerciseRecordMap = {};
   SharedPreferences prefs;
 
   AllExerciseRecord(this.prefs) {
     var encodedData = prefs.getString('dateTimeToDayExerciseRecordMap');
     if (encodedData != null) {
       var decodedData = jsonDecode(encodedData);
-      _dateTimeToDayExerciseRecordMap =
+      dateTimeToDayExerciseRecordMap =
           Map<String, DayExerciseRecord>.from(decodedData.map((key, value) {
         return MapEntry(key, DayExerciseRecord.fromJson(value));
       }));
     } else {
-      _dateTimeToDayExerciseRecordMap = {};
+      dateTimeToDayExerciseRecordMap = {};
     }
   }
 
   List<MapEntry<String, DayExerciseRecord>> get recordExistingEntries {
-    var entries = _dateTimeToDayExerciseRecordMap.entries.toList();
+    var entries = dateTimeToDayExerciseRecordMap.entries.toList();
     List<MapEntry<String, DayExerciseRecord>> result = [];
     for (var entry in entries) {
       if (entry.value.oneExerciseRecords.isNotEmpty) result.add(entry);
@@ -30,16 +30,15 @@ class AllExerciseRecord extends ChangeNotifier {
 
   DayExerciseRecord getDayExerciseRecord(DateTime dateTime) {
     var dateOnly = DateUtils.dateOnly(dateTime);
-    if (_dateTimeToDayExerciseRecordMap[dateOnly.toString()] == null) {
-      _dateTimeToDayExerciseRecordMap[dateOnly.toString()] =
-          DayExerciseRecord();
+    if (dateTimeToDayExerciseRecordMap[dateOnly.toString()] == null) {
+      dateTimeToDayExerciseRecordMap[dateOnly.toString()] = DayExerciseRecord();
     }
-    return _dateTimeToDayExerciseRecordMap[dateOnly.toString()]!;
+    return dateTimeToDayExerciseRecordMap[dateOnly.toString()]!;
   }
 
   void updateExerciseRecords() {
     prefs.setString('dateTimeToDayExerciseRecordMap',
-        jsonEncode(_dateTimeToDayExerciseRecordMap));
+        jsonEncode(dateTimeToDayExerciseRecordMap));
     notifyListeners();
   }
 }
