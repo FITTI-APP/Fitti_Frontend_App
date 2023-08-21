@@ -1,11 +1,11 @@
-import 'package:fitty_frontend_app/login_signup/login_page.dart';
+import 'package:fitty_frontend_app/page/login_signup/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'domain/plan/exercise/all_exercise_record.dart';
-import 'intro_screen.dart';
+import 'data/all_exercise_record.dart';
+import 'page/intro_page.dart';
 
 void main() async {
   await initializeDateFormatting();
@@ -42,6 +42,6 @@ Widget _splashLoadingWidget(AsyncSnapshot<Object?> snapshot) {
   } else if (snapshot.hasData) {
     return const LoginPage();
   } else {
-    return const IntroScreen();
+    return const IntroPage();
   }
 }

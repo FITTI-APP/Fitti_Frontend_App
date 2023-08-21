@@ -1,85 +1,26 @@
-import 'dart:convert';
-
+import 'package:fitty_frontend_app/page/login_signup/signup_page.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
+import 'package:google_fonts/google_fonts.dart';
 
-import '../api/api.dart';
-import '../model/user.dart';
+import '../menu_routing_page.dart';
 
-class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _LoginPageState extends State<LoginPage> {
   var _formKey = GlobalKey<FormState>();
-
-  var _userNameController = TextEditingController();
   var _emailController = TextEditingController();
   var _passwordController = TextEditingController();
-
-  checkUserEmail() async {
-    try {
-      var response = await http.post(Uri.parse(API.validateEmail), body: {
-        'user_email': _emailController.text.trim(),
-      });
-
-      if (response.statusCode == 200) {
-        var responseBody = jsonDecode(response.body);
-
-        if (responseBody['existEmail'] == true) {
-          Fluttertoast.showToast(
-              msg: "Email already exist",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.redAccent,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        }
-      } else {
-        saveInfo();
-      }
-    } catch (e) {
-      print(e.toString());
-      Fluttertoast.showToast(msg: e.toString());
-    }
-  }
-
-  saveInfo() async {
-    User userModel = User(
-      1,
-      _userNameController.text.trim(),
-      _emailController.text.trim(),
-      _passwordController.text.trim(),
-    );
-
-    try {
-      var res = await http.post(
-        Uri.parse(API.signup),
-        body: userModel.toJson(),
-      );
-
-      if (res.statusCode == 200) {
-        var resSignup = jsonDecode(res.body);
-        if (resSignup['success'] == true) {
-          Fluttertoast.showToast(msg: 'Signup successfully');
-        } else {
-          Fluttertoast.showToast(msg: 'Error occuredplease try again');
-        }
-      }
-    } catch (e) {}
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Color.fromARGB(255, 218, 213, 213),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -87,21 +28,26 @@ class _SignupPageState extends State<SignupPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.account_circle_outlined,
-                  color: Color.fromARGB(255, 6, 6, 6),
+                  Icons.fitness_center_outlined,
                   size: 100,
                 ),
                 SizedBox(
                   height: 30,
                 ),
                 Text(
-                  'F I T T I',
-                  style: GoogleFonts.bebasNeue(fontSize: 50.0),
+                  'F I T T Y',
+                  style: GoogleFonts.bebasNeue(fontSize: 60.0),
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                Text('회원 가입', style: GoogleFonts.bebasNeue(fontSize: 28)),
+                Text(
+                  '당신의 피트니스 친구',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 SizedBox(
                   height: 50,
                 ),
@@ -120,34 +66,11 @@ class _SignupPageState extends State<SignupPage> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: TextFormField(
-                              controller: _userNameController,
-                              validator: (val) =>
-                                  val == "" ? "Please enter username " : null,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none, hintText: 'User'),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: TextFormField(
                               controller: _emailController,
                               validator: (val) =>
                                   val == "" ? "Please enter email" : null,
                               decoration: InputDecoration(
-                                  border: InputBorder.none, hintText: 'Email'),
+                                  border: InputBorder.none, hintText: '이메일'),
                             ),
                           ),
                         ),
@@ -170,8 +93,7 @@ class _SignupPageState extends State<SignupPage> {
                                   val == "" ? "Please enter password" : null,
                               obscureText: true,
                               decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Password'),
+                                  border: InputBorder.none, hintText: '비밀번호'),
                             ),
                           ),
                         ),
@@ -184,9 +106,8 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    if (_formKey.currentState!.validate()) {
-                      checkUserEmail();
-                    }
+                    //todo 유효성검사
+                    Get.off(() => const MenuRoutingPage());
                   },
                   child: Container(
                     child: Padding(
@@ -194,11 +115,11 @@ class _SignupPageState extends State<SignupPage> {
                       child: Container(
                         padding: EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: Color.fromARGB(255, 25, 42, 173),
                             borderRadius: BorderRadius.circular(12)),
                         child: Center(
                           child: Text(
-                            '회원가입',
+                            '로그인',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -215,11 +136,11 @@ class _SignupPageState extends State<SignupPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('이미 등록하셨습니까?'),
+                    const Text('회원이 아니십니까?'),
                     GestureDetector(
-                      onTap: () => Get.back(),
+                      onTap: () => Get.to(() => const SignupPage()),
                       child: Text(
-                        ' 로그인 페이지로 돌아가기!',
+                        ' 지금 가입하세요!',
                         style: TextStyle(
                             color: Colors.blue, fontWeight: FontWeight.bold),
                       ),

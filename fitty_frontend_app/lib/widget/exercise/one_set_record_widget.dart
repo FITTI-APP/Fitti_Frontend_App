@@ -1,9 +1,9 @@
-import 'package:fitty_frontend_app/domain/plan/exercise/all_exercise_record.dart';
+import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class SetRecordWidget extends StatelessWidget {
-  SetRecordWidget({
+class OneSetRecordWidget extends StatelessWidget {
+  OneSetRecordWidget({
     required this.oneSetInfo,
     required this.index,
     required this.deleteThis,
@@ -11,7 +11,7 @@ class SetRecordWidget extends StatelessWidget {
     super.key,
   });
 
-  final SetRecord oneSetInfo;
+  final OneSetRecord oneSetInfo;
   final int index;
   final Function deleteThis;
   final Function updateExerciseRecords;
@@ -21,7 +21,7 @@ class SetRecordWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    kgController.text = oneSetInfo.kg.toString();
+    kgController.text = oneSetInfo.weight.toString();
     repsController.text = oneSetInfo.reps.toString();
     kgController.selection = TextSelection.fromPosition(
         TextPosition(offset: kgController.text.length));
@@ -34,6 +34,8 @@ class SetRecordWidget extends StatelessWidget {
           width: 65,
           height: 25,
           child: TextField(
+            onTap: () => kgController.selection = TextSelection(
+                baseOffset: 0, extentOffset: kgController.text.length),
             controller: kgController,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
@@ -42,7 +44,7 @@ class SetRecordWidget extends StatelessWidget {
             ],
             maxLength: 4,
             onChanged: (value) => {
-              oneSetInfo.kg = int.parse(value),
+              oneSetInfo.weight = int.parse(value),
               updateExerciseRecords(),
             },
             decoration: const InputDecoration(
@@ -56,6 +58,8 @@ class SetRecordWidget extends StatelessWidget {
           width: 65,
           height: 25,
           child: TextField(
+            onTap: () => repsController.selection = TextSelection(
+                baseOffset: 0, extentOffset: repsController.text.length),
             controller: repsController,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,

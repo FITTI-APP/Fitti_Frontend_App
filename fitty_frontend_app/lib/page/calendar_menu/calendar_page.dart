@@ -1,18 +1,17 @@
+import 'package:fitty_frontend_app/page/calendar_menu/tab/my_diet_calendar_tab.dart';
+import 'package:fitty_frontend_app/page/calendar_menu/tab/my_exercise_calendar_tab.dart';
 import 'package:flutter/material.dart';
 
-import 'tab/my_diet_home.dart';
-import 'tab/my_exercise_home.dart';
-
-class HomePage extends StatefulWidget {
-  const HomePage({
+class CalendarPage extends StatefulWidget {
+  const CalendarPage({
     super.key,
   });
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<CalendarPage> createState() => _CalendarPageState();
 }
 
-class _HomePageState extends State<HomePage>
+class _CalendarPageState extends State<CalendarPage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
 
@@ -53,8 +52,8 @@ class _HomePageState extends State<HomePage>
           child: TabBarView(
             controller: tabController,
             children: const [
-              MyExerciseHome(),
-              MyDietHome(),
+              MyExerciseCalendarTab(),
+              MyDietCalendarTab(),
             ],
           ),
         ),

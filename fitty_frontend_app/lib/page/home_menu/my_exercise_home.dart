@@ -1,6 +1,6 @@
+import 'package:fitty_frontend_app/page/exercise/daily_routine_page.dart';
 import 'package:flutter/material.dart';
-
-import '../../../domain/plan/exercise/page/daily_routine_page.dart';
+import 'package:get/get.dart';
 
 class MyExerciseHome extends StatelessWidget {
   const MyExerciseHome({
@@ -10,12 +10,12 @@ class MyExerciseHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: TextButton(
+      child: ElevatedButton(
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const DailyRoutinePage()));
+          Get.to(() => DailyRoutinePage(
+                title: "오늘의 운동",
+                selectedDay: DateTime.now(),
+              ));
         },
         child: const Text('오늘의 운동 시작하기'),
       ),
