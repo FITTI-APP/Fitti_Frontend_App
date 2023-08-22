@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:fitty_frontend_app/utility/exercise_data_processer.dart';
-import 'package:fitty_frontend_app/widget/exercise/one_set_record_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -22,6 +20,7 @@ class OneExerciseRecordsOfAllDateWidget extends StatefulWidget {
 class _OneExerciseRecordsOfAllDateWidgetState
     extends State<OneExerciseRecordsOfAllDateWidget> {
   late int index;
+  late int length;
   late List<MapEntry<String, OneExerciseRecord>>
       oneExerciseRecordOfAllDateEntries;
 
@@ -35,18 +34,56 @@ class _OneExerciseRecordsOfAllDateWidgetState
     oneExerciseRecordOfAllDateEntries =
         oneExerciseRecordsOfAllDate.entries.toList();
     oneExerciseRecordOfAllDateEntries.sort((a, b) => a.key.compareTo(b.key));
-    index = oneExerciseRecordsOfAllDate.length - 1;
+    length = oneExerciseRecordOfAllDateEntries.length;
+    index = length - 1;
   }
 
   @override
   Widget build(BuildContext context) {
+    if (length == 0) {
+      return Column(
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            widget.exersiseName,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Text("운동 기록이 없습니다."),
+          const Spacer(),
+          ElevatedButton(
+            onPressed: () {
+              Get.back();
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              foregroundColor: Colors.blue, // Set button background color
+            ),
+            child: const Text(
+              '확인',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
+      );
+    }
+
     DateTime selectedDate =
         DateTime.parse(oneExerciseRecordOfAllDateEntries[index].key);
     var oneSetRecords =
         oneExerciseRecordOfAllDateEntries[index].value.oneSetRecords;
-    var totalVolume = oneExerciseRecordOfAllDateEntries[index]
-        .value
-        .oneSetRecords
+    var totalVolume = oneSetRecords
         .map((e) => e.weight * e.reps)
         .reduce((value, element) => value + element);
 
@@ -61,7 +98,6 @@ class _OneExerciseRecordsOfAllDateWidgetState
     for (var element in oneSetRecords) {
       expected1RM = max(expected1RM, element.weight * (1 + element.reps / 30));
     }
-    ;
     return Column(
       children: [
         const SizedBox(
@@ -165,7 +201,7 @@ class _OneExerciseRecordsOfAllDateWidgetState
             foregroundColor: Colors.blue, // Set button background color
           ),
           child: const Text(
-            '불러오기',
+            '확인',
             style: TextStyle(color: Colors.white),
           ),
         ),

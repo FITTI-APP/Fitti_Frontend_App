@@ -1,7 +1,6 @@
 import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:fitty_frontend_app/widget/exercise/one_exercise_records_of_all_date_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'one_set_record_widget.dart';
 
 class OneExerciseRecordWidget extends StatelessWidget {
@@ -66,7 +65,7 @@ class OneExerciseRecordWidget extends StatelessWidget {
                                     ),
                                   ));
                         },
-                        icon: const Icon(Icons.calendar_view_day_outlined),
+                        icon: const Icon(Icons.calendar_month),
                       ),
                       Text(
                         oneExerciseRecord.exerciseName,
