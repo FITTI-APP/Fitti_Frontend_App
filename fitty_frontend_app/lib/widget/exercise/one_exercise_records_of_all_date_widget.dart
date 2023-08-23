@@ -83,9 +83,11 @@ class _OneExerciseRecordsOfAllDateWidgetState
         DateTime.parse(oneExerciseRecordOfAllDateEntries[index].key);
     var oneSetRecords =
         oneExerciseRecordOfAllDateEntries[index].value.oneSetRecords;
-    var totalVolume = oneSetRecords
-        .map((e) => e.weight * e.reps)
-        .reduce((value, element) => value + element);
+
+    int totalVolume = 0;
+    for (var element in oneSetRecords) {
+      totalVolume += element.weight * element.reps;
+    }
 
     int maxWeight = 0;
     for (var element in oneSetRecords) {
@@ -98,6 +100,7 @@ class _OneExerciseRecordsOfAllDateWidgetState
     for (var element in oneSetRecords) {
       expected1RM = max(expected1RM, element.weight * (1 + element.reps / 30));
     }
+
     return Column(
       children: [
         const SizedBox(
