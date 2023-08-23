@@ -13,42 +13,42 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  var _formKey = GlobalKey<FormState>();
-  var _emailController = TextEditingController();
-  var _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 218, 213, 213),
+      backgroundColor: const Color.fromARGB(255, 218, 213, 213),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.fitness_center_outlined,
                   size: 100,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Text(
                   'F I T T Y',
                   style: GoogleFonts.bebasNeue(fontSize: 60.0),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   '당신의 피트니스 친구',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Form(
@@ -69,13 +69,13 @@ class _LoginPageState extends State<LoginPage> {
                               controller: _emailController,
                               validator: (val) =>
                                   val == "" ? "Please enter email" : null,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   border: InputBorder.none, hintText: '이메일'),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Padding(
@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                               validator: (val) =>
                                   val == "" ? "Please enter password" : null,
                               obscureText: true,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   border: InputBorder.none, hintText: '비밀번호'),
                             ),
                           ),
@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 GestureDetector(
@@ -111,13 +111,13 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: Container(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: Container(
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 25, 42, 173),
+                            color: const Color.fromARGB(255, 25, 42, 173),
                             borderRadius: BorderRadius.circular(12)),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             '로그인',
                             style: TextStyle(
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Row(
@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                     const Text('회원이 아니십니까?'),
                     GestureDetector(
                       onTap: () => Get.to(() => const SignupPage()),
-                      child: Text(
+                      child: const Text(
                         ' 지금 가입하세요!',
                         style: TextStyle(
                             color: Colors.blue, fontWeight: FontWeight.bold),
