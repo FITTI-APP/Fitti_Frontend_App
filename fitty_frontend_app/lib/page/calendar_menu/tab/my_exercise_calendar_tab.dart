@@ -42,7 +42,7 @@ class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
                   fontWeight: FontWeight.bold,
                 )),
           ),
-          Consumer<AllExerciseRecord>(
+          Consumer<MyExerciseRecord>(
             builder: (context, allExerciseRecord, child) {
               var selectedDayExerciseRecord =
                   allExerciseRecord.getDayExerciseRecord(_selectedDay);

@@ -12,7 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(ChangeNotifierProvider(
-    create: (context) => AllExerciseRecord(prefs),
+    create: (context) => MyExerciseRecord(prefs),
     child: const MyApp(),
   ));
 }
