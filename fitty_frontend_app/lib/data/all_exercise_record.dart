@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -85,5 +86,21 @@ class OneSetRecord {
   Map<String, dynamic> toJson() => {
         'weight': weight,
         'reps': reps,
+      };
+}
+
+class TimeRecord {
+  String startTime = '';
+  String endTime = '';
+
+  TimeRecord();
+
+  TimeRecord.fromJson(Map<String, dynamic> json) {
+    startTime = json['startTime'] ?? '';
+    endTime = json['endTime'] ?? '';
+  }
+  Map<String, dynamic> toJson() => {
+        'startTime': startTime,
+        'endTime': endTime,
       };
 }

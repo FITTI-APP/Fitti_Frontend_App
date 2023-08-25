@@ -26,6 +26,7 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
     "덤벨 숄더 프레스",
     "시티드 케이블 로우",
     "해머 컬",
+    "프론트 레이즈",
   ];
   @override
   Widget build(BuildContext context) {

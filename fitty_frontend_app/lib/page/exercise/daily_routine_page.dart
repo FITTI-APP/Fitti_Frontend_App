@@ -53,39 +53,34 @@ class DailyRoutinePage extends StatelessWidget {
                       );
                     },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10.0,
-                    ),
-                    child: SizedBox(
-                      width: 150,
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          String? exerciseName =
-                              await Get.to(() => const ExerciseListPage());
-                          if (exerciseName != null) {
-                            var oneExerciseRecord = OneExerciseRecord();
-                            oneExerciseRecord.exerciseName = exerciseName;
-                            selectedDayExerciseRecord.oneExerciseRecords
-                                .add(oneExerciseRecord);
-                            allExerciseRecord.updateExerciseRecords();
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          foregroundColor: Colors.blue,
-                        ),
-                        child: const Text(
-                          '운동 추가하기',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      SizedBox(
+                        width: 150,
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            String? exerciseName =
+                                await Get.to(() => const ExerciseListPage());
+                            if (exerciseName != null) {
+                              var oneExerciseRecord = OneExerciseRecord();
+                              oneExerciseRecord.exerciseName = exerciseName;
+                              selectedDayExerciseRecord.oneExerciseRecords
+                                  .add(oneExerciseRecord);
+                              allExerciseRecord.updateExerciseRecords();
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            foregroundColor: Colors.blue,
+                          ),
+                          child: const Text(
+                            '운동 추가하기',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
                       ElevatedButton(
                         onPressed: () async {
                           var recordExistingEntries =
@@ -111,6 +106,34 @@ class DailyRoutinePage extends StatelessWidget {
                         ),
                         child: const Text(
                           '불러오기',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          var recordExistingEntries =
+                              allExerciseRecord.recordExistingEntries;
+                          recordExistingEntries
+                              .sort((a, b) => b.key.compareTo(a.key));
+                          var selectedExerciseRecords =
+                              await Get.to(() => ExerciseRecordListPage(
+                                    recordExistingEntries:
+                                        recordExistingEntries,
+                                  ));
+                          for (var selectedExerciseRecord
+                              in selectedExerciseRecords) {
+                            selectedDayExerciseRecord.oneExerciseRecords
+                                .add(selectedExerciseRecord);
+                          }
+                          allExerciseRecord.updateExerciseRecords();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          foregroundColor: Colors.blue,
+                        ),
+                        child: const Text(
+                          '기록하기',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),

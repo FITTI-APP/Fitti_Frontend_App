@@ -72,7 +72,7 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 150,
+                width: 100,
                 child: Column(
                   children: [
                     Text("총 볼륨 : ${totalVolume}kg",
@@ -86,7 +86,7 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
                     Text("예상 1RM : ${expected1RM.toStringAsFixed(1)}kg"),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ]),
