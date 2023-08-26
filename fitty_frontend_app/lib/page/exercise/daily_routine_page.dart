@@ -69,7 +69,9 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                         child: ElevatedButton(
                           onPressed: () async {
                             String? exerciseName =
-                                await Get.to(() => const ExerciseListPage());
+                                await Get.to(() => const ExerciseListPage(
+                                      content: '',
+                                    ));
                             if (exerciseName != null) {
                               var oneExerciseRecord = OneExerciseRecord();
                               oneExerciseRecord.exerciseName = exerciseName;

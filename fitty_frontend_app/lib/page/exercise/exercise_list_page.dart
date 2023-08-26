@@ -1,79 +1,16 @@
 import 'package:fitty_frontend_app/widget/exercise/exercise_widget.dart';
+import 'package:fitty_frontend_app/widget/exercise/one_exercise_records_of_all_date_widget.dart';
 import 'package:flutter/material.dart';
-
-class Search extends SearchDelegate {
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return <Widget>[
-      IconButton(
-        icon: Icon(Icons.close),
-        onPressed: () {
-          query = "";
-        },
-      ),
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: Icon(Icons.arrow_back),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    );
-  }
-
-  String selectedResult = "";
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return Center(
-      child: Text(selectedResult),
-    );
-  }
-
-  final List<String> listExample;
-
-  Search(this.listExample);
-
-  List<String> recentList = [];
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> suggestionList = [];
-
-    query.isEmpty
-        ? suggestionList = recentList //In the true case
-
-        : suggestionList.addAll(listExample.where(
-            // In the false case
-
-            (element) => element.contains(query),
-          ));
-    return ListView.builder(
-      itemCount: suggestionList.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(
-            suggestionList[index],
-          ),
-          leading: query.isEmpty ? const Icon(Icons.access_time) : SizedBox(),
-          onTap: () {
-            selectedResult = suggestionList[index];
-          },
-        );
-      },
-    );
-  }
-}
+import 'package:get/get.dart';
 
 class ExerciseListPage extends StatefulWidget {
-  const ExerciseListPage({super.key});
+  const ExerciseListPage({super.key, required String content});
 
   @override
   State<ExerciseListPage> createState() => _ExerciseListPageState();
 }
+
+String searchText = '';
 
 class _ExerciseListPageState extends State<ExerciseListPage> {
   final List<String> _exercises = [
@@ -96,28 +33,51 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
     "프론트 레이즈",
   ];
 
+  get exerciseName => null;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () {
-            showSearch(context: context, delegate: Search(_exercises));
-          },
-        ),
-      ),
-      body: Center(
-        child: ListView.builder(
-          itemCount: _exercises.length,
-          itemBuilder: (context, index) {
-            return ExerciseWidget(
-              exerciseName: _exercises[index],
-              index: index,
-            );
-          },
-        ),
-      ),
+    return Material(
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text('운동 목록'),
+          ),
+          body: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: '검색',
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      searchText = value;
+                    });
+                  },
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _exercises.length,
+                  itemBuilder: (context, index) {
+                    if (searchText.isNotEmpty &&
+                        !_exercises[index].contains(searchText.toLowerCase())) {
+                      return const SizedBox.shrink();
+                    } else {
+                      return Card(
+                          child: ListTile(
+                        title: Text(_exercises[index]),
+                        onTap: () {
+                          Navigator.pop(context, _exercises[index]);
+                        },
+                      ));
+                    }
+                  },
+                ),
+              ),
+            ],
+          )),
     );
   }
 }
