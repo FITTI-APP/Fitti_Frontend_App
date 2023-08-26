@@ -1,6 +1,7 @@
 import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:fitty_frontend_app/page/exercise/daily_routine_page.dart';
 import 'package:fitty_frontend_app/widget/exercise/one_exercise_record_summary_widget.dart';
+import 'package:fitty_frontend_app/widget/exercise/time_record_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -59,6 +60,23 @@ class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
               );
             },
           ),
+          // Consumer<AllExerciseRecord>(
+          //   builder: (context, allExerciseRecord, child) {
+          //     var selectedDayExerciseRecord =
+          //         allExerciseRecord.getDayExerciseRecord(_selectedDay);
+          //     return ListView.builder(
+          //       shrinkWrap: true,
+          //       physics: const NeverScrollableScrollPhysics(),
+          //       itemCount: 1,
+          //       itemBuilder: (context, index) {
+          //         return TimeRecordWidget(
+          //           exerciseRecord:
+          //               selectedDayExerciseRecord.oneExerciseRecords[index],
+          //         );
+          //       },
+          //     );
+          //   },
+          // ),
           ElevatedButton(
             onPressed: () {
               Get.to(() => DailyRoutinePage(
@@ -74,3 +92,4 @@ class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
     );
   }
 }
+// late starTime 값이 받아지기 전까지 widget 불러오기가 안됨//
