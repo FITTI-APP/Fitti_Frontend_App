@@ -46,15 +46,28 @@ class AllExerciseRecord extends ChangeNotifier {
 
 class DayExerciseRecord {
   List<OneExerciseRecord> oneExerciseRecords = [];
-  // todo : 시간 등등 기록
+  late DateTime startTime;
+  late DateTime endTime;
+  Duration get exerciseDuration => endTime.difference(startTime);
+
   DayExerciseRecord();
   DayExerciseRecord.fromJson(Map<String, dynamic> json)
       : oneExerciseRecords = List<OneExerciseRecord>.from(
             json['oneExerciseRecords']
-                .map((value) => OneExerciseRecord.fromJson(value)));
+                .map((value) => OneExerciseRecord.fromJson(value))),
+        startTime = json.containsKey('startTime') == false
+            ? DateTime.now()
+            : DateTime.parse(json['startTime']),
+        endTime = json.containsKey('endTime') == false
+            ? DateTime.now()
+            : DateTime.parse(json['endTime']);
+
   Map<String, dynamic> toJson() {
     return {
       'oneExerciseRecords': oneExerciseRecords,
+      'startTime': startTime.toString(),
+      'endTime': endTime.toString(),
+      'exerciseDuration': exerciseDuration.toString(),
     };
   }
 }
@@ -86,21 +99,5 @@ class OneSetRecord {
   Map<String, dynamic> toJson() => {
         'weight': weight,
         'reps': reps,
-      };
-}
-
-class TimeRecord {
-  String startTime = '';
-  String endTime = '';
-
-  TimeRecord();
-
-  TimeRecord.fromJson(Map<String, dynamic> json) {
-    startTime = json['startTime'] ?? '';
-    endTime = json['endTime'] ?? '';
-  }
-  Map<String, dynamic> toJson() => {
-        'startTime': startTime,
-        'endTime': endTime,
       };
 }

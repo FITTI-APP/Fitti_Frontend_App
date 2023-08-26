@@ -6,12 +6,20 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'exercise_list_page.dart';
 
-class DailyRoutinePage extends StatelessWidget {
+class DailyRoutinePage extends StatefulWidget {
   const DailyRoutinePage(
       {super.key, required this.title, required this.selectedDay});
 
   final String title;
   final DateTime selectedDay;
+
+  @override
+  State<DailyRoutinePage> createState() => _DailyRoutinePageState();
+}
+
+class _DailyRoutinePageState extends State<DailyRoutinePage> {
+  int istimeGo = 0;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -20,13 +28,13 @@ class DailyRoutinePage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(widget.title),
         ),
         body: SingleChildScrollView(
           child: Center(child: Consumer<AllExerciseRecord>(
             builder: (context, allExerciseRecord, child) {
               var selectedDayExerciseRecord =
-                  allExerciseRecord.getDayExerciseRecord(selectedDay);
+                  allExerciseRecord.getDayExerciseRecord(widget.selectedDay);
               void deleteExerciseRecord(int index) {
                 selectedDayExerciseRecord.oneExerciseRecords.removeAt(index);
                 allExerciseRecord.updateExerciseRecords();
@@ -110,31 +118,25 @@ class DailyRoutinePage extends StatelessWidget {
                         ),
                       ),
                       ElevatedButton(
-                        onPressed: () async {
-                          var recordExistingEntries =
-                              allExerciseRecord.recordExistingEntries;
-                          recordExistingEntries
-                              .sort((a, b) => b.key.compareTo(a.key));
-                          var selectedExerciseRecords =
-                              await Get.to(() => ExerciseRecordListPage(
-                                    recordExistingEntries:
-                                        recordExistingEntries,
-                                  ));
-                          for (var selectedExerciseRecord
-                              in selectedExerciseRecords) {
-                            selectedDayExerciseRecord.oneExerciseRecords
-                                .add(selectedExerciseRecord);
+                        onPressed: () {
+                          istimeGo++;
+                          setState(() {});
+                          if (istimeGo % 2 == 1) {
+                            selectedDayExerciseRecord.startTime =
+                                DateTime.now();
+                          } else {
+                            selectedDayExerciseRecord.endTime = DateTime.now();
                           }
-                          allExerciseRecord.updateExerciseRecords();
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
-                          foregroundColor: Colors.blue,
+                          backgroundColor:
+                              istimeGo == 0 ? Colors.green : Colors.red,
                         ),
-                        child: const Text(
-                          '기록하기',
-                          style: TextStyle(color: Colors.white),
+                        child: Text(
+                          istimeGo == 0 ? '운동시작' : '운동종료',
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     ],

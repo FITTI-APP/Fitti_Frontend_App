@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class OneExerciseRecordSummaryWidget extends StatelessWidget {
   const OneExerciseRecordSummaryWidget({
@@ -27,6 +28,10 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
     for (var element in oneSetRecords) {
       expected1RM = max(expected1RM, element.weight * (1 + element.reps / 30));
     }
+    var selectedDayExerciseRecord =
+        Provider.of<AllExerciseRecord>(context, listen: false)
+            .getDayExerciseRecord(DateTime.now());
+
     return Container(
       margin: const EdgeInsets.all(10.0),
       padding: const EdgeInsets.all(8.0),
@@ -50,7 +55,7 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
                     const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
                 width: 150,
@@ -84,6 +89,10 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
                           fontSize: 15,
                         )),
                     Text("예상 1RM : ${expected1RM.toStringAsFixed(1)}kg"),
+                    Text('시작시간 : ${selectedDayExerciseRecord.startTime}'),
+                    Text('종료시간 : ${selectedDayExerciseRecord.endTime}'),
+                    Text(
+                        '운동시간 : ${selectedDayExerciseRecord.exerciseDuration}'),
                   ],
                 ),
               ),

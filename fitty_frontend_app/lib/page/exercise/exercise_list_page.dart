@@ -1,6 +1,73 @@
 import 'package:fitty_frontend_app/widget/exercise/exercise_widget.dart';
 import 'package:flutter/material.dart';
 
+class Search extends SearchDelegate {
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return <Widget>[
+      IconButton(
+        icon: Icon(Icons.close),
+        onPressed: () {
+          query = "";
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+  }
+
+  String selectedResult = "";
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Center(
+      child: Text(selectedResult),
+    );
+  }
+
+  final List<String> listExample;
+
+  Search(this.listExample);
+
+  List<String> recentList = [];
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> suggestionList = [];
+
+    query.isEmpty
+        ? suggestionList = recentList //In the true case
+
+        : suggestionList.addAll(listExample.where(
+            // In the false case
+
+            (element) => element.contains(query),
+          ));
+    return ListView.builder(
+      itemCount: suggestionList.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(
+            suggestionList[index],
+          ),
+          leading: query.isEmpty ? const Icon(Icons.access_time) : SizedBox(),
+          onTap: () {
+            selectedResult = suggestionList[index];
+          },
+        );
+      },
+    );
+  }
+}
+
 class ExerciseListPage extends StatefulWidget {
   const ExerciseListPage({super.key});
 
@@ -28,11 +95,17 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
     "해머 컬",
     "프론트 레이즈",
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('운동 목록'),
+        leading: IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () {
+            showSearch(context: context, delegate: Search(_exercises));
+          },
+        ),
       ),
       body: Center(
         child: ListView.builder(
