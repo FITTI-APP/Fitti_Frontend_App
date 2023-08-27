@@ -29,8 +29,7 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
       expected1RM = max(expected1RM, element.weight * (1 + element.reps / 30));
     }
     var selectedDayExerciseRecord =
-        Provider.of<AllExerciseRecord>(context, listen: false)
-            .getDayExerciseRecord(DateTime.now());
+        context.read<AllExerciseRecord>().getDayExerciseRecord(DateTime.now());
 
     return Container(
       margin: const EdgeInsets.all(10.0),

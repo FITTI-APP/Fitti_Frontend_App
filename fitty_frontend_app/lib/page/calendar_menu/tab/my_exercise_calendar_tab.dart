@@ -47,16 +47,23 @@ class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
             builder: (context, allExerciseRecord, child) {
               var selectedDayExerciseRecord =
                   allExerciseRecord.getDayExerciseRecord(_selectedDay);
-              return ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: selectedDayExerciseRecord.oneExerciseRecords.length,
-                itemBuilder: (context, index) {
-                  return OneExerciseRecordSummaryWidget(
-                    exerciseRecord:
-                        selectedDayExerciseRecord.oneExerciseRecords[index],
-                  );
-                },
+              return Column(
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount:
+                        selectedDayExerciseRecord.oneExerciseRecords.length,
+                    itemBuilder: (context, index) {
+                      return OneExerciseRecordSummaryWidget(
+                        exerciseRecord:
+                            selectedDayExerciseRecord.oneExerciseRecords[index],
+                      );
+                    },
+                  ),
+                  TimeRecordWidget(
+                      selectedDayExerciseRecord: selectedDayExerciseRecord)
+                ],
               );
             },
           ),

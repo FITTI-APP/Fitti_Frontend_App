@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ExerciseListPage extends StatefulWidget {
-  const ExerciseListPage({super.key, required String content});
+  const ExerciseListPage({super.key});
 
   @override
   State<ExerciseListPage> createState() => _ExerciseListPageState();

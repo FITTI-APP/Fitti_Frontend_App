@@ -18,7 +18,25 @@ class DailyRoutinePage extends StatefulWidget {
 }
 
 class _DailyRoutinePageState extends State<DailyRoutinePage> {
-  int istimeGo = 0;
+  Color getStateColor(DayExerciseRecordState state) {
+    if (state == DayExerciseRecordState.before) {
+      return Colors.green;
+    } else if (state == DayExerciseRecordState.ongoing) {
+      return Colors.orange;
+    } else {
+      return Colors.grey;
+    }
+  }
+
+  String getStateString(DayExerciseRecordState state) {
+    if (state == DayExerciseRecordState.before) {
+      return '운동시작';
+    } else if (state == DayExerciseRecordState.ongoing) {
+      return '운동종료';
+    } else {
+      return '운동완료';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +87,7 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                         child: ElevatedButton(
                           onPressed: () async {
                             String? exerciseName =
-                                await Get.to(() => const ExerciseListPage(
-                                      content: '',
-                                    ));
+                                await Get.to(() => const ExerciseListPage());
                             if (exerciseName != null) {
                               var oneExerciseRecord = OneExerciseRecord();
                               oneExerciseRecord.exerciseName = exerciseName;
@@ -121,23 +137,28 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          istimeGo++;
-                          setState(() {});
-                          if (istimeGo % 2 == 1) {
+                          var state = selectedDayExerciseRecord.state;
+                          if (state == DayExerciseRecordState.before) {
+                            selectedDayExerciseRecord.state =
+                                DayExerciseRecordState.ongoing;
                             selectedDayExerciseRecord.startTime =
                                 DateTime.now();
-                          } else {
+                          } else if (state == DayExerciseRecordState.ongoing) {
+                            selectedDayExerciseRecord.state =
+                                DayExerciseRecordState.end;
                             selectedDayExerciseRecord.endTime = DateTime.now();
+                          } else {
+                            return;
                           }
+                          allExerciseRecord.updateExerciseRecords();
                         },
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          backgroundColor:
-                              istimeGo == 0 ? Colors.green : Colors.red,
-                        ),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            backgroundColor:
+                                getStateColor(selectedDayExerciseRecord.state)),
                         child: Text(
-                          istimeGo == 0 ? '운동시작' : '운동종료',
+                          getStateString(selectedDayExerciseRecord.state),
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
