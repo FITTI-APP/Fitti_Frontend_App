@@ -1,4 +1,4 @@
-import 'package:fitty_frontend_app/data/all_exercise_record.dart';
+import 'package:fitty_frontend_app/data/my_exercise_record.dart';
 import 'package:fitty_frontend_app/data/class/one_exercise_record.dart';
 import 'package:fitty_frontend_app/data/class/one_set_record.dart';
 import 'package:fitty_frontend_app/widget/exercise/one_exercise_records_of_all_date_widget.dart';

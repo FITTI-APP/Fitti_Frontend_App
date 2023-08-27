@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyExerciseRecord extends ChangeNotifier {
-  /// key : dateOnly.toString()
   Map<String, DayExerciseRecord> dateTimeToDayExerciseRecordMap = {};
   SharedPreferences prefs;
 

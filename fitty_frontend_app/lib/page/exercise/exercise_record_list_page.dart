@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:fitty_frontend_app/data/all_exercise_record.dart';
+import 'package:fitty_frontend_app/data/my_exercise_record.dart';
 import 'package:fitty_frontend_app/data/class/day_exercise_record.dart';
 import 'package:fitty_frontend_app/data/class/one_exercise_record.dart';
 import 'package:flutter/material.dart';
