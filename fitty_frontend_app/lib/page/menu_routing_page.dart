@@ -1,7 +1,6 @@
 import 'package:fitty_frontend_app/page/calendar_menu/calendar_page.dart';
 import 'package:fitty_frontend_app/page/home_menu/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class MenuRoutingPage extends StatefulWidget {
   const MenuRoutingPage({
@@ -17,7 +16,7 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
   List<Widget> navBarPages = [
     const HomePage(),
     const CalendarPage(),
-    const Text('add'),
+    // const Text('add'),
     const Text('Changes'),
     const Text('MY'),
   ];
@@ -53,42 +52,43 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
           backgroundColor: Colors.white,
           onDestinationSelected: onBottomNavTap,
           selectedIndex: selectedIndex,
-          destinations: <Widget>[
-            const NavigationDestination(
+          destinations: const <Widget>[
+            NavigationDestination(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
-            const NavigationDestination(
+            NavigationDestination(
               icon: Icon(Icons.calendar_month),
               label: 'Calendar',
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  borderRadius: BorderRadius.circular(30),
-                  onTap: () => onBottomNavTap(2),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.blue,
-                    ),
-                    padding: const EdgeInsets.all(8.0),
-                    margin: EdgeInsets.all(5),
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const NavigationDestination(
+            // todo : 출시 이후 다시 활성화
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     InkWell(
+            //       borderRadius: BorderRadius.circular(30),
+            //       onTap: () => onBottomNavTap(2),
+            //       child: Container(
+            //         decoration: const BoxDecoration(
+            //           shape: BoxShape.circle,
+            //           color: Colors.blue,
+            //         ),
+            //         padding: const EdgeInsets.all(8.0),
+            //         margin: const EdgeInsets.all(5),
+            //         child: const Icon(
+            //           Icons.add,
+            //           color: Colors.white,
+            //           size: 30,
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            NavigationDestination(
               icon: Icon(Icons.area_chart_outlined),
               label: 'Changes',
             ),
-            const NavigationDestination(
+            NavigationDestination(
               icon: Icon(Icons.abc),
               label: 'MY',
             ),
