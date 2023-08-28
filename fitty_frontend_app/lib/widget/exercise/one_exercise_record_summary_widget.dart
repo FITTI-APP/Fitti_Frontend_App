@@ -28,6 +28,7 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
     for (var element in oneSetRecords) {
       expected1RM = max(expected1RM, element.weight * (1 + element.reps / 30));
     }
+
     return Container(
       margin: const EdgeInsets.all(10.0),
       padding: const EdgeInsets.all(8.0),
@@ -51,7 +52,7 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
                     const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
                 width: 150,
@@ -87,7 +88,7 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
                     Text("예상 1RM : ${expected1RM.toStringAsFixed(1)}kg"),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ]),

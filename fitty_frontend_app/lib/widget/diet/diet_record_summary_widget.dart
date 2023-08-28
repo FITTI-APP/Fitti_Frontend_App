@@ -43,6 +43,7 @@ class DietRecordSummaryWidget extends StatelessWidget {
               itemCount: foodNames.length,
               itemBuilder: (context, index) {
                 return ListTile(
+                  visualDensity: const VisualDensity(vertical: -4),
                   title: Text(foodNames[index]),
                   trailing: const Text("100g"),
                 );

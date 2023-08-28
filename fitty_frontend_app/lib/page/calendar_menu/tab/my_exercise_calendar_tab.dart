@@ -1,6 +1,7 @@
 import 'package:fitty_frontend_app/data/my_exercise_record.dart';
 import 'package:fitty_frontend_app/page/exercise/daily_routine_page.dart';
 import 'package:fitty_frontend_app/widget/exercise/one_exercise_record_summary_widget.dart';
+import 'package:fitty_frontend_app/widget/exercise/time_record_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -46,16 +47,23 @@ class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
             builder: (context, allExerciseRecord, child) {
               var selectedDayExerciseRecord =
                   allExerciseRecord.getDayExerciseRecord(_selectedDay);
-              return ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: selectedDayExerciseRecord.oneExerciseRecords.length,
-                itemBuilder: (context, index) {
-                  return OneExerciseRecordSummaryWidget(
-                    exerciseRecord:
-                        selectedDayExerciseRecord.oneExerciseRecords[index],
-                  );
-                },
+              return Column(
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount:
+                        selectedDayExerciseRecord.oneExerciseRecords.length,
+                    itemBuilder: (context, index) {
+                      return OneExerciseRecordSummaryWidget(
+                        exerciseRecord:
+                            selectedDayExerciseRecord.oneExerciseRecords[index],
+                      );
+                    },
+                  ),
+                  TimeRecordWidget(
+                      selectedDayExerciseRecord: selectedDayExerciseRecord)
+                ],
               );
             },
           ),

@@ -1,4 +1,3 @@
-import 'package:fitty_frontend_app/widget/exercise/exercise_widget.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseListPage extends StatefulWidget {
@@ -26,24 +25,54 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
     "덤벨 숄더 프레스",
     "시티드 케이블 로우",
     "해머 컬",
+    "프론트 레이즈",
   ];
+
+  String searchText = '';
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('운동 목록'),
-      ),
-      body: Center(
-        child: ListView.builder(
-          itemCount: _exercises.length,
-          itemBuilder: (context, index) {
-            return ExerciseWidget(
-              exerciseName: _exercises[index],
-              index: index,
-            );
-          },
-        ),
-      ),
+    return Material(
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text('운동 목록'),
+          ),
+          body: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: TextField(
+                  decoration: const InputDecoration(
+                    hintText: '검색',
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      searchText = value;
+                    });
+                  },
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _exercises.length,
+                  itemBuilder: (context, index) {
+                    if (searchText.isNotEmpty &&
+                        !_exercises[index].contains(searchText.toLowerCase())) {
+                      return const SizedBox.shrink();
+                    } else {
+                      return Card(
+                          child: ListTile(
+                        title: Text(_exercises[index]),
+                        onTap: () {
+                          Navigator.pop(context, _exercises[index]);
+                        },
+                      ));
+                    }
+                  },
+                ),
+              ),
+            ],
+          )),
     );
   }
 }

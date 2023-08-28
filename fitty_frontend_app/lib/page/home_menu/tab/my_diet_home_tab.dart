@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../diet/diet_editting_page.dart';
+import '../../diet/diet_edit_page.dart';
 
 class MyDietHomeTab extends StatefulWidget {
   const MyDietHomeTab({
@@ -13,16 +13,16 @@ class MyDietHomeTab extends StatefulWidget {
 }
 
 class _MyDietHomeTabState extends State<MyDietHomeTab> {
+  List<String> dietList = <String>['아침', '점심', '저녁', '간식'];
+  String dietTitle = '아침';
   @override
   Widget build(BuildContext context) {
-    const List<String> list = <String>['아침', '점심', '저녁', '간식'];
-    String dropdownValue = list.first;
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           DropdownButton<String>(
-            value: dropdownValue,
+            value: dietTitle,
             icon: const Icon(Icons.arrow_downward),
             style: const TextStyle(color: Colors.black),
             underline: Container(
@@ -31,10 +31,10 @@ class _MyDietHomeTabState extends State<MyDietHomeTab> {
             ),
             onChanged: (String? value) {
               setState(() {
-                dropdownValue = value!;
+                dietTitle = value!;
               });
             },
-            items: list.map<DropdownMenuItem<String>>((String value) {
+            items: dietList.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),
@@ -44,8 +44,7 @@ class _MyDietHomeTabState extends State<MyDietHomeTab> {
           ElevatedButton(
             onPressed: () {
               Get.to(
-                () => DietEdittingPage(),
-                arguments: dropdownValue,
+                () => DietEditPage(title: dietTitle),
               );
             },
             child: const Text('식단 추가'),
