@@ -1,7 +1,4 @@
-import 'package:fitty_frontend_app/widget/exercise/exercise_widget.dart';
-import 'package:fitty_frontend_app/widget/exercise/one_exercise_records_of_all_date_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ExerciseListPage extends StatefulWidget {
   const ExerciseListPage({super.key});
@@ -9,8 +6,6 @@ class ExerciseListPage extends StatefulWidget {
   @override
   State<ExerciseListPage> createState() => _ExerciseListPageState();
 }
-
-String searchText = '';
 
 class _ExerciseListPageState extends State<ExerciseListPage> {
   final List<String> _exercises = [
@@ -33,7 +28,7 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
     "프론트 레이즈",
   ];
 
-  get exerciseName => null;
+  String searchText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +42,7 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: '검색',
                   ),
                   onChanged: (value) {

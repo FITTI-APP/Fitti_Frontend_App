@@ -6,18 +6,13 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'exercise_list_page.dart';
 
-class DailyRoutinePage extends StatefulWidget {
+class DailyRoutinePage extends StatelessWidget {
   const DailyRoutinePage(
       {super.key, required this.title, required this.selectedDay});
 
   final String title;
   final DateTime selectedDay;
 
-  @override
-  State<DailyRoutinePage> createState() => _DailyRoutinePageState();
-}
-
-class _DailyRoutinePageState extends State<DailyRoutinePage> {
   Color getStateColor(DayExerciseRecordState state) {
     if (state == DayExerciseRecordState.before) {
       return Colors.green;
@@ -46,13 +41,13 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(title),
         ),
         body: SingleChildScrollView(
           child: Center(child: Consumer<AllExerciseRecord>(
             builder: (context, allExerciseRecord, child) {
               var selectedDayExerciseRecord =
-                  allExerciseRecord.getDayExerciseRecord(widget.selectedDay);
+                  allExerciseRecord.getDayExerciseRecord(selectedDay);
               void deleteExerciseRecord(int index) {
                 selectedDayExerciseRecord.oneExerciseRecords.removeAt(index);
                 allExerciseRecord.updateExerciseRecords();
@@ -82,29 +77,26 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SizedBox(
-                        width: 150,
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            String? exerciseName =
-                                await Get.to(() => const ExerciseListPage());
-                            if (exerciseName != null) {
-                              var oneExerciseRecord = OneExerciseRecord();
-                              oneExerciseRecord.exerciseName = exerciseName;
-                              selectedDayExerciseRecord.oneExerciseRecords
-                                  .add(oneExerciseRecord);
-                              allExerciseRecord.updateExerciseRecords();
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            foregroundColor: Colors.blue,
-                          ),
-                          child: const Text(
-                            '운동 추가하기',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          String? exerciseName =
+                              await Get.to(() => const ExerciseListPage());
+                          if (exerciseName != null) {
+                            var oneExerciseRecord = OneExerciseRecord();
+                            oneExerciseRecord.exerciseName = exerciseName;
+                            selectedDayExerciseRecord.oneExerciseRecords
+                                .add(oneExerciseRecord);
+                            allExerciseRecord.updateExerciseRecords();
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          foregroundColor: Colors.blue,
+                        ),
+                        child: const Text(
+                          '운동 추가하기',
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       ElevatedButton(

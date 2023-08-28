@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class OneExerciseRecordSummaryWidget extends StatelessWidget {
   const OneExerciseRecordSummaryWidget({
@@ -28,8 +27,6 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
     for (var element in oneSetRecords) {
       expected1RM = max(expected1RM, element.weight * (1 + element.reps / 30));
     }
-    var selectedDayExerciseRecord =
-        context.read<AllExerciseRecord>().getDayExerciseRecord(DateTime.now());
 
     return Container(
       margin: const EdgeInsets.all(10.0),
@@ -76,7 +73,7 @@ class OneExerciseRecordSummaryWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 100,
+                width: 150,
                 child: Column(
                   children: [
                     Text("총 볼륨 : ${totalVolume}kg",

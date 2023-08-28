@@ -67,23 +67,6 @@ class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
               );
             },
           ),
-          // Consumer<AllExerciseRecord>(
-          //   builder: (context, allExerciseRecord, child) {
-          //     var selectedDayExerciseRecord =
-          //         allExerciseRecord.getDayExerciseRecord(_selectedDay);
-          //     return ListView.builder(
-          //       shrinkWrap: true,
-          //       physics: const NeverScrollableScrollPhysics(),
-          //       itemCount: 1,
-          //       itemBuilder: (context, index) {
-          //         return TimeRecordWidget(
-          //           exerciseRecord:
-          //               selectedDayExerciseRecord.oneExerciseRecords[index],
-          //         );
-          //       },
-          //     );
-          //   },
-          // ),
           ElevatedButton(
             onPressed: () {
               Get.to(() => DailyRoutinePage(
@@ -99,4 +82,3 @@ class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
     );
   }
 }
-// late starTime 값이 받아지기 전까지 widget 불러오기가 안됨//

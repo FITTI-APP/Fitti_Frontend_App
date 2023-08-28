@@ -13,9 +13,7 @@ class TimeRecordWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (selectedDayExerciseRecord.state != DayExerciseRecordState.end) {
-      return Container(
-        child: Text('운동을 시작해주세요'),
-      );
+      return const Text('운동을 시작해주세요');
     }
     var startTime = selectedDayExerciseRecord.startTime;
     var endTime = selectedDayExerciseRecord.endTime;
