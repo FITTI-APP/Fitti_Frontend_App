@@ -4,7 +4,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'data/all_exercise_record.dart';
+import 'data/my_exercise_record.dart';
 import 'page/intro_page.dart';
 
 void main() async {
@@ -12,7 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(ChangeNotifierProvider(
-    create: (context) => AllExerciseRecord(prefs),
+    create: (context) => MyExerciseRecord(prefs),
     child: const MyApp(),
   ));
 }

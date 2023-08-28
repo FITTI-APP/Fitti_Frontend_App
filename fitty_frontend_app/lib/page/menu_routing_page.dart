@@ -16,6 +16,7 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
   List<Widget> navBarPages = [
     const HomePage(),
     const CalendarPage(),
+    // const Text('add'),
     const Text('Changes'),
     const Text('MY'),
   ];
@@ -46,29 +47,52 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
         title: const Center(child: Text('FITTY')),
       ),
       body: navBarPages[selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month),
-            label: 'Calendar',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.area_chart_outlined),
-            label: 'Changes',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.abc),
-            label: 'MY',
-          ),
-        ],
-        currentIndex: selectedIndex,
-        onTap: onBottomNavTap,
-      ),
+      bottomNavigationBar: NavigationBar(
+          height: 60,
+          backgroundColor: Colors.white,
+          onDestinationSelected: onBottomNavTap,
+          selectedIndex: selectedIndex,
+          destinations: const <Widget>[
+            NavigationDestination(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.calendar_month),
+              label: 'Calendar',
+            ),
+            // todo : 출시 이후 다시 활성화
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     InkWell(
+            //       borderRadius: BorderRadius.circular(30),
+            //       onTap: () => onBottomNavTap(2),
+            //       child: Container(
+            //         decoration: const BoxDecoration(
+            //           shape: BoxShape.circle,
+            //           color: Colors.blue,
+            //         ),
+            //         padding: const EdgeInsets.all(8.0),
+            //         margin: const EdgeInsets.all(5),
+            //         child: const Icon(
+            //           Icons.add,
+            //           color: Colors.white,
+            //           size: 30,
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            NavigationDestination(
+              icon: Icon(Icons.area_chart_outlined),
+              label: 'Changes',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.abc),
+              label: 'MY',
+            ),
+          ]),
     );
   }
 }
