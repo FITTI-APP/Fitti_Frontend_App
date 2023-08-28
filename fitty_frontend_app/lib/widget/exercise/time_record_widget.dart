@@ -1,7 +1,6 @@
+import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import '../../data/class/day_exercise_record.dart';
 
 class TimeRecordWidget extends StatelessWidget {
   const TimeRecordWidget({

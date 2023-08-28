@@ -1,6 +1,5 @@
 import 'dart:math';
-import 'package:fitty_frontend_app/data/my_exercise_record.dart';
-import 'package:fitty_frontend_app/data/class/one_exercise_record.dart';
+import 'package:fitty_frontend_app/data/all_exercise_record.dart';
 import 'package:fitty_frontend_app/utility/exercise_data_processer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +27,7 @@ class _OneExerciseRecordsOfAllDateWidgetState
   @override
   void initState() {
     super.initState();
-    var allExerciseRecord = context.read<MyExerciseRecord>();
+    var allExerciseRecord = context.read<AllExerciseRecord>();
     var oneExerciseRecordsOfAllDate = ExerciseDataProcesser
         .getOneExerciseRecordsOfAllDateFromAllExerciseRecord(
             allExerciseRecord, widget.exersiseName);
@@ -84,11 +83,9 @@ class _OneExerciseRecordsOfAllDateWidgetState
         DateTime.parse(oneExerciseRecordOfAllDateEntries[index].key);
     var oneSetRecords =
         oneExerciseRecordOfAllDateEntries[index].value.oneSetRecords;
-
-    int totalVolume = 0;
-    for (var element in oneSetRecords) {
-      totalVolume += element.weight * element.reps;
-    }
+    var totalVolume = oneSetRecords
+        .map((e) => e.weight * e.reps)
+        .reduce((value, element) => value + element);
 
     int maxWeight = 0;
     for (var element in oneSetRecords) {
@@ -101,7 +98,6 @@ class _OneExerciseRecordsOfAllDateWidgetState
     for (var element in oneSetRecords) {
       expected1RM = max(expected1RM, element.weight * (1 + element.reps / 30));
     }
-
     return Column(
       children: [
         const SizedBox(
