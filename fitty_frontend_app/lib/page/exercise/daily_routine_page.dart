@@ -12,6 +12,27 @@ class DailyRoutinePage extends StatelessWidget {
 
   final String title;
   final DateTime selectedDay;
+
+  Color getStateColor(DayExerciseRecordState state) {
+    if (state == DayExerciseRecordState.before) {
+      return Colors.green;
+    } else if (state == DayExerciseRecordState.ongoing) {
+      return Colors.orange;
+    } else {
+      return Colors.grey;
+    }
+  }
+
+  String getStateString(DayExerciseRecordState state) {
+    if (state == DayExerciseRecordState.before) {
+      return '운동시작';
+    } else if (state == DayExerciseRecordState.ongoing) {
+      return '운동종료';
+    } else {
+      return '운동완료';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -53,13 +74,10 @@ class DailyRoutinePage extends StatelessWidget {
                       );
                     },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10.0,
-                    ),
-                    child: SizedBox(
-                      width: 150,
-                      child: ElevatedButton(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
                         onPressed: () async {
                           String? exerciseName =
                               await Get.to(() => const ExerciseListPage());
@@ -81,11 +99,6 @@ class DailyRoutinePage extends StatelessWidget {
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
                       ElevatedButton(
                         onPressed: () async {
                           var recordExistingEntries =
@@ -112,6 +125,33 @@ class DailyRoutinePage extends StatelessWidget {
                         child: const Text(
                           '불러오기',
                           style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          var state = selectedDayExerciseRecord.state;
+                          if (state == DayExerciseRecordState.before) {
+                            selectedDayExerciseRecord.state =
+                                DayExerciseRecordState.ongoing;
+                            selectedDayExerciseRecord.startTime =
+                                DateTime.now();
+                          } else if (state == DayExerciseRecordState.ongoing) {
+                            selectedDayExerciseRecord.state =
+                                DayExerciseRecordState.end;
+                            selectedDayExerciseRecord.endTime = DateTime.now();
+                          } else {
+                            return;
+                          }
+                          allExerciseRecord.updateExerciseRecords();
+                        },
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            backgroundColor:
+                                getStateColor(selectedDayExerciseRecord.state)),
+                        child: Text(
+                          getStateString(selectedDayExerciseRecord.state),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     ],

@@ -46,6 +46,7 @@ dependencies:
   fluttertoast: ^8.2.2
   provider: ^6.0.5
   shared_preferences: ^2.2.0
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -57,7 +58,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  table_calendar: ^3.0.9
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -73,6 +74,11 @@ flutter:
     - asset/flankggg.gif
     - asset/clockhealth.gif
     - asset/giphy.gif
+    - asset/workout1.jpg
+    - asset/workout2.jpg
+    - asset/workout3.jpg
+    - asset/workout4.jpg
+    - asset/workout5.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

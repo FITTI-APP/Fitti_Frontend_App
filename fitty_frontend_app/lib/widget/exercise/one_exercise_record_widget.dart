@@ -122,7 +122,7 @@ class OneExerciseRecordWidget extends StatelessWidget {
                           Colors.blue, // Set button background color
                     ),
                     child: const Text(
-                      '추가',
+                      '세트 추가',
                       style: TextStyle(color: Colors.white),
                     ),
                   )
