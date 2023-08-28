@@ -29,7 +29,7 @@ class _DietEditPageState extends State<DietEditPage> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Center(
               child: Column(
                 children: [
@@ -46,6 +46,19 @@ class _DietEditPageState extends State<DietEditPage> {
                               foodNameAndAmountList.removeAt(index);
                             });
                           },
+                          background: Container(
+                            color: Colors.red,
+                            child: const Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
                           child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: FoodNameAndAmountWidget(
