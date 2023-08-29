@@ -1,6 +1,6 @@
 {
-    "name": "fitty_frontend_app",
-    "short_name": "fitty_frontend_app",
+    "name": "fitti_frontend_app",
+    "short_name": "fitti_frontend_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

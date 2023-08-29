@@ -95,7 +95,7 @@ class _SignupPageState extends State<SignupPage> {
                   height: 30,
                 ),
                 Text(
-                  'F I T T Y',
+                  'F I T T I',
                   style: GoogleFonts.bebasNeue(fontSize: 50.0),
                 ),
                 const SizedBox(

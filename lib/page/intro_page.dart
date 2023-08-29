@@ -13,7 +13,7 @@ class IntroPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "F I T T Y",
+                  "F I T T I",
                   style: TextStyle(fontSize: 40, color: Colors.white),
                 ),
                 Text(

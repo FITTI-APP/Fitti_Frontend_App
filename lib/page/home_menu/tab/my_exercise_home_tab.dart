@@ -1,4 +1,4 @@
-import 'package:fitty_frontend_app/page/exercise/daily_routine_page.dart';
+import 'package:fitti_frontend_app/page/exercise/daily_routine_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';

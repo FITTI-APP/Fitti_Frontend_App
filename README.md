@@ -1,1 +1,1 @@
-# FItty-Frontend-App
+# Fitti-Frontend-App

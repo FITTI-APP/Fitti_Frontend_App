@@ -1,4 +1,4 @@
-import 'package:fitty_frontend_app/class/food_name_and_amount.dart';
+import 'package:fitti_frontend_app/class/food_name_and_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

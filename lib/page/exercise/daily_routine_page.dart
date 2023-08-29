@@ -1,7 +1,7 @@
-import 'package:fitty_frontend_app/data/my_exercise_record.dart';
-import 'package:fitty_frontend_app/data/class/one_exercise_record.dart';
-import 'package:fitty_frontend_app/page/exercise/exercise_record_list_page.dart';
-import 'package:fitty_frontend_app/widget/exercise/one_exercise_record_widget.dart';
+import 'package:fitti_frontend_app/data/my_exercise_record.dart';
+import 'package:fitti_frontend_app/data/class/one_exercise_record.dart';
+import 'package:fitti_frontend_app/page/exercise/exercise_record_list_page.dart';
+import 'package:fitti_frontend_app/widget/exercise/one_exercise_record_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';

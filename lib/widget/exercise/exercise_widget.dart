@@ -1,4 +1,4 @@
-import 'package:fitty_frontend_app/widget/exercise/one_exercise_records_of_all_date_widget.dart';
+import 'package:fitti_frontend_app/widget/exercise/one_exercise_records_of_all_date_widget.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseWidget extends StatelessWidget {

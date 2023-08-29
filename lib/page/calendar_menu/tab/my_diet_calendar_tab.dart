@@ -1,4 +1,4 @@
-import 'package:fitty_frontend_app/widget/common/calendar_widget.dart';
+import 'package:fitti_frontend_app/widget/common/calendar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

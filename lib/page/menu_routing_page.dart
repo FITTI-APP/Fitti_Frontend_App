@@ -1,6 +1,6 @@
-import 'package:fitty_frontend_app/page/calendar_menu/calendar_page.dart';
-import 'package:fitty_frontend_app/page/change_menu/changes_page.dart';
-import 'package:fitty_frontend_app/page/home_menu/home_page.dart';
+import 'package:fitti_frontend_app/page/calendar_menu/calendar_page.dart';
+import 'package:fitti_frontend_app/page/change_menu/changes_page.dart';
+import 'package:fitti_frontend_app/page/home_menu/home_page.dart';
 import 'package:flutter/material.dart';
 
 class MenuRoutingPage extends StatefulWidget {
@@ -45,7 +45,7 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
             },
           ),
         ],
-        title: const Center(child: Text('FITTY')),
+        title: const Center(child: Text('FITTI')),
       ),
       body: navBarPages[selectedIndex],
       bottomNavigationBar: NavigationBar(

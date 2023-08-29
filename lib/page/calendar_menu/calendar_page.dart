@@ -1,5 +1,5 @@
-import 'package:fitty_frontend_app/page/calendar_menu/tab/my_diet_calendar_tab.dart';
-import 'package:fitty_frontend_app/page/calendar_menu/tab/my_exercise_calendar_tab.dart';
+import 'package:fitti_frontend_app/page/calendar_menu/tab/my_diet_calendar_tab.dart';
+import 'package:fitti_frontend_app/page/calendar_menu/tab/my_exercise_calendar_tab.dart';
 import 'package:flutter/material.dart';
 
 class CalendarPage extends StatefulWidget {
