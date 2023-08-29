@@ -31,7 +31,7 @@ Widget _pageOfTop() {
       return Builder(builder: (BuildContext context) {
         return Container(
           width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.symmetric(horizontal: 5.0),
+          margin: const EdgeInsets.symmetric(horizontal: 5.0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(
