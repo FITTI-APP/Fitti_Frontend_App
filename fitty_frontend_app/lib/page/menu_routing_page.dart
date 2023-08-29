@@ -1,4 +1,5 @@
 import 'package:fitty_frontend_app/page/calendar_menu/calendar_page.dart';
+import 'package:fitty_frontend_app/page/change_menu/changes_page.dart';
 import 'package:fitty_frontend_app/page/home_menu/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
     const HomePage(),
     const CalendarPage(),
     // const Text('add'),
-    const Text('Changes'),
+    const ChangesPage(),
     const Text('MY'),
   ];
   void onBottomNavTap(int index) {
