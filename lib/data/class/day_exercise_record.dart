@@ -53,14 +53,5 @@ enum DayExerciseRecordState {
 
   // 문자열 변환
   @override
-  String toString() {
-    switch (this) {
-      case DayExerciseRecordState.before:
-        return 'before';
-      case DayExerciseRecordState.ongoing:
-        return 'ongoing';
-      case DayExerciseRecordState.end:
-        return 'end';
-    }
-  }
+  String toString() => name;
 }
