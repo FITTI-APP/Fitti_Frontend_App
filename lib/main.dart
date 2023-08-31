@@ -10,7 +10,7 @@ import 'page/intro_page.dart';
 
 void main() async {
   await initializeDateFormatting();
-  await dotenv.load(fileName: 'assets/config/.env');
+  await dotenv.load(fileName: 'asset/config/.env');
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(ChangeNotifierProvider(
