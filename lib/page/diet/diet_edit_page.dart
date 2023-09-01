@@ -1,4 +1,5 @@
 import 'package:fitti_frontend_app/class/food_name_and_amount.dart';
+import 'package:fitti_frontend_app/page/diet/food_search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -68,10 +69,11 @@ class _DietEditPageState extends State<DietEditPage> {
                         );
                       }),
                   ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        foodNameAndAmountList.add(FoodNameAndAmount('음식', 0));
-                      });
+                    onPressed: () async {
+                      Get.to(FoodSearchPage());
+                      // setState(() {
+                      //   foodNameAndAmountList.add(FoodNameAndAmount('음식', 0));
+                      // });
                     },
                     child: const Text('음식 추가'),
                   )

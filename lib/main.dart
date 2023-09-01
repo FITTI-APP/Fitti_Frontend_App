@@ -1,5 +1,6 @@
 import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ import 'page/intro_page.dart';
 
 void main() async {
   await initializeDateFormatting();
+  await dotenv.load(fileName: 'asset/config/.env');
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(ChangeNotifierProvider(
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // ThemeData.useMaterial3;
+      theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
           future: Future.delayed(
