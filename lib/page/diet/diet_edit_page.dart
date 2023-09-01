@@ -70,10 +70,12 @@ class _DietEditPageState extends State<DietEditPage> {
                       }),
                   ElevatedButton(
                     onPressed: () async {
-                      Get.to(FoodSearchPage());
-                      // setState(() {
-                      //   foodNameAndAmountList.add(FoodNameAndAmount('음식', 0));
-                      // });
+                      FoodNameAndAmount foodNameAndAmount =
+                          await Get.to(const FoodSearchPage());
+                      setState(() {
+                        foodNameAndAmountList.add(FoodNameAndAmount(
+                            foodNameAndAmount.name, foodNameAndAmount.amount));
+                      });
                     },
                     child: const Text('음식 추가'),
                   )

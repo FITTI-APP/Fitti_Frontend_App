@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:fitti_frontend_app/class/food_name_and_amount.dart';
+import 'package:fitti_frontend_app/page/diet/food_amount_input_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class FoodSearchPage extends StatefulWidget {
@@ -113,15 +116,23 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
                     itemCount: foodNameList.length + 1,
                     itemBuilder: (context, index) {
                       if (index == foodNameList.length) {
-                        return SizedBox(
+                        return const SizedBox(
                           height: 20,
                         );
                       }
                       return SizedBox(
                         height: 50,
                         child: ListTile(
+                          onTap: () async {
+                            int foodAmount = await Get.to(() =>
+                                FoodAmountInputPage(
+                                    foodName: foodNameList[index]));
+                            Get.back(
+                                result: FoodNameAndAmount(
+                                    foodNameList[index], foodAmount));
+                          },
                           title: Text(foodNameList[index]),
-                          subtitle: Text('열량 : {}kcal'),
+                          subtitle: const Text('열량 : {}kcal'),
                         ),
                       );
                     }),

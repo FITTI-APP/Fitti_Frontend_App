@@ -109,22 +109,20 @@ class _LoginPageState extends State<LoginPage> {
                     //todo 유효성검사
                     Get.off(() => const MenuRoutingPage());
                   },
-                  child: Container(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 25, 42, 173),
-                            borderRadius: BorderRadius.circular(12)),
-                        child: const Center(
-                          child: Text(
-                            '로그인',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 25, 42, 173),
+                          borderRadius: BorderRadius.circular(12)),
+                      child: const Center(
+                        child: Text(
+                          '로그인',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
