@@ -93,39 +93,47 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
         appBar: AppBar(
           title: const Text('음식 검색'),
         ),
-        body: Center(
-            child: Column(
-          children: <Widget>[
-            TextField(
-              controller: foodNameController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: '음식 이름',
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+              child: Column(
+            children: <Widget>[
+              TextField(
+                controller: foodNameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: '음식 이름',
+                ),
               ),
-            ),
-            ElevatedButton(onPressed: _initLoad, child: const Text('검색')),
-            Expanded(
-              child: ListView.builder(
-                  controller: scrollController,
-                  shrinkWrap: true,
-                  itemCount: foodNameList.length,
-                  itemBuilder: (context, index) {
-                    return SizedBox(
-                      height: 50,
-                      child: ListTile(
-                        title: Text(foodNameList[index]),
-                        subtitle: Text('열량 : {}kcal'),
-                      ),
-                    );
-                  }),
-            ),
-            if (isLoadRunning)
-              Container(
-                padding: const EdgeInsets.all(30),
-                child: const Center(child: CircularProgressIndicator()),
-              )
-          ],
-        )),
+              ElevatedButton(onPressed: _initLoad, child: const Text('검색')),
+              Expanded(
+                child: ListView.builder(
+                    controller: scrollController,
+                    shrinkWrap: true,
+                    itemCount: foodNameList.length + 1,
+                    itemBuilder: (context, index) {
+                      if (index == foodNameList.length) {
+                        return SizedBox(
+                          height: 20,
+                        );
+                      }
+                      return SizedBox(
+                        height: 50,
+                        child: ListTile(
+                          title: Text(foodNameList[index]),
+                          subtitle: Text('열량 : {}kcal'),
+                        ),
+                      );
+                    }),
+              ),
+              if (isLoadRunning)
+                Container(
+                  padding: const EdgeInsets.all(30),
+                  child: const Center(child: CircularProgressIndicator()),
+                )
+            ],
+          )),
+        ),
       ),
     );
   }
