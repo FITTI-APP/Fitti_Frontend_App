@@ -25,6 +25,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // ThemeData.useMaterial3;
+      theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
           future: Future.delayed(
