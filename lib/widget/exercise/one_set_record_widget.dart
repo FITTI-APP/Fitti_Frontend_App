@@ -50,6 +50,7 @@ class OneSetRecordWidget extends StatelessWidget {
             decoration: const InputDecoration(
               counterText: '',
               border: OutlineInputBorder(),
+              contentPadding: EdgeInsets.all(0),
             ),
           ),
         ),
@@ -74,6 +75,7 @@ class OneSetRecordWidget extends StatelessWidget {
             decoration: const InputDecoration(
               counterText: '',
               border: OutlineInputBorder(),
+              contentPadding: EdgeInsets.all(0),
             ),
           ),
         ),
