@@ -1,7 +1,10 @@
+import 'package:fitti_frontend_app/data/auth_service.dart';
 import 'package:fitti_frontend_app/page/login_signup/signup_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../menu_routing_page.dart';
 
@@ -16,6 +19,25 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  String? userInfo = "";
+  static final storage = new FlutterSecureStorage();
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _asyncMethod();
+    });
+  }
+
+  _asyncMethod() async {
+    userInfo = await storage.read(key: "userInfo");
+    // todo : userInfo 검증 필요
+    if (userInfo != null) {
+      Get.off(() => const MenuRoutingPage());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,23 +128,34 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    //todo 유효성검사
-                    Get.off(() => const MenuRoutingPage());
+                    var authService = context.read<AuthService>();
+                    authService.signIn(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                        onFail: (err) {
+                          Get.snackbar("로그인 실패", err);
+                        },
+                        onSuccess: (val) async {
+                          await storage.write(key: "userInfo", value: val);
+                          Get.off(() => const MenuRoutingPage());
+                        });
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 25, 42, 173),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: const Center(
-                        child: Text(
-                          '로그인',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                  child: Container(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 25, 42, 173),
+                            borderRadius: BorderRadius.circular(12)),
+                        child: const Center(
+                          child: Text(
+                            '로그인',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),
