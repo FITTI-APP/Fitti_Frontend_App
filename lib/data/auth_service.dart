@@ -4,7 +4,6 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dio/dio.dart';
 import 'package:fitti_frontend_app/api/api.dart';
 import 'package:flutter/material.dart';
-import "package:http/http.dart" as http;
 
 class AuthService extends ChangeNotifier {
   User? currentUser;
@@ -42,7 +41,8 @@ class AuthService extends ChangeNotifier {
       return;
     }
     try {
-      http.Response response = await http.post(Uri.parse(API.register), body: {
+      var dio = Dio();
+      Response response = await dio.post(API.register, data: {
         "email": email,
         "password": password,
         "name": name,
