@@ -33,6 +33,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
   }
 
   void _initLoad() async {
+    hasNextPage = true;
     page = 0;
     setState(() {
       foodNameList = [];
