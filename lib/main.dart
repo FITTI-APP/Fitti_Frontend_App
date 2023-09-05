@@ -1,3 +1,4 @@
+import 'package:fitti_frontend_app/data/auth_service.dart';
 import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -13,8 +14,12 @@ void main() async {
   await dotenv.load(fileName: 'asset/config/.env');
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  runApp(ChangeNotifierProvider(
-    create: (context) => MyExerciseRecord(prefs),
+
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => MyExerciseRecord(prefs)),
+      ChangeNotifierProvider(create: (context) => AuthService()),
+    ],
     child: const MyApp(),
   ));
 }
@@ -25,7 +30,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // ThemeData.useMaterial3;
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
