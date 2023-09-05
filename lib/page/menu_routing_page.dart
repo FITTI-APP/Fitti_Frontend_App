@@ -1,7 +1,10 @@
 import 'package:fitti_frontend_app/page/calendar_menu/calendar_page.dart';
 import 'package:fitti_frontend_app/page/change_menu/changes_page.dart';
 import 'package:fitti_frontend_app/page/home_menu/home_page.dart';
+import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 
 class MenuRoutingPage extends StatefulWidget {
   const MenuRoutingPage({
@@ -21,6 +24,9 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
     const ChangesPage(),
     const Text('MY'),
   ];
+
+  static final storage = FlutterSecureStorage();
+
   void onBottomNavTap(int index) {
     setState(() {
       selectedIndex = index;
@@ -41,7 +47,9 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              // Handle the settings button tap here.
+              // todo : PopupMenuButton으로 변경
+              storage.delete(key: "userInfo");
+              Get.off(() => const LoginPage());
             },
           ),
         ],
