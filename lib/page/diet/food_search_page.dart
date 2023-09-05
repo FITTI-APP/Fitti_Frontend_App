@@ -125,12 +125,15 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
                         height: 50,
                         child: ListTile(
                           onTap: () async {
-                            int foodAmount = await Get.to(() =>
+                            int? foodAmount = await Get.to(() =>
                                 FoodAmountInputPage(
                                     foodName: foodNameList[index]));
+                            if (foodAmount == null) {
+                              return;
+                            }
                             Get.back(
                                 result: FoodNameAndAmount(
-                                    foodNameList[index], foodAmount));
+                                    foodNameList[index], foodAmount!));
                           },
                           title: Text(foodNameList[index]),
                           subtitle: const Text('열량 : {}kcal'),
