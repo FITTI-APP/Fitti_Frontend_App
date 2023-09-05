@@ -133,6 +133,7 @@ class _SignupPageState extends State<SignupPage> {
                       // 주석 지우면 TextField의 validate가 작동, 주석처리하면 snackbar가 작동
                       // if (_formKey.currentState!.validate()) {
                       var authService = context.read<AuthService>();
+
                       authService.signUp(
                         email: _emailController.text,
                         password: _passwordController.text,
@@ -144,9 +145,7 @@ class _SignupPageState extends State<SignupPage> {
                           Get.snackbar("회원가입 성공", "로그인 페이지로 이동합니다.");
                           Future.delayed(
                             const Duration(seconds: 2),
-                            () {
-                              Get.back();
-                            },
+                            () => Get.back(closeOverlays: true),
                           );
                         },
                       );
