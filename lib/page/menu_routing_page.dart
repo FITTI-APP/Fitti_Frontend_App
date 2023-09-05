@@ -44,14 +44,25 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
           },
         ),
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              // todo : PopupMenuButton으로 변경
-              storage.delete(key: "userInfo");
-              Get.off(() => const LoginPage());
-            },
-          ),
+          PopupMenuButton(
+            itemBuilder: ((context) => [
+                  for (final value in MenuType.values)
+                    PopupMenuItem(
+                      value: value,
+                      child: Text(value.toString()),
+                      onTap: () {
+                        switch (value) {
+                          case MenuType.logOut:
+                            storage.delete(key: "userInfo");
+                            Get.off(() => const LoginPage());
+                            break;
+                          case MenuType.setting:
+                            break;
+                        }
+                      },
+                    )
+                ]),
+          )
         ],
         title: const Center(child: Text('FITTI')),
       ),
@@ -103,5 +114,22 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
             ),
           ]),
     );
+  }
+}
+
+enum MenuType {
+  logOut,
+  setting;
+
+  @override
+  String toString() {
+    switch (this) {
+      case MenuType.logOut:
+        return '로그아웃';
+      case MenuType.setting:
+        return '설정';
+      default:
+        return '';
+    }
   }
 }
