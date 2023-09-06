@@ -25,7 +25,7 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
     const Text('MY'),
   ];
 
-  static final storage = FlutterSecureStorage();
+  static const storage = FlutterSecureStorage();
 
   void onBottomNavTap(int index) {
     setState(() {
