@@ -7,4 +7,5 @@ class API {
   static const validateEmail = "$hostConnect/user/validate_email.php";
   static const login = "$hostConnect/auth/login";
   static const register = "$hostConnect/auth/register";
+  // todo : profile
 }
