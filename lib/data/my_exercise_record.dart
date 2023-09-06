@@ -5,10 +5,12 @@ import 'class/day_exercise_record.dart';
 
 class MyExerciseRecord extends ChangeNotifier {
   /// key : dateOnly.toString()
-  Map<String, DayExerciseRecord> dateTimeToDayExerciseRecordMap = {};
-  SharedPreferences prefs;
+  late Map<String, DayExerciseRecord> dateTimeToDayExerciseRecordMap;
 
-  MyExerciseRecord(this.prefs) {
+  MyExerciseRecord();
+
+  Future<void> initDateTimeToDayExerciseRecordMap() async {
+    var prefs = await SharedPreferences.getInstance();
     var encodedData = prefs.getString('dateTimeToDayExerciseRecordMap');
     if (encodedData != null) {
       var decodedData = jsonDecode(encodedData);
@@ -38,7 +40,8 @@ class MyExerciseRecord extends ChangeNotifier {
     return dateTimeToDayExerciseRecordMap[dateOnly.toString()]!;
   }
 
-  void updateExerciseRecords() {
+  void updateExerciseRecords() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('dateTimeToDayExerciseRecordMap',
         jsonEncode(dateTimeToDayExerciseRecordMap));
     notifyListeners();

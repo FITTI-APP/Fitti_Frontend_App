@@ -7,19 +7,15 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'data/my_exercise_record.dart';
 import 'page/intro_page.dart';
 
 void main() async {
-  await initializeDateFormatting();
-  await dotenv.load(fileName: 'asset/config/.env');
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => MyExerciseRecord(prefs)),
+      ChangeNotifierProvider(create: (context) => MyExerciseRecord()),
       ChangeNotifierProvider(create: (context) => AuthService()),
     ],
     child: const MyApp(),
@@ -38,6 +34,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
         future: () async {
+          var myExerciseRecord = context.read<MyExerciseRecord>();
+          await myExerciseRecord.initDateTimeToDayExerciseRecordMap();
+          await initializeDateFormatting();
+          await dotenv.load(fileName: 'asset/config/.env');
+
           var userInfo = await storage.read(key: "userInfo");
           if (userInfo != null) {
             return userInfo;
