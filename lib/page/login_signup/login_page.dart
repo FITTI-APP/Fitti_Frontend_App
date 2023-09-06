@@ -22,24 +22,6 @@ class _LoginPageState extends State<LoginPage> {
   static const storage = FlutterSecureStorage();
 
   @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _asyncMethod();
-    });
-  }
-
-  _asyncMethod() async {
-    userInfo = await storage.read(key: "userInfo");
-    // todo : userInfo 검증 필요
-    // todo : 그냥 LoginPage안거치고 바로 MenuRoutingPage로 가는게 나을 듯
-    if (userInfo != null) {
-      Get.off(() => const MenuRoutingPage());
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
