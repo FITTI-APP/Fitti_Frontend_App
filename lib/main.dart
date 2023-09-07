@@ -39,7 +39,8 @@ class MyApp extends StatelessWidget {
           await initializeDateFormatting();
           await dotenv.load(fileName: 'asset/config/.env');
 
-          var userInfo = await storage.read(key: "userInfo");
+          var userInfoKey = dotenv.env['USER_INFO']!;
+          var userInfo = await storage.read(key: userInfoKey);
           if (userInfo != null) {
             return userInfo;
           }
