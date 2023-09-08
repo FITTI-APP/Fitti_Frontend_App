@@ -1,0 +1,21 @@
+name: Auto reviewer (by xhdtlsid2)
+on:
+  pull_request:
+    branches-ignore:
+      - release
+      - main
+    types: [ opened, ready_for_review, reopened, synchronize ]
+
+jobs:
+  set_reviewers:
+    name: Auto reviewer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Request review
+        uses: necojackarc/auto-request-review@v0.12.0
+        with:
+          token: ${{ secrets.PAT_FITTY }}
+          config: .github/reviewers/reviewers.yml
+          use_local: true
