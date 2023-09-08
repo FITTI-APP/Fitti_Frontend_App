@@ -1,7 +1,10 @@
 import 'package:fitti_frontend_app/page/calendar_menu/calendar_page.dart';
 import 'package:fitti_frontend_app/page/change_menu/changes_page.dart';
 import 'package:fitti_frontend_app/page/home_menu/home_page.dart';
+import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 
 class MenuRoutingPage extends StatefulWidget {
   const MenuRoutingPage({
@@ -21,6 +24,9 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
     const ChangesPage(),
     const Text('MY'),
   ];
+
+  static const storage = FlutterSecureStorage();
+
   void onBottomNavTap(int index) {
     setState(() {
       selectedIndex = index;
@@ -38,12 +44,25 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
           },
         ),
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              // Handle the settings button tap here.
-            },
-          ),
+          PopupMenuButton(
+            itemBuilder: ((context) => [
+                  for (final value in MenuType.values)
+                    PopupMenuItem(
+                      value: value,
+                      child: Text(value.toString()),
+                      onTap: () {
+                        switch (value) {
+                          case MenuType.logOut:
+                            storage.delete(key: "userInfo");
+                            Get.off(() => const LoginPage());
+                            break;
+                          case MenuType.setting:
+                            break;
+                        }
+                      },
+                    )
+                ]),
+          )
         ],
         title: const Center(child: Text('FITTI')),
       ),
@@ -95,5 +114,22 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
             ),
           ]),
     );
+  }
+}
+
+enum MenuType {
+  logOut,
+  setting;
+
+  @override
+  String toString() {
+    switch (this) {
+      case MenuType.logOut:
+        return '로그아웃';
+      case MenuType.setting:
+        return '설정';
+      default:
+        return '';
+    }
   }
 }
