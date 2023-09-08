@@ -94,11 +94,9 @@ class DailyRoutinePage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
-                          foregroundColor: Colors.blue,
                         ),
                         child: const Text(
                           '운동 추가하기',
-                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       ElevatedButton(
@@ -122,11 +120,9 @@ class DailyRoutinePage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
-                          foregroundColor: Colors.blue,
                         ),
                         child: const Text(
                           '불러오기',
-                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       ElevatedButton(

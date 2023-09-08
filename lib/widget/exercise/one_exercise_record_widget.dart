@@ -124,7 +124,6 @@ class OneExerciseRecordWidget extends StatelessWidget {
                     ),
                     child: const Text(
                       '세트 추가',
-                      style: TextStyle(color: Colors.white),
                     ),
                   )
                 ],
