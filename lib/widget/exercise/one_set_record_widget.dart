@@ -81,10 +81,8 @@ class OneSetRecordWidget extends StatelessWidget {
         ),
         const Text('reps'),
         IconButton(
-          onPressed: () {
-            deleteThis(index);
-          },
-          icon: const Icon(Icons.delete),
+          onPressed: () {},
+          icon: const Icon(Icons.done),
         ),
       ],
     );
