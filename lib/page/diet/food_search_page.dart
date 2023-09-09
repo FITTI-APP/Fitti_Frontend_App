@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fitti_frontend_app/class/food_name_and_amount.dart';
+import 'package:fitti_frontend_app/class/diet/food_name_and_amount.dart';
 import 'package:fitti_frontend_app/page/diet/food_amount_input_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

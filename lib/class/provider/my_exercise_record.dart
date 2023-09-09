@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'class/day_exercise_record.dart';
+import '../exercise/day_exercise_record.dart';
 
 class MyExerciseRecord extends ChangeNotifier {
   /// key : dateOnly.toString()

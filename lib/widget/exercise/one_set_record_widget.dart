@@ -1,4 +1,4 @@
-import 'package:fitti_frontend_app/data/class/one_set_record.dart';
+import 'package:fitti_frontend_app/class/exercise/one_set_record.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

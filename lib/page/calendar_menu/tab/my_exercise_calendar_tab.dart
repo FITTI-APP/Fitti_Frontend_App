@@ -1,4 +1,4 @@
-import 'package:fitti_frontend_app/data/my_exercise_record.dart';
+import 'package:fitti_frontend_app/class/provider/my_exercise_record.dart';
 import 'package:fitti_frontend_app/page/exercise/daily_routine_page.dart';
 import 'package:fitti_frontend_app/widget/exercise/one_exercise_record_summary_widget.dart';
 import 'package:fitti_frontend_app/widget/exercise/time_record_widget.dart';

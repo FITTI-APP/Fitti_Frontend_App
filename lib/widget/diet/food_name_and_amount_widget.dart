@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../class/food_name_and_amount.dart';
+import '../../class/diet/food_name_and_amount.dart';
 
 class FoodNameAndAmountWidget extends StatelessWidget {
   const FoodNameAndAmountWidget(
