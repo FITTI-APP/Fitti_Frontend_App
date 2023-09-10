@@ -44,7 +44,7 @@ class OneSetRecordWidget extends StatelessWidget {
             ],
             maxLength: 4,
             onChanged: (value) {
-              oneSetInfo.reps = int.parse(value);
+              oneSetInfo.weight = int.parse(value);
               var myExerciseRecord = context.read<MyExerciseRecord>();
               myExerciseRecord.updateExerciseRecords();
             },
