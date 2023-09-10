@@ -133,7 +133,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
                             }
                             Get.back(
                                 result: FoodNameAndAmount(
-                                    foodNameList[index], foodAmount!));
+                                    foodNameList[index], foodAmount));
                           },
                           title: Text(foodNameList[index]),
                           subtitle: const Text('열량 : {}kcal'),
