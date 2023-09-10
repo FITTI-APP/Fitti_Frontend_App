@@ -52,11 +52,11 @@ class DailyRoutinePage extends StatelessWidget {
                   allExerciseRecord.getDayExerciseRecord(selectedDay);
               void deleteExerciseRecord(int index) {
                 selectedDayExerciseRecord.oneExerciseRecords.removeAt(index);
-                allExerciseRecord.updateExerciseRecords();
+                allExerciseRecord.updateExerciseRecordsAndRefreshUi();
               }
 
               void updateExerciseRecords() {
-                allExerciseRecord.updateExerciseRecords();
+                allExerciseRecord.updateExerciseRecordsAndRefreshUi();
               }
 
               return Column(
@@ -88,7 +88,8 @@ class DailyRoutinePage extends StatelessWidget {
                             oneExerciseRecord.exerciseName = exerciseName;
                             selectedDayExerciseRecord.oneExerciseRecords
                                 .add(oneExerciseRecord);
-                            allExerciseRecord.updateExerciseRecords();
+                            allExerciseRecord
+                                .updateExerciseRecordsAndRefreshUi();
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -115,7 +116,7 @@ class DailyRoutinePage extends StatelessWidget {
                             selectedDayExerciseRecord.oneExerciseRecords
                                 .add(selectedExerciseRecord);
                           }
-                          allExerciseRecord.updateExerciseRecords();
+                          allExerciseRecord.updateExerciseRecordsAndRefreshUi();
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -140,7 +141,7 @@ class DailyRoutinePage extends StatelessWidget {
                           } else {
                             return;
                           }
-                          allExerciseRecord.updateExerciseRecords();
+                          allExerciseRecord.updateExerciseRecordsAndRefreshUi();
                         },
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(

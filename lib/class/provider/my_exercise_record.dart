@@ -44,6 +44,10 @@ class MyExerciseRecord extends ChangeNotifier {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('dateTimeToDayExerciseRecordMap',
         jsonEncode(dateTimeToDayExerciseRecordMap));
+  }
+
+  void updateExerciseRecordsAndRefreshUi() {
+    updateExerciseRecords();
     notifyListeners();
   }
 }
