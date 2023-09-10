@@ -1,4 +1,5 @@
 import 'package:fitti_frontend_app/class/provider/auth_service.dart';
+import 'package:fitti_frontend_app/class/provider/exercise_list_provider.dart';
 import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:fitti_frontend_app/page/menu_routing_page.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ void main() async {
     providers: [
       ChangeNotifierProvider(create: (context) => MyExerciseRecord()),
       ChangeNotifierProvider(create: (context) => AuthService()),
+      ChangeNotifierProvider(create: (context) => ExerciseListProvider())
     ],
     child: const MyApp(),
   ));
@@ -35,7 +37,11 @@ class MyApp extends StatelessWidget {
       home: FutureBuilder(
         future: () async {
           var myExerciseRecord = context.read<MyExerciseRecord>();
+          var exerciseListProvider = context.read<ExerciseListProvider>();
+
           await myExerciseRecord.initDateTimeToDayExerciseRecordMap();
+          await exerciseListProvider.initExerciseList();
+
           await initializeDateFormatting();
           await dotenv.load(fileName: 'asset/config/.env');
 
