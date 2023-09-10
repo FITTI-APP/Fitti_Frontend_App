@@ -85,8 +85,9 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
                                 : null,
                             onTap: () {
                               Get.back(
-                                  result:
-                                      exerciseListProvider.exerciseList[index]);
+                                result: exerciseListProvider
+                                    .exerciseList[index].name,
+                              );
                             },
                           ));
                         }
