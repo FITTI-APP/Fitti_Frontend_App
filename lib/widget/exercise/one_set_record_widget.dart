@@ -1,6 +1,8 @@
 import 'package:fitti_frontend_app/class/exercise/one_set_record.dart';
+import 'package:fitti_frontend_app/class/provider/my_exercise_record.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class OneSetRecordWidget extends StatelessWidget {
   OneSetRecordWidget({
@@ -43,9 +45,10 @@ class OneSetRecordWidget extends StatelessWidget {
               FilteringTextInputFormatter.allow(RegExp(r'[1-9]\d{0,3}'))
             ],
             maxLength: 4,
-            onChanged: (value) => {
-              oneSetInfo.weight = int.parse(value),
-              updateExerciseRecords(),
+            onChanged: (value) {
+              oneSetInfo.reps = int.parse(value);
+              var myExerciseRecord = context.read<MyExerciseRecord>();
+              myExerciseRecord.updateExerciseRecords();
             },
             decoration: const InputDecoration(
               counterText: '',
@@ -68,9 +71,10 @@ class OneSetRecordWidget extends StatelessWidget {
               FilteringTextInputFormatter.allow(RegExp(r'[1-9]\d{0,3}'))
             ],
             maxLength: 4,
-            onChanged: (value) => {
-              oneSetInfo.reps = int.parse(value),
-              updateExerciseRecords(),
+            onChanged: (value) {
+              oneSetInfo.reps = int.parse(value);
+              var myExerciseRecord = context.read<MyExerciseRecord>();
+              myExerciseRecord.updateExerciseRecords();
             },
             decoration: const InputDecoration(
               counterText: '',
