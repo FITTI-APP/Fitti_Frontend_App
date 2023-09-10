@@ -32,7 +32,7 @@ class OneSetRecordWidget extends StatelessWidget {
       children: [
         SizedBox(
           width: 65,
-          height: 25,
+          height: 30,
           child: TextField(
             onTap: () => kgController.selection = TextSelection(
                 baseOffset: 0, extentOffset: kgController.text.length),
@@ -57,7 +57,7 @@ class OneSetRecordWidget extends StatelessWidget {
         const Text('kg'),
         SizedBox(
           width: 65,
-          height: 25,
+          height: 30,
           child: TextField(
             onTap: () => repsController.selection = TextSelection(
                 baseOffset: 0, extentOffset: repsController.text.length),
