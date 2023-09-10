@@ -9,14 +9,12 @@ class OneSetRecordWidget extends StatelessWidget {
     required this.oneSetInfo,
     required this.index,
     required this.deleteThis,
-    required this.updateExerciseRecords,
     super.key,
   });
 
   final OneSetRecord oneSetInfo;
   final int index;
   final Function deleteThis;
-  final Function updateExerciseRecords;
 
   final TextEditingController kgController = TextEditingController();
   final TextEditingController repsController = TextEditingController();

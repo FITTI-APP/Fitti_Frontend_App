@@ -114,7 +114,6 @@ class OneExerciseRecordWidget extends StatelessWidget {
                           child: OneSetRecordWidget(
                             index: index,
                             deleteThis: deleteSet,
-                            updateExerciseRecords: updateExerciseRecords,
                             oneSetInfo: oneExerciseRecord.oneSetRecords[index],
                           ),
                         ),
