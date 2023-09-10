@@ -8,32 +8,12 @@ import 'package:provider/provider.dart';
 import '../../data/class/day_exercise_record.dart';
 import 'exercise_list_page.dart';
 
-class DailyRoutinePage extends StatelessWidget {
-  const DailyRoutinePage(
+class DailyRoutinePageOther extends StatelessWidget {
+  const DailyRoutinePageOther(
       {super.key, required this.title, required this.selectedDay});
 
   final String title;
   final DateTime selectedDay;
-
-  Color getStateColor(DayExerciseRecordState state) {
-    if (state == DayExerciseRecordState.before) {
-      return Colors.green;
-    } else if (state == DayExerciseRecordState.ongoing) {
-      return Colors.orange;
-    } else {
-      return Colors.grey;
-    }
-  }
-
-  String getStateString(DayExerciseRecordState state) {
-    if (state == DayExerciseRecordState.before) {
-      return '운동시작';
-    } else if (state == DayExerciseRecordState.ongoing) {
-      return '운동종료';
-    } else {
-      return '운동완료';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,33 +103,6 @@ class DailyRoutinePage extends StatelessWidget {
                         ),
                         child: const Text(
                           '불러오기',
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          var state = selectedDayExerciseRecord.state;
-                          if (state == DayExerciseRecordState.before) {
-                            selectedDayExerciseRecord.state =
-                                DayExerciseRecordState.ongoing;
-                            selectedDayExerciseRecord.startTime =
-                                DateTime.now();
-                          } else if (state == DayExerciseRecordState.ongoing) {
-                            selectedDayExerciseRecord.state =
-                                DayExerciseRecordState.end;
-                            selectedDayExerciseRecord.endTime = DateTime.now();
-                          } else {
-                            return;
-                          }
-                          allExerciseRecord.updateExerciseRecords();
-                        },
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            backgroundColor:
-                                getStateColor(selectedDayExerciseRecord.state)),
-                        child: Text(
-                          getStateString(selectedDayExerciseRecord.state),
-                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     ],

@@ -1,4 +1,4 @@
-import 'package:fitti_frontend_app/page/exercise/daily_routine_page.dart';
+import 'package:fitti_frontend_app/page/exercise/daily_routine_page_this.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -49,7 +49,7 @@ Widget _pageOfBottom() {
   return Center(
     child: ElevatedButton(
       onPressed: () {
-        Get.to(() => DailyRoutinePage(
+        Get.to(() => DailyRoutinePageThis(
               title: "오늘의 운동",
               selectedDay: DateTime.now(),
             ));
