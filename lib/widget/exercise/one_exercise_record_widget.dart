@@ -91,30 +91,32 @@ class OneExerciseRecordWidget extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: oneExerciseRecord.oneSetRecords.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Dismissible(
-                        key: UniqueKey(),
-                        direction: DismissDirection.endToStart,
-                        onDismissed: (direction) {
-                          deleteSet(index);
-                        },
-                        background: Container(
-                          color: Colors.red,
-                          child: const Align(
-                            alignment: Alignment.centerRight,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.delete,
-                                color: Colors.white,
+                      return ClipRect(
+                        child: Dismissible(
+                          key: UniqueKey(),
+                          direction: DismissDirection.endToStart,
+                          onDismissed: (direction) {
+                            deleteSet(index);
+                          },
+                          background: Container(
+                            color: Colors.red,
+                            child: const Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        child: OneSetRecordWidget(
-                          index: index,
-                          deleteThis: deleteSet,
-                          updateExerciseRecords: updateExerciseRecords,
-                          oneSetInfo: oneExerciseRecord.oneSetRecords[index],
+                          child: OneSetRecordWidget(
+                            index: index,
+                            deleteThis: deleteSet,
+                            updateExerciseRecords: updateExerciseRecords,
+                            oneSetInfo: oneExerciseRecord.oneSetRecords[index],
+                          ),
                         ),
                       );
                     },
