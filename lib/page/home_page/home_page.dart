@@ -1,5 +1,5 @@
-import 'package:fitti_frontend_app/page/diet/my_diet_page.dart';
-import 'package:fitti_frontend_app/page/exercise/my_exercise_page.dart';
+import 'package:fitti_frontend_app/page/diet/my_diet_home_page.dart';
+import 'package:fitti_frontend_app/page/exercise/my_exercise_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
