@@ -1,63 +1,95 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:fitti_frontend_app/page/exercise/daily_routine_page.dart';
+import 'package:fitti_frontend_app/widget/common/today_start_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class MyExerciseHomePage extends StatelessWidget {
-  const MyExerciseHomePage({super.key});
+  MyExerciseHomePage({super.key});
+
+  final upperBody = [
+    "가슴",
+    "등",
+    "어깨",
+    "삼두",
+    "이두",
+    "전완",
+    "복근",
+  ];
+  final lowerBody = [
+    "허벅지",
+    "햄스트링",
+    "종아리",
+    "엉덩이",
+  ];
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
     return Scaffold(
       appBar: AppBar(
         title: Text("My 운동"),
       ),
-      body: Column(children: <Widget>[
-        _pageOfTop(),
-        _pageOfBottom(),
-      ]),
-    );
-  }
-}
-
-final pictureLists = [
-  'asset/workout1.jpg',
-  'asset/workout2.jpg',
-  'asset/workout3.jpg',
-  'asset/workout4.jpg',
-  'asset/workout5.jpg',
-];
-Widget _pageOfTop() {
-  return CarouselSlider(
-    options: CarouselOptions(height: 175, autoPlay: true),
-    items: pictureLists.map((url) {
-      return Builder(builder: (BuildContext context) {
-        return Container(
-          width: MediaQuery.of(context).size.width,
-          margin: const EdgeInsets.symmetric(horizontal: 5.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              url,
-              fit: BoxFit.cover,
+      body: Column(
+        children: [
+          Text("OOO님의 운동 분석"),
+          TodayStartWidget(
+            now: now,
+            buttonText: "오늘 운동 시작하기",
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Card(
+            child: SizedBox(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text("상체"),
+                      Text("하체"),
+                    ],
+                  ),
+                  Row(
+                    children: [for (final value in upperBody) Text(value)],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        height: 100,
+                        child: Center(child: Text("그림")),
+                      ),
+                      SizedBox(
+                        height: 100,
+                        child: Center(child: Text("그래프")),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        );
-      });
-    }).toList(),
-  );
-}
-
-Widget _pageOfBottom() {
-  return Center(
-    child: ElevatedButton(
-      onPressed: () {
-        Get.to(() => DailyRoutinePage(
-              title: "오늘의 운동",
-              selectedDay: DateTime.now(),
-            ));
-      },
-      child: const Text('오늘의 운동 시작하기'),
-    ),
-  );
+          SizedBox(
+            height: 10,
+          ),
+          Card(
+            child: SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  Text("친구들 중 나는 몇 등?"),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Icon(Icons.arrow_right),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }
