@@ -1,19 +1,22 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fitti_frontend_app/page/exercise/daily_routine_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
-class MyExerciseHomeTab extends StatelessWidget {
-  const MyExerciseHomeTab({
-    super.key,
-  });
+class MyExerciseHomePage extends StatelessWidget {
+  const MyExerciseHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      _pageOfTop(),
-      _pageOfBottom(),
-    ]);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("My 운동"),
+      ),
+      body: Column(children: <Widget>[
+        _pageOfTop(),
+        _pageOfBottom(),
+      ]),
+    );
   }
 }
 
