@@ -1,5 +1,5 @@
-import 'package:fitti_frontend_app/data/my_exercise_record.dart';
-import 'package:fitti_frontend_app/data/class/one_exercise_record.dart';
+import 'package:fitti_frontend_app/class/provider/my_exercise_record.dart';
+import 'package:fitti_frontend_app/class/exercise/one_exercise_record.dart';
 
 class ExerciseDataProcesser {
   static Map<String, OneExerciseRecord>
