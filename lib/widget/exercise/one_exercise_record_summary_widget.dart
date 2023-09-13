@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:fitti_frontend_app/data/class/one_exercise_record.dart';
+import 'package:fitti_frontend_app/class/exercise/one_exercise_record.dart';
 import 'package:flutter/material.dart';
 
 class OneExerciseRecordSummaryWidget extends StatelessWidget {

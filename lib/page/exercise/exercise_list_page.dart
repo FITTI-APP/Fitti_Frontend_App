@@ -1,4 +1,8 @@
+import 'package:fitti_frontend_app/class/provider/exercise_list_provider.dart';
+import 'package:fitti_frontend_app/page/exercise/exercise_add_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class ExerciseListPage extends StatefulWidget {
   const ExerciseListPage({super.key});
@@ -8,26 +12,6 @@ class ExerciseListPage extends StatefulWidget {
 }
 
 class _ExerciseListPageState extends State<ExerciseListPage> {
-  final List<String> _exercises = [
-    "벤치프레스",
-    "스쿼트",
-    "데드리프트",
-    "오버헤드 프레스",
-    "바벨 로우",
-    "풀업",
-    "펜들레이 로우",
-    "라잉 트라이셉스 익스텐션",
-    "바벨 컬",
-    "인클라인 덤벨 벤치프레스",
-    "인클라인 벤치프레스",
-    "덤벨 벤치프레스",
-    "덤벨 플라이",
-    "덤벨 숄더 프레스",
-    "시티드 케이블 로우",
-    "해머 컬",
-    "프론트 레이즈",
-  ];
-
   String searchText = '';
 
   @override
@@ -36,6 +20,26 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
       child: Scaffold(
           appBar: AppBar(
             title: const Text('운동 목록'),
+            actions: [
+              PopupMenuButton(
+                itemBuilder: ((context) => [
+                      for (final value in MenuType.values)
+                        PopupMenuItem(
+                          value: value,
+                          child: Text(value.toString()),
+                          onTap: () {
+                            switch (value) {
+                              case MenuType.addExercise:
+                                Get.to(
+                                  () => ExerciseAddPage(),
+                                );
+                                break;
+                            }
+                          },
+                        )
+                    ]),
+              )
+            ],
           ),
           body: Column(
             children: <Widget>[
@@ -53,26 +57,61 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
                 ),
               ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: _exercises.length,
-                  itemBuilder: (context, index) {
-                    if (searchText.isNotEmpty &&
-                        !_exercises[index].contains(searchText.toLowerCase())) {
-                      return const SizedBox.shrink();
-                    } else {
-                      return Card(
-                          child: ListTile(
-                        title: Text(_exercises[index]),
-                        onTap: () {
-                          Navigator.pop(context, _exercises[index]);
-                        },
-                      ));
-                    }
+                child: Consumer<ExerciseListProvider>(
+                  builder: (context, exerciseListProvider, child) {
+                    return ListView.builder(
+                      itemCount: exerciseListProvider.exerciseList.length,
+                      itemBuilder: (context, index) {
+                        if (searchText.isNotEmpty &&
+                            !exerciseListProvider.exerciseList[index].name
+                                .contains(searchText.toLowerCase())) {
+                          return const SizedBox.shrink();
+                        } else {
+                          var exerciseName =
+                              exerciseListProvider.exerciseList[index].name;
+                          var isCreated = exerciseListProvider
+                              .exerciseList[index].isCreated;
+                          return Card(
+                              child: ListTile(
+                            title: Text(exerciseName),
+                            trailing: isCreated
+                                ? IconButton(
+                                    icon: const Icon(Icons.delete),
+                                    onPressed: () {
+                                      exerciseListProvider
+                                          .deleteExercise(exerciseName);
+                                    },
+                                  )
+                                : null,
+                            onTap: () {
+                              Get.back(
+                                result: exerciseListProvider
+                                    .exerciseList[index].name,
+                              );
+                            },
+                          ));
+                        }
+                      },
+                    );
                   },
                 ),
               ),
             ],
           )),
     );
+  }
+}
+
+enum MenuType {
+  addExercise;
+
+  @override
+  String toString() {
+    switch (this) {
+      case MenuType.addExercise:
+        return '운동 추가하기';
+      default:
+        return '';
+    }
   }
 }

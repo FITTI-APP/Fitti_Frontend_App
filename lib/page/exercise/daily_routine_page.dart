@@ -1,11 +1,11 @@
-import 'package:fitti_frontend_app/data/my_exercise_record.dart';
-import 'package:fitti_frontend_app/data/class/one_exercise_record.dart';
+import 'package:fitti_frontend_app/class/provider/my_exercise_record.dart';
+import 'package:fitti_frontend_app/class/exercise/one_exercise_record.dart';
 import 'package:fitti_frontend_app/page/exercise/exercise_record_list_page.dart';
 import 'package:fitti_frontend_app/widget/exercise/one_exercise_record_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import '../../data/class/day_exercise_record.dart';
+import '../../class/exercise/day_exercise_record.dart';
 import 'exercise_list_page.dart';
 
 class DailyRoutinePage extends StatelessWidget {
@@ -52,11 +52,11 @@ class DailyRoutinePage extends StatelessWidget {
                   allExerciseRecord.getDayExerciseRecord(selectedDay);
               void deleteExerciseRecord(int index) {
                 selectedDayExerciseRecord.oneExerciseRecords.removeAt(index);
-                allExerciseRecord.updateExerciseRecords();
+                allExerciseRecord.updateExerciseRecordsAndRefreshUi();
               }
 
               void updateExerciseRecords() {
-                allExerciseRecord.updateExerciseRecords();
+                allExerciseRecord.updateExerciseRecordsAndRefreshUi();
               }
 
               return Column(
@@ -88,7 +88,8 @@ class DailyRoutinePage extends StatelessWidget {
                             oneExerciseRecord.exerciseName = exerciseName;
                             selectedDayExerciseRecord.oneExerciseRecords
                                 .add(oneExerciseRecord);
-                            allExerciseRecord.updateExerciseRecords();
+                            allExerciseRecord
+                                .updateExerciseRecordsAndRefreshUi();
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -115,7 +116,7 @@ class DailyRoutinePage extends StatelessWidget {
                             selectedDayExerciseRecord.oneExerciseRecords
                                 .add(selectedExerciseRecord);
                           }
-                          allExerciseRecord.updateExerciseRecords();
+                          allExerciseRecord.updateExerciseRecordsAndRefreshUi();
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -140,7 +141,7 @@ class DailyRoutinePage extends StatelessWidget {
                           } else {
                             return;
                           }
-                          allExerciseRecord.updateExerciseRecords();
+                          allExerciseRecord.updateExerciseRecordsAndRefreshUi();
                         },
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(

@@ -1,4 +1,4 @@
-import 'package:fitti_frontend_app/data/auth_service.dart';
+import 'package:fitti_frontend_app/class/provider/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
