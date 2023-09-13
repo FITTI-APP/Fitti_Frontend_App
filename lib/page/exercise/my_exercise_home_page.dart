@@ -8,7 +8,8 @@ class MyExerciseHomePage extends StatefulWidget {
   State<MyExerciseHomePage> createState() => _MyExerciseHomePageState();
 }
 
-class _MyExerciseHomePageState extends State<MyExerciseHomePage> {
+class _MyExerciseHomePageState extends State<MyExerciseHomePage>
+    with TickerProviderStateMixin {
   final upperBody = [
     "가슴",
     "등",
@@ -26,7 +27,18 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage> {
     "엉덩이",
   ];
 
-  bool isUpperBody = true;
+  bool get isUpperBody => upperOrLowerTabController.index == 0;
+  late TabController upperOrLowerTabController;
+  late TabController upperExerciseTabController;
+  late TabController lowerExerciseTabController;
+
+  @override
+  void initState() {
+    super.initState();
+    upperOrLowerTabController = TabController(length: 2, vsync: this);
+    upperExerciseTabController = TabController(length: 7, vsync: this);
+    lowerExerciseTabController = TabController(length: 4, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,32 +63,58 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage> {
                 children: [
                   Row(
                     children: [
-                      TextButton(
-                          onPressed: () {
+                      Expanded(
+                        // flex: 5,
+                        child: TabBar(
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          dividerColor: Colors.transparent,
+                          onTap: (index) {
                             setState(() {
-                              isUpperBody = true;
+                              upperExerciseTabController.index = 0;
+                              lowerExerciseTabController.index = 0;
                             });
                           },
-                          child: Text("상체")),
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              isUpperBody = false;
-                            });
-                          },
-                          child: Text("하체")),
+                          controller: upperOrLowerTabController,
+                          tabs: [
+                            Tab(
+                              text: "상체",
+                            ),
+                            Tab(
+                              text: "하체",
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        // flex: 1,
+                        child: Container(),
+                      ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      if (isUpperBody)
+                  if (isUpperBody)
+                    TabBar(
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      dividerColor: Colors.transparent,
+                      tabs: [
                         for (final value in upperBody)
-                          TextButton(onPressed: () {}, child: Text(value))
-                      else
+                          Tab(
+                            text: value,
+                          )
+                      ],
+                      controller: upperExerciseTabController,
+                    )
+                  else
+                    TabBar(
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      dividerColor: Colors.transparent,
+                      tabs: [
                         for (final value in lowerBody)
-                          TextButton(onPressed: () {}, child: Text(value))
-                    ],
-                  ),
+                          Tab(
+                            text: value,
+                          )
+                      ],
+                      controller: lowerExerciseTabController,
+                    ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
