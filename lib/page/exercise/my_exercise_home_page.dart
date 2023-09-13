@@ -1,9 +1,14 @@
 import 'package:fitti_frontend_app/widget/common/today_start_widget.dart';
 import 'package:flutter/material.dart';
 
-class MyExerciseHomePage extends StatelessWidget {
+class MyExerciseHomePage extends StatefulWidget {
   MyExerciseHomePage({super.key});
 
+  @override
+  State<MyExerciseHomePage> createState() => _MyExerciseHomePageState();
+}
+
+class _MyExerciseHomePageState extends State<MyExerciseHomePage> {
   final upperBody = [
     "가슴",
     "등",
@@ -13,12 +18,15 @@ class MyExerciseHomePage extends StatelessWidget {
     "전완",
     "복근",
   ];
+
   final lowerBody = [
     "허벅지",
     "햄스트링",
     "종아리",
     "엉덩이",
   ];
+
+  bool isUpperBody = true;
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +49,33 @@ class MyExerciseHomePage extends StatelessWidget {
             child: SizedBox(
               child: Column(
                 children: [
-                  const Row(
+                  Row(
                     children: [
-                      Text("상체"),
-                      Text("하체"),
+                      TextButton(
+                          onPressed: () {
+                            setState(() {
+                              isUpperBody = true;
+                            });
+                          },
+                          child: Text("상체")),
+                      TextButton(
+                          onPressed: () {
+                            setState(() {
+                              isUpperBody = false;
+                            });
+                          },
+                          child: Text("하체")),
                     ],
                   ),
                   Row(
-                    children: [for (final value in upperBody) Text(value)],
+                    children: [
+                      if (isUpperBody)
+                        for (final value in upperBody)
+                          TextButton(onPressed: () {}, child: Text(value))
+                      else
+                        for (final value in lowerBody)
+                          TextButton(onPressed: () {}, child: Text(value))
+                    ],
                   ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
