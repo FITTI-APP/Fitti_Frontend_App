@@ -1,7 +1,5 @@
 import 'package:fitti_frontend_app/widget/common/today_start_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class MyExerciseHomePage extends StatelessWidget {
   MyExerciseHomePage({super.key});
@@ -27,23 +25,23 @@ class MyExerciseHomePage extends StatelessWidget {
     DateTime now = DateTime.now();
     return Scaffold(
       appBar: AppBar(
-        title: Text("My 운동"),
+        title: const Text("My 운동"),
       ),
       body: Column(
         children: [
-          Text("OOO님의 운동 분석"),
+          const Text("OOO님의 운동 분석"),
           TodayStartWidget(
             now: now,
             buttonText: "오늘 운동 시작하기",
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Card(
             child: SizedBox(
               child: Column(
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       Text("상체"),
                       Text("하체"),
@@ -52,7 +50,7 @@ class MyExerciseHomePage extends StatelessWidget {
                   Row(
                     children: [for (final value in upperBody) Text(value)],
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(
@@ -69,10 +67,10 @@ class MyExerciseHomePage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Card(
+          const Card(
             child: SizedBox(
               height: 50,
               child: Row(

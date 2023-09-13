@@ -25,15 +25,15 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(
+        const Align(
           alignment: Alignment.centerLeft,
           child: Text("OOO님 안녕하세요!"),
         ),
-        Align(
+        const Align(
           alignment: Alignment.centerLeft,
           child: Text("여러분의 건강도우미 FITTI입니다."),
         ),
-        Card(
+        const Card(
           child: SizedBox(
             height: 50,
             child: Row(
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage>
         ),
         Row(
           children: [
-            Align(
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text("지난 1주일 동안 정재현님의 기록입니다."),
             ),
@@ -56,14 +56,14 @@ class _HomePageState extends State<HomePage>
                 alignment: Alignment.centerRight,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(50, 20),
-                    padding: EdgeInsets.all(5),
+                    minimumSize: const Size(50, 20),
+                    padding: const EdgeInsets.all(5),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     "이번 달 조회하기",
                     style: TextStyle(fontSize: 10),
                   ),
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage>
         MyHomeWidget(
           title: "My 운동",
           nextPage: MyExerciseHomePage(),
-          body: Center(
+          body: const Center(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -90,24 +90,24 @@ class _HomePageState extends State<HomePage>
             ],
           )),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         MyHomeWidget(
             title: "My 식단",
-            nextPage: MyDietHomePage(),
+            nextPage: const MyDietHomePage(),
             body: Row(
               children: [
                 Container(
                   width: 100,
                   height: 100,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.blue,
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text("2350\nKcal"),
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   child: Center(
                     child: Text("차트"),
                   ),
@@ -144,20 +144,20 @@ class MyHomeWidget extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Align(
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
                           onTap: () {
                             Get.to(nextPage);
                           },
-                          child: Text(
+                          child: const Text(
                             "자세히 보기",
                             style: TextStyle(fontSize: 10),
                           ),
                         ),
                       ),
-                      Divider(
+                      const Divider(
                         thickness: 1,
                         indent: 5,
                         endIndent: 0,
