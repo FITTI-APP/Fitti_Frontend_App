@@ -149,7 +149,7 @@ class MyHomeWidget extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
                           onTap: () {
-                            Get.to(nextPage);
+                            Get.to(() => nextPage);
                           },
                           child: const Text(
                             "자세히 보기",
