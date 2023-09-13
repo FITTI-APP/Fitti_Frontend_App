@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../exercise/day_exercise_record.dart';
 
-class MyExerciseRecord extends ChangeNotifier {
+class MyExerciseRecordService extends ChangeNotifier {
   /// key : dateOnly.toString()
   late Map<String, DayExerciseRecord> dateTimeToDayExerciseRecordMap;
 
-  MyExerciseRecord();
+  MyExerciseRecordService();
 
   Future<void> initDateTimeToDayExerciseRecordMap() async {
     var prefs = await SharedPreferences.getInstance();

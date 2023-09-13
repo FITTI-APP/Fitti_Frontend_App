@@ -1,4 +1,4 @@
-import 'package:fitti_frontend_app/class/provider/exercise_list_provider.dart';
+import 'package:fitti_frontend_app/class/service/exercise_list_service.dart';
 import 'package:fitti_frontend_app/page/exercise/exercise_add_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

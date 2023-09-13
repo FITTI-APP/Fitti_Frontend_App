@@ -1,5 +1,5 @@
 import 'package:fitti_frontend_app/class/exercise/exercise.dart';
-import 'package:fitti_frontend_app/class/provider/exercise_list_provider.dart';
+import 'package:fitti_frontend_app/class/service/exercise_list_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';

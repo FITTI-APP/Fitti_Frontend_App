@@ -1,10 +1,10 @@
-import 'package:fitti_frontend_app/class/provider/my_exercise_record.dart';
+import 'package:fitti_frontend_app/class/service/my_exercise_record_service.dart';
 import 'package:fitti_frontend_app/class/exercise/one_exercise_record.dart';
 
 class ExerciseDataProcesser {
   static Map<String, OneExerciseRecord>
       getOneExerciseRecordsOfAllDateFromAllExerciseRecord(
-          MyExerciseRecord allExerciseRecord, String exerciseName) {
+          MyExerciseRecordService allExerciseRecord, String exerciseName) {
     Map<String, OneExerciseRecord> oneExerciseRecordsOfAllDate = {};
     var recordEntries = allExerciseRecord.recordExistingEntries;
     for (var recordEntry in recordEntries) {
