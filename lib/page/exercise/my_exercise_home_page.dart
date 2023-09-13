@@ -1,4 +1,5 @@
 import 'package:fitti_frontend_app/widget/common/today_start_widget.dart';
+import 'package:fitti_frontend_app/widget/common/week_calendar_widget.dart';
 import 'package:flutter/material.dart';
 
 class MyExerciseHomePage extends StatefulWidget {
@@ -57,6 +58,7 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
           const SizedBox(
             height: 10,
           ),
+          WeekCalendarWidget(),
           Card(
             child: SizedBox(
               child: Column(
