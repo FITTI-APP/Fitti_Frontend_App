@@ -64,7 +64,6 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                   Row(
                     children: [
                       Expanded(
-                        // flex: 5,
                         child: TabBar(
                           indicatorSize: TabBarIndicatorSize.tab,
                           dividerColor: Colors.transparent,
@@ -86,7 +85,6 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                         ),
                       ),
                       Expanded(
-                        // flex: 1,
                         child: Container(),
                       ),
                     ],
