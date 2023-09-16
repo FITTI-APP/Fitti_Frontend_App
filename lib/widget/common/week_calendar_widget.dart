@@ -10,7 +10,7 @@ class WeekCalendarWidget extends StatefulWidget {
 }
 
 class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
-  DateTime now = DateTime.now();
+  DateTime _focusedDay = DateTime.now();
 
   int getWeekNumberOfMonth(DateTime date) {
     var weekday = date.weekday;
@@ -25,22 +25,44 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            "${now.month}월 ${getWeekNumberOfMonth(now)}주차",
+            "${_focusedDay.month}월 ${getWeekNumberOfMonth(_focusedDay)}주차",
           ),
         ),
-        TableCalendarBase(
-          firstDay: DateTime.utc(2000, 1, 1),
-          lastDay: DateTime.utc(2999, 12, 31),
-          focusedDay: now,
-          calendarFormat: CalendarFormat.week,
-          dayBuilder: (context, date, _) {
-            return Text(
-              "${DateFormat.d().format(date)}\n${DateFormat.E().format(date).toUpperCase()}",
-              textAlign: TextAlign.center,
-            );
-          },
-          dowVisible: false,
-          rowHeight: 50,
+        Row(
+          children: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  _focusedDay = _focusedDay.subtract(const Duration(days: 7));
+                });
+              },
+              icon: const Icon(Icons.arrow_back_ios),
+            ),
+            Expanded(
+              child: TableCalendarBase(
+                firstDay: DateTime.utc(2000, 1, 1),
+                lastDay: DateTime.utc(2999, 12, 31),
+                focusedDay: _focusedDay,
+                calendarFormat: CalendarFormat.week,
+                dayBuilder: (context, date, _) {
+                  return Text(
+                    "${DateFormat.d().format(date)}\n${DateFormat.E().format(date).toUpperCase()}",
+                    textAlign: TextAlign.center,
+                  );
+                },
+                dowVisible: false,
+                rowHeight: 50,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  _focusedDay = _focusedDay.add(const Duration(days: 7));
+                });
+              },
+              icon: const Icon(Icons.arrow_forward_ios),
+            ),
+          ],
         ),
       ],
     );
