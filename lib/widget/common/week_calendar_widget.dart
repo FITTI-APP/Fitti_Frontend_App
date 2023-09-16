@@ -24,8 +24,37 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
       children: [
         Align(
           alignment: Alignment.centerLeft,
-          child: Text(
-            "${_focusedDay.month}월 ${getWeekNumberOfMonth(_focusedDay)}주차",
+          child: Row(
+            children: [
+              TextButton(
+                  onPressed: () async {
+                    //show date picker
+                    final DateTime? picked = await showDatePicker(
+                      context: context,
+                      initialDate: _focusedDay,
+                      firstDate: DateTime.utc(2000, 1, 1),
+                      lastDate: DateTime.utc(2999, 12, 31),
+                      locale: const Locale('ko', 'KR'),
+                    );
+                    if (picked != null && picked != _focusedDay) {
+                      setState(() {
+                        _focusedDay = picked;
+                      });
+                    }
+                  },
+                  child: Text.rich(
+                    TextSpan(
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        text:
+                            "${_focusedDay.month}월 ${getWeekNumberOfMonth(_focusedDay)}주차",
+                        children: const [
+                          WidgetSpan(child: Icon(Icons.keyboard_arrow_down))
+                        ]),
+                  ))
+            ],
           ),
         ),
         Row(
