@@ -28,13 +28,11 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
             children: [
               TextButton(
                   onPressed: () async {
-                    //show date picker
                     final DateTime? picked = await showDatePicker(
                       context: context,
                       initialDate: _focusedDay,
                       firstDate: DateTime.utc(2000, 1, 1),
                       lastDate: DateTime.utc(2999, 12, 31),
-                      locale: const Locale('ko', 'KR'),
                     );
                     if (picked != null && picked != _focusedDay) {
                       setState(() {

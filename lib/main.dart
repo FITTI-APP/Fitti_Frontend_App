@@ -37,6 +37,10 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
+      supportedLocales: const [
+        // 앱에서 지원하는 언어 목록을 설정
+        Locale('ko', 'KR'), // 한국어
+      ],
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
