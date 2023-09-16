@@ -27,31 +27,47 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
           child: Row(
             children: [
               TextButton(
-                  onPressed: () async {
-                    final DateTime? picked = await showDatePicker(
-                      context: context,
-                      initialDate: _focusedDay,
-                      firstDate: DateTime.utc(2000, 1, 1),
-                      lastDate: DateTime.utc(2999, 12, 31),
-                    );
-                    if (picked != null && picked != _focusedDay) {
-                      setState(() {
-                        _focusedDay = picked;
-                      });
-                    }
-                  },
-                  child: Text.rich(
-                    TextSpan(
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                onPressed: () async {
+                  final DateTime? picked = await showDatePicker(
+                    context: context,
+                    initialDate: _focusedDay,
+                    firstDate: DateTime.utc(2000, 1, 1),
+                    lastDate: DateTime.utc(2999, 12, 31),
+                  );
+                  if (picked != null && picked != _focusedDay) {
+                    setState(() {
+                      _focusedDay = picked;
+                    });
+                  }
+                },
+                child: Text.rich(
+                  TextSpan(
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      text:
+                          "${_focusedDay.month}월 ${getWeekNumberOfMonth(_focusedDay)}주차",
+                      children: const [
+                        WidgetSpan(child: Icon(Icons.keyboard_arrow_down))
+                      ]),
+                ),
+              ),
+              Expanded(
+                child: Align(
+                    alignment: Alignment.topRight,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(0, 0),
+                        padding: const EdgeInsets.all(3),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        text:
-                            "${_focusedDay.month}월 ${getWeekNumberOfMonth(_focusedDay)}주차",
-                        children: const [
-                          WidgetSpan(child: Icon(Icons.keyboard_arrow_down))
-                        ]),
-                  ))
+                      ),
+                      onPressed: () {},
+                      child: const Text("이번 주 조회하기"),
+                    )),
+              )
             ],
           ),
         ),
