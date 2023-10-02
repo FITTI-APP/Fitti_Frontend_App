@@ -1,3 +1,4 @@
+import 'package:fitti_frontend_app/page/exercise/daily_routine_page.dart';
 import 'package:fitti_frontend_app/widget/common/today_start_widget.dart';
 import 'package:fitti_frontend_app/widget/common/week_calendar_widget.dart';
 import 'package:flutter/material.dart';
@@ -52,9 +53,12 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
         children: [
           const Text("OOO님의 운동 분석"),
           TodayStartWidget(
-            now: now,
-            buttonText: "오늘 운동 시작하기",
-          ),
+              now: now,
+              buttonText: "오늘 운동 시작하기",
+              nextPage: DailyRoutinePage(
+                selectedDay: now,
+                title: "My Exercise",
+              )),
           const SizedBox(
             height: 10,
           ),
