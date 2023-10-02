@@ -11,6 +11,7 @@ class WeekCalendarWidget extends StatefulWidget {
 
 class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
   DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay = DateTime.now();
 
   int getWeekNumberOfMonth(DateTime date) {
     var weekday = date.weekday;
@@ -92,6 +93,10 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
                 focusedDay: _focusedDay,
                 calendarFormat: CalendarFormat.week,
                 dayBuilder: (context, date, _) {
+                  //selectedDay는 글자 색 다르게
+                  if (_selectedDay != null &&
+                      DateUtils.isSameDay(date, _selectedDay)) {}
+
                   return Text(
                     "${DateFormat.d().format(date)}\n${DateFormat.E().format(date).toUpperCase()}",
                     textAlign: TextAlign.center,
