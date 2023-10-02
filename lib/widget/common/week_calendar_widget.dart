@@ -87,25 +87,28 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
               icon: const Icon(Icons.arrow_back_ios),
             ),
             Expanded(
-              child: TableCalendarBase(
-                firstDay: DateTime.utc(2000, 1, 1),
-                lastDay: DateTime.utc(2999, 12, 31),
-                focusedDay: _focusedDay,
-                calendarFormat: CalendarFormat.week,
-                dayBuilder: (context, date, _) {
-                  //selectedDay는 글자 색 다르게
-                  if (_selectedDay != null &&
-                      DateUtils.isSameDay(date, _selectedDay)) {}
+                child: TableCalendar(
+              firstDay: DateTime.utc(2000, 1, 1),
+              lastDay: DateTime.utc(2999, 12, 31),
+              focusedDay: _focusedDay,
+              selectedDayPredicate: (day) {
+                return isSameDay(_selectedDay, day);
+              },
+              onDaySelected: (selectedDay, focusedDay) {
+                setState(() {
+                  if (isSameDay(_selectedDay, selectedDay)) {
+                    _selectedDay = null;
+                  } else {
+                    _selectedDay = selectedDay;
+                  }
 
-                  return Text(
-                    "${DateFormat.d().format(date)}\n${DateFormat.E().format(date).toUpperCase()}",
-                    textAlign: TextAlign.center,
-                  );
-                },
-                dowVisible: false,
-                rowHeight: 50,
-              ),
-            ),
+                  _focusedDay = focusedDay;
+                });
+              },
+              calendarFormat: CalendarFormat.week,
+              daysOfWeekVisible: true,
+              headerVisible: false,
+            )),
             IconButton(
               onPressed: () {
                 setState(() {
