@@ -64,7 +64,11 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          _focusedDay = DateTime.now();
+                        });
+                      },
                       child: const Text("이번 주 조회하기"),
                     )),
               )
