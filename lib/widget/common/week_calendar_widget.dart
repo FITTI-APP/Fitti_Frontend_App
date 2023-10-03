@@ -105,9 +105,89 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
                   _focusedDay = focusedDay;
                 });
               },
+              calendarBuilders: CalendarBuilders(
+                defaultBuilder: (context, date, _) {
+                  return Container(
+                    margin: const EdgeInsets.all(4.0),
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 2,
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      date.day.toString().padLeft(2, '0'),
+                      style: const TextStyle(
+                        color: Color(0xff7f7f7f),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                },
+                selectedBuilder: (context, date, _) {
+                  return Container(
+                    margin: const EdgeInsets.all(4.0),
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 2,
+                          color: Color(0xff0c9500),
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      date.day.toString().padLeft(2, '0'),
+                      style: const TextStyle(
+                        color: Color(0xff0c9500),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                },
+                todayBuilder: (context, date, _) {
+                  return Container(
+                    margin: const EdgeInsets.all(4.0),
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 2,
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      date.day.toString().padLeft(2, '0'),
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                },
+              ),
               calendarFormat: CalendarFormat.week,
               daysOfWeekVisible: true,
               headerVisible: false,
+              daysOfWeekStyle: DaysOfWeekStyle(
+                dowTextFormatter: (date, locale) =>
+                    DateFormat.E(locale).format(date).toUpperCase(),
+                weekdayStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff7f7f7f),
+                ),
+                weekendStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff7f7f7f),
+                ),
+              ),
             )),
             IconButton(
               onPressed: () {
