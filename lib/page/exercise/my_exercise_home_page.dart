@@ -12,7 +12,7 @@ class MyExerciseHomePage extends StatefulWidget {
 
 class _MyExerciseHomePageState extends State<MyExerciseHomePage>
     with TickerProviderStateMixin {
-  final upperBody = [
+  final upperBodyKo = [
     "가슴",
     "등",
     "어깨",
@@ -22,12 +22,30 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
     "복근",
   ];
 
-  final lowerBody = [
+  final upperBody = [
+    "chest",
+    "back",
+    "shoulders",
+    "triceps",
+    "biceps",
+    "forearms",
+    "abs",
+  ];
+
+  final lowerBodyKo = [
     "허벅지",
-    "햄스트링",
     "종아리",
     "엉덩이",
   ];
+
+  final lowerBody = [
+    "thighs",
+    "calves",
+    "glutes",
+  ];
+
+  static const muscleMapFolderPath = "asset/muscle_map";
+  String sex = "male";
 
   bool get isUpperBody => upperOrLowerTabController.index == 0;
   late TabController upperOrLowerTabController;
@@ -39,7 +57,7 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
     super.initState();
     upperOrLowerTabController = TabController(length: 2, vsync: this);
     upperExerciseTabController = TabController(length: 7, vsync: this);
-    lowerExerciseTabController = TabController(length: 4, vsync: this);
+    lowerExerciseTabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -57,12 +75,12 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
               buttonText: "오늘 운동 시작하기",
               nextPage: DailyRoutinePage(
                 selectedDay: now,
-                title: "My Exercise",
+                title: "My 운동",
               )),
           const SizedBox(
             height: 10,
           ),
-          WeekCalendarWidget(),
+          const WeekCalendarWidget(),
           Card(
             child: SizedBox(
               child: Column(
@@ -80,7 +98,7 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                             });
                           },
                           controller: upperOrLowerTabController,
-                          tabs: [
+                          tabs: const [
                             Tab(
                               text: "상체",
                             ),
@@ -97,10 +115,13 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                   ),
                   if (isUpperBody)
                     TabBar(
+                      onTap: (value) => setState(() {
+                        upperExerciseTabController.index = value;
+                      }),
                       indicatorSize: TabBarIndicatorSize.tab,
                       dividerColor: Colors.transparent,
                       tabs: [
-                        for (final value in upperBody)
+                        for (final value in upperBodyKo)
                           Tab(
                             text: value,
                           )
@@ -109,25 +130,32 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                     )
                   else
                     TabBar(
+                      onTap: (value) => setState(() {
+                        lowerExerciseTabController.index = value;
+                      }),
                       indicatorSize: TabBarIndicatorSize.tab,
                       dividerColor: Colors.transparent,
                       tabs: [
-                        for (final value in lowerBody)
+                        for (final value in lowerBodyKo)
                           Tab(
                             text: value,
                           )
                       ],
                       controller: lowerExerciseTabController,
                     ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(
-                        height: 100,
-                        child: Center(child: Text("그림")),
+                        height: 280,
+                        //이미지 불러오기
+                        child: Image.asset(
+                          '$muscleMapFolderPath/${sex}_${isUpperBody ? upperBody[upperExerciseTabController.index] : lowerBody[lowerExerciseTabController.index]}.jpg',
+                          fit: BoxFit.contain,
+                        ),
                       ),
                       SizedBox(
-                        height: 100,
+                        height: 280,
                         child: Center(child: Text("그래프")),
                       ),
                     ],

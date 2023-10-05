@@ -75,6 +75,7 @@ flutter:
     uses-material-design: true
 
     assets:
+        - asset/muscle_map/
         - asset/flankggg.gif
         - asset/clockhealth.gif
         - asset/giphy.gif
