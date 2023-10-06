@@ -67,123 +67,125 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
       appBar: AppBar(
         title: const Text("My 운동"),
       ),
-      body: Column(
-        children: [
-          const Text("OOO님의 운동 분석"),
-          TodayStartWidget(
-              now: now,
-              buttonText: "오늘 운동 시작하기",
-              nextPage: DailyRoutinePage(
-                selectedDay: now,
-                title: "My 운동",
-              )),
-          const SizedBox(
-            height: 10,
-          ),
-          const WeekCalendarWidget(),
-          Card(
-            child: SizedBox(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TabBar(
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          dividerColor: Colors.transparent,
-                          onTap: (index) {
-                            setState(() {
-                              upperExerciseTabController.index = 0;
-                              lowerExerciseTabController.index = 0;
-                            });
-                          },
-                          controller: upperOrLowerTabController,
-                          tabs: const [
-                            Tab(
-                              text: "상체",
-                            ),
-                            Tab(
-                              text: "하체",
-                            ),
-                          ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Text("OOO님의 운동 분석"),
+            TodayStartWidget(
+                now: now,
+                buttonText: "오늘 운동 시작하기",
+                nextPage: DailyRoutinePage(
+                  selectedDay: now,
+                  title: "My 운동",
+                )),
+            const SizedBox(
+              height: 10,
+            ),
+            const WeekCalendarWidget(),
+            Card(
+              child: SizedBox(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TabBar(
+                            indicatorSize: TabBarIndicatorSize.tab,
+                            dividerColor: Colors.transparent,
+                            onTap: (index) {
+                              setState(() {
+                                upperExerciseTabController.index = 0;
+                                lowerExerciseTabController.index = 0;
+                              });
+                            },
+                            controller: upperOrLowerTabController,
+                            tabs: const [
+                              Tab(
+                                text: "상체",
+                              ),
+                              Tab(
+                                text: "하체",
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(),
-                      ),
-                    ],
-                  ),
-                  if (isUpperBody)
-                    TabBar(
-                      onTap: (value) => setState(() {
-                        upperExerciseTabController.index = value;
-                      }),
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      dividerColor: Colors.transparent,
-                      tabs: [
-                        for (final value in upperBodyKo)
-                          Tab(
-                            text: value,
-                          )
+                        Expanded(
+                          child: Container(),
+                        ),
                       ],
-                      controller: upperExerciseTabController,
-                    )
-                  else
-                    TabBar(
-                      onTap: (value) => setState(() {
-                        lowerExerciseTabController.index = value;
-                      }),
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      dividerColor: Colors.transparent,
-                      tabs: [
-                        for (final value in lowerBodyKo)
-                          Tab(
-                            text: value,
-                          )
-                      ],
-                      controller: lowerExerciseTabController,
                     ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        height: 280,
-                        //이미지 불러오기
-                        child: Image.asset(
-                          '$muscleMapFolderPath/${sex}_${isUpperBody ? upperBody[upperExerciseTabController.index] : lowerBody[lowerExerciseTabController.index]}.jpg',
-                          fit: BoxFit.contain,
+                    if (isUpperBody)
+                      TabBar(
+                        onTap: (value) => setState(() {
+                          upperExerciseTabController.index = value;
+                        }),
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        dividerColor: Colors.transparent,
+                        tabs: [
+                          for (final value in upperBodyKo)
+                            Tab(
+                              text: value,
+                            )
+                        ],
+                        controller: upperExerciseTabController,
+                      )
+                    else
+                      TabBar(
+                        onTap: (value) => setState(() {
+                          lowerExerciseTabController.index = value;
+                        }),
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        dividerColor: Colors.transparent,
+                        tabs: [
+                          for (final value in lowerBodyKo)
+                            Tab(
+                              text: value,
+                            )
+                        ],
+                        controller: lowerExerciseTabController,
+                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          height: 280,
+                          //이미지 불러오기
+                          child: Image.asset(
+                            '$muscleMapFolderPath/${sex}_${isUpperBody ? upperBody[upperExerciseTabController.index] : lowerBody[lowerExerciseTabController.index]}.jpg',
+                            fit: BoxFit.contain,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 280,
-                        child: Center(child: Text("그래프")),
-                      ),
-                    ],
-                  ),
-                ],
+                        SizedBox(
+                          height: 280,
+                          child: Center(child: Text("그래프")),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Card(
-            child: SizedBox(
-              height: 50,
-              child: Row(
-                children: [
-                  Text("친구들 중 나는 몇 등?"),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Icon(Icons.arrow_right),
-                    ),
-                  ),
-                ],
-              ),
+            const SizedBox(
+              height: 10,
             ),
-          )
-        ],
+            const Card(
+              child: SizedBox(
+                height: 50,
+                child: Row(
+                  children: [
+                    Text("친구들 중 나는 몇 등?"),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Icon(Icons.arrow_right),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
