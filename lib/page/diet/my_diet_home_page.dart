@@ -28,7 +28,7 @@ class _MyDietHomePageState extends State<MyDietHomePage> {
           const SizedBox(
             height: 10,
           ),
-          WeekCalendarWidget(),
+          const WeekCalendarWidget(),
           Card(
             child: SizedBox(
               child: Column(
@@ -43,7 +43,7 @@ class _MyDietHomePageState extends State<MyDietHomePage> {
                           color: Colors.blue,
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         child: Column(
                           children: [
                             Text("오늘 섭취량"),
@@ -53,9 +53,9 @@ class _MyDietHomePageState extends State<MyDietHomePage> {
                       )
                     ],
                   ),
-                  Divider(),
-                  Text("현재 비율"),
-                  Text("목표 비율"),
+                  const Divider(),
+                  const Text("현재 비율"),
+                  const Text("목표 비율"),
                 ],
               ),
             ),

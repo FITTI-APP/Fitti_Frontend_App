@@ -4,7 +4,7 @@ import 'package:fitti_frontend_app/widget/common/week_calendar_widget.dart';
 import 'package:flutter/material.dart';
 
 class MyExerciseHomePage extends StatefulWidget {
-  MyExerciseHomePage({super.key});
+  const MyExerciseHomePage({super.key});
 
   @override
   State<MyExerciseHomePage> createState() => _MyExerciseHomePageState();
@@ -155,7 +155,7 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                             fit: BoxFit.contain,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 280,
                           child: Center(child: Text("그래프")),
                         ),

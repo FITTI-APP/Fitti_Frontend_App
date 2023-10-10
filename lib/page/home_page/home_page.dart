@@ -72,10 +72,10 @@ class _HomePageState extends State<HomePage>
             )
           ],
         ),
-        MyHomeWidget(
+        const MyHomeWidget(
           title: "My 운동",
           nextPage: MyExerciseHomePage(),
-          body: const Center(
+          body: Center(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
