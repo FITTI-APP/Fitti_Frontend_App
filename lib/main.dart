@@ -77,8 +77,7 @@ Widget _splashLoadingWidget(AsyncSnapshot<Object?> snapshot) {
     if (userInfo != "") {
       return const MenuRoutingPage();
     }
-    // return const MenuRoutingPage();
-    return const LoginPage()
+    return const MenuRoutingPage();
   } else {
     return const IntroPage();
   }
