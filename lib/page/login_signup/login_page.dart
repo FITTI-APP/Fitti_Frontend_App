@@ -1,4 +1,4 @@
-import 'package:fitti_frontend_app/class/provider/auth_service.dart';
+import 'package:fitti_frontend_app/class/service/auth_service.dart';
 import 'package:fitti_frontend_app/page/login_signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

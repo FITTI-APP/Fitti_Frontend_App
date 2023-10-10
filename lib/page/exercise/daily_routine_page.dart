@@ -1,4 +1,4 @@
-import 'package:fitti_frontend_app/class/provider/my_exercise_record.dart';
+import 'package:fitti_frontend_app/class/service/my_exercise_record_service.dart';
 import 'package:fitti_frontend_app/class/exercise/one_exercise_record.dart';
 import 'package:fitti_frontend_app/page/exercise/exercise_record_list_page.dart';
 import 'package:fitti_frontend_app/widget/exercise/one_exercise_record_widget.dart';
@@ -46,7 +46,7 @@ class DailyRoutinePage extends StatelessWidget {
           title: Text(title),
         ),
         body: SingleChildScrollView(
-          child: Center(child: Consumer<MyExerciseRecord>(
+          child: Center(child: Consumer<MyExerciseRecordService>(
             builder: (context, allExerciseRecord, child) {
               var selectedDayExerciseRecord =
                   allExerciseRecord.getDayExerciseRecord(selectedDay);

@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:fitti_frontend_app/class/provider/my_exercise_record.dart';
+import 'package:fitti_frontend_app/class/service/my_exercise_record_service.dart';
 import 'package:fitti_frontend_app/class/exercise/one_exercise_record.dart';
 import 'package:fitti_frontend_app/utility/exercise_data_processer.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,7 @@ class _OneExerciseRecordsOfAllDateWidgetState
   @override
   void initState() {
     super.initState();
-    var allExerciseRecord = context.read<MyExerciseRecord>();
+    var allExerciseRecord = context.read<MyExerciseRecordService>();
     var oneExerciseRecordsOfAllDate = ExerciseDataProcesser
         .getOneExerciseRecordsOfAllDateFromAllExerciseRecord(
             allExerciseRecord, widget.exersiseName);

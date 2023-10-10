@@ -1,5 +1,5 @@
 import 'package:fitti_frontend_app/class/exercise/one_set_record.dart';
-import 'package:fitti_frontend_app/class/provider/my_exercise_record.dart';
+import 'package:fitti_frontend_app/class/service/my_exercise_record_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +45,7 @@ class OneSetRecordWidget extends StatelessWidget {
             maxLength: 4,
             onChanged: (value) {
               oneSetInfo.weight = int.parse(value);
-              var myExerciseRecord = context.read<MyExerciseRecord>();
+              var myExerciseRecord = context.read<MyExerciseRecordService>();
               myExerciseRecord.updateExerciseRecords();
             },
             decoration: const InputDecoration(
@@ -71,7 +71,7 @@ class OneSetRecordWidget extends StatelessWidget {
             maxLength: 4,
             onChanged: (value) {
               oneSetInfo.reps = int.parse(value);
-              var myExerciseRecord = context.read<MyExerciseRecord>();
+              var myExerciseRecord = context.read<MyExerciseRecordService>();
               myExerciseRecord.updateExerciseRecords();
             },
             decoration: const InputDecoration(
