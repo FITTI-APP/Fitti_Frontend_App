@@ -65,5 +65,39 @@ class ChartData {
         gridData: const FlGridData(show: false));
   }
 
-  // RadarChartData makeRadarChartData() {}
+  RadarChartData makeRadarChartData(
+    List<RadarDataSet> dataSets,
+    GetTitleByIndexFunction? getTitleByIndexFunction,
+  ) {
+    return RadarChartData(
+      dataSets: dataSets,
+      radarBackgroundColor: Colors.white,
+      borderData: FlBorderData(
+        show: true,
+        border: const Border(
+          top: BorderSide(color: Colors.black, width: 2),
+          right: BorderSide(color: Colors.black, width: 2),
+          bottom: BorderSide(color: Colors.black, width: 2),
+          left: BorderSide(color: Colors.black, width: 2),
+        ),
+      ),
+      radarBorderData: BorderSide(
+        color: Colors.black,
+        width: 1,
+        style: BorderStyle.none,
+      ),
+      titlePositionPercentageOffset: 0.1,
+      titleTextStyle: const TextStyle(
+        color: Colors.black,
+        fontSize: 11,
+      ),
+      getTitle: getTitleByIndexFunction,
+      tickCount: 3,
+      tickBorderData: const BorderSide(color: Colors.black, width: 1),
+      ticksTextStyle: const TextStyle(
+        color: Colors.transparent,
+      ),
+      // gridBorderData: const BorderSide(color: Colors.black, width: 2),
+    );
+  }
 }
