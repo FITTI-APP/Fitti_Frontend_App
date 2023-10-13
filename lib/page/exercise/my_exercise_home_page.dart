@@ -109,13 +109,11 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                             ],
                           ),
                         ),
-                        Expanded(
-                          child: Container(),
-                        ),
                       ],
                     ),
                     if (isUpperBody)
                       TabBar(
+                        labelPadding: EdgeInsets.zero,
                         onTap: (value) => setState(() {
                           upperExerciseTabController.index = value;
                         }),
