@@ -20,10 +20,10 @@ class ChartData {
           toY: y,
           color: barColor,
           width: width,
-          borderSide: const BorderSide(color: Colors.white, width: 0),
+          borderSide: const BorderSide(color: Colors.black, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            toY: 20,
+            toY: 100,
             color: backGroundColor,
           ),
         ),

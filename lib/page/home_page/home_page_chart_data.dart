@@ -8,7 +8,6 @@ class HomePageChartData {
   BarChart getMyExerciseBarChart() {
     return BarChart(
       getMyExerciseChart(),
-      swapAnimationDuration: const Duration(milliseconds: 250),
     );
   }
 
@@ -28,19 +27,19 @@ class HomePageChartData {
       List.generate(7, (i) {
         switch (i) {
           case 0: // sample data들임.
-            return _chartData.makeGroupData(0, 10,
+            return _chartData.makeGroupData(0, 50,
                 barColor: barColor, backGroundColor: backGroundColor);
           case 1:
-            return _chartData.makeGroupData(1, 4,
+            return _chartData.makeGroupData(1, 20,
                 barColor: barColor, backGroundColor: backGroundColor);
           case 2:
-            return _chartData.makeGroupData(2, 15,
+            return _chartData.makeGroupData(2, 75,
                 barColor: barColor, backGroundColor: backGroundColor);
           case 3:
-            return _chartData.makeGroupData(3, 20,
+            return _chartData.makeGroupData(3, 100,
                 barColor: barColor, backGroundColor: backGroundColor);
           case 4:
-            return _chartData.makeGroupData(4, 11,
+            return _chartData.makeGroupData(4, 55,
                 barColor: barColor, backGroundColor: backGroundColor);
           case 5:
             return _chartData.makeGroupData(5, 0,
