@@ -1,5 +1,5 @@
 import 'package:fitti_frontend_app/page/exercise/daily_routine_page.dart';
-import 'package:fitti_frontend_app/page/exercise/my_exercise_home_page_chart_data.dart';
+import 'package:fitti_frontend_app/class/exercise/my_exercise_home_page_chart_data.dart';
 import 'package:fitti_frontend_app/widget/common/today_start_widget.dart';
 import 'package:fitti_frontend_app/widget/common/week_calendar_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
