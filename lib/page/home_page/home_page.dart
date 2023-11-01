@@ -23,8 +23,6 @@ class _HomePageState extends State<HomePage>
     super.initState();
   }
 
-  MyExerciseHomePage get myExerciseHomePage => const MyExerciseHomePage();
-
   @override
   Widget build(BuildContext context) {
     BarChart barChart = HomePageChartData().getMyExerciseBarChart();

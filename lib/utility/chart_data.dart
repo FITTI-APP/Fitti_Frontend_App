@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-// chart data을 가져오는 클래스입니다. 냥냥!
 class ChartData {
   BarChartGroupData makeGroupData(
     int x,
@@ -81,7 +80,7 @@ class ChartData {
           left: BorderSide(color: Colors.black, width: 2),
         ),
       ),
-      radarBorderData: BorderSide(
+      radarBorderData: const BorderSide(
         color: Colors.black,
         width: 1,
         style: BorderStyle.none,
@@ -97,7 +96,6 @@ class ChartData {
       ticksTextStyle: const TextStyle(
         color: Colors.transparent,
       ),
-      // gridBorderData: const BorderSide(color: Colors.black, width: 2),
     );
   }
 }
