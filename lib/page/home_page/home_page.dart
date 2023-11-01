@@ -1,6 +1,6 @@
 import 'package:fitti_frontend_app/page/diet/my_diet_home_page.dart';
 import 'package:fitti_frontend_app/page/exercise/my_exercise_home_page.dart';
-import 'package:fitti_frontend_app/page/home_page/home_page_chart_data.dart';
+import 'package:fitti_frontend_app/class/home_page_chart_data.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
