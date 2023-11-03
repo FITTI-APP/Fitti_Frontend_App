@@ -1,6 +1,8 @@
 import 'package:fitti_frontend_app/page/exercise/daily_routine_page.dart';
+import 'package:fitti_frontend_app/class/exercise/my_exercise_home_page_chart_data.dart';
 import 'package:fitti_frontend_app/widget/common/today_start_widget.dart';
 import 'package:fitti_frontend_app/widget/common/week_calendar_widget.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class MyExerciseHomePage extends StatefulWidget {
@@ -12,37 +14,15 @@ class MyExerciseHomePage extends StatefulWidget {
 
 class _MyExerciseHomePageState extends State<MyExerciseHomePage>
     with TickerProviderStateMixin {
-  final upperBodyKo = [
-    "가슴",
-    "등",
-    "어깨",
-    "삼두",
-    "이두",
-    "전완",
-    "복근",
-  ];
+  late MyExerciseHomePageChartData myExerciseHomePageChartData;
 
-  final upperBody = [
-    "chest",
-    "back",
-    "shoulders",
-    "triceps",
-    "biceps",
-    "forearms",
-    "abs",
-  ];
+  late List<String> upperBodyKo;
 
-  final lowerBodyKo = [
-    "허벅지",
-    "종아리",
-    "엉덩이",
-  ];
+  late List<String> upperBody;
 
-  final lowerBody = [
-    "thighs",
-    "calves",
-    "glutes",
-  ];
+  late List<String> lowerBodyKo;
+
+  late List<String> lowerBody;
 
   static const muscleMapFolderPath = "asset/muscle_map";
   String sex = "male";
@@ -58,10 +38,19 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
     upperOrLowerTabController = TabController(length: 2, vsync: this);
     upperExerciseTabController = TabController(length: 7, vsync: this);
     lowerExerciseTabController = TabController(length: 3, vsync: this);
+
+    // 주입
+    myExerciseHomePageChartData = MyExerciseHomePageChartData();
+    lowerBody = myExerciseHomePageChartData.lowerBody;
+    lowerBodyKo = myExerciseHomePageChartData.lowerBodyKo;
+    upperBody = myExerciseHomePageChartData.upperBody;
+    upperBodyKo = myExerciseHomePageChartData.upperBodyKo;
   }
 
   @override
   Widget build(BuildContext context) {
+    RadarChart radarChart =
+        myExerciseHomePageChartData.getRadarChart(isUpperBody);
     DateTime now = DateTime.now();
     return Scaffold(
       appBar: AppBar(
@@ -109,13 +98,11 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                             ],
                           ),
                         ),
-                        Expanded(
-                          child: Container(),
-                        ),
                       ],
                     ),
                     if (isUpperBody)
                       TabBar(
+                        labelPadding: EdgeInsets.zero,
                         onTap: (value) => setState(() {
                           upperExerciseTabController.index = value;
                         }),
@@ -155,10 +142,13 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                             fit: BoxFit.contain,
                           ),
                         ),
-                        const SizedBox(
-                          height: 280,
-                          child: Center(child: Text("그래프")),
-                        ),
+                        SizedBox(
+                            height: 280,
+                            width: 180,
+                            child: AspectRatio(
+                              aspectRatio: 1.3,
+                              child: radarChart,
+                            )),
                       ],
                     ),
                   ],

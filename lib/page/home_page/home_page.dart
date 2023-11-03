@@ -1,5 +1,7 @@
 import 'package:fitti_frontend_app/page/diet/my_diet_home_page.dart';
 import 'package:fitti_frontend_app/page/exercise/my_exercise_home_page.dart';
+import 'package:fitti_frontend_app/class/home_page_chart_data.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +25,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    BarChart barChart = HomePageChartData().getMyExerciseBarChart();
     return Column(
       children: [
         const Align(
@@ -72,15 +75,15 @@ class _HomePageState extends State<HomePage>
             )
           ],
         ),
-        const MyHomeWidget(
+        MyHomeWidget(
           title: "My 운동",
-          nextPage: MyExerciseHomePage(),
+          nextPage: const MyExerciseHomePage(),
           body: Center(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text("차트"),
-              Column(
+              SizedBox(height: 150, width: 200, child: barChart),
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("총 볼륨 : 19045 kg"),
