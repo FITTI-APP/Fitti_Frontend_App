@@ -160,6 +160,11 @@ class _MyDietTodayDietInputState extends State<MyDietTodayDietInput> {
               ),
             ),
             Container(
+              width: 1000,
+              margin: const EdgeInsets.only(
+                left: 10,
+                right: 10,
+                top: 10,
               ),
               decoration: const BoxDecoration(
                 color: Colors.white,
