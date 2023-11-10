@@ -182,8 +182,8 @@ class _MyDietTodayDietInputState extends State<MyDietTodayDietInput> {
               ),
               child: Column(
                 children: [
-                  Text("현재비율"),
-                  Text("목표비율"),
+                  const Text("현재비율"),
+                  const Text("목표비율"),
                 ],
               ),
             ),
