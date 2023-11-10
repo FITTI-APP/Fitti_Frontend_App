@@ -2,6 +2,9 @@ import 'package:fitti_frontend_app/widget/common/today_start_widget.dart';
 import 'package:fitti_frontend_app/widget/common/week_calendar_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../widget/diet/diet_circle_graph_widget.dart';
+import 'my_diet_today_diet_input.dart';
+
 class MyDietHomePage extends StatefulWidget {
   const MyDietHomePage({super.key});
 
@@ -23,7 +26,7 @@ class _MyDietHomePageState extends State<MyDietHomePage> {
           TodayStartWidget(
             now: now,
             buttonText: "오늘 식단 추가하기",
-            nextPage: const Text("오늘 식단 추가하기"),
+            nextPage: MyDietTodayDietInput(datetime: now),
           ),
           const SizedBox(
             height: 10,
@@ -33,25 +36,8 @@ class _MyDietHomePageState extends State<MyDietHomePage> {
             child: SizedBox(
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blue,
-                        ),
-                      ),
-                      const Expanded(
-                        child: Column(
-                          children: [
-                            Text("오늘 섭취량"),
-                            Text("2350 Kcal"),
-                          ],
-                        ),
-                      )
-                    ],
+                  DietCircleGraphWidget(
+                    datetime: now,
                   ),
                   const Divider(),
                   const Text("현재 비율"),
