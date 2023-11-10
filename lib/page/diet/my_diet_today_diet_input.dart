@@ -70,6 +70,11 @@ class _MyDietTodayDietInputState extends State<MyDietTodayDietInput> {
         child: Column(
           children: [
             Container(
+              margin: const EdgeInsets.only(
+                left: 10,
+                right: 10,
+                top: 10,
+              ),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
@@ -86,9 +91,6 @@ class _MyDietTodayDietInputState extends State<MyDietTodayDietInput> {
               ),
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
                   DietCircleGraphWidget(
                     datetime: DateTime.now(),
                   ),
@@ -158,6 +160,7 @@ class _MyDietTodayDietInputState extends State<MyDietTodayDietInput> {
               ),
             ),
             Container(
+              ),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
@@ -171,6 +174,12 @@ class _MyDietTodayDietInputState extends State<MyDietTodayDietInput> {
                 borderRadius: BorderRadius.all(
                   Radius.circular(20),
                 ),
+              ),
+              child: Column(
+                children: [
+                  Text("현재비율"),
+                  Text("목표비율"),
+                ],
               ),
             ),
           ],
