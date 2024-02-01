@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class NewLoginPage extends StatelessWidget {
+class NewLoginPage extends StatefulWidget {
+  @override
+  State<NewLoginPage> createState() => _NewLoginPageState();
+}
+
+class _NewLoginPageState extends State<NewLoginPage> {
+  bool _isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -71,8 +78,12 @@ class NewLoginPage extends StatelessWidget {
                           height: 18,
                           width: 18,
                           child: Checkbox(
-                            value: false,
-                            onChanged: (value) {},
+                            value: _isChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                _isChecked = value!;
+                              });
+                            },
                             side: BorderSide(width: 0.5),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0),
@@ -207,6 +218,57 @@ class NewLoginPage extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              SizedBox(height: 9.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //iconbutton google, kakao, naver, facebook
+                  //circle iconbutton, 33x33
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      'asset/login_icon/google.png',
+                      width: 33.w,
+                      height: 33.w,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      'asset/login_icon/kakao.png',
+                      width: 33.w,
+                      height: 33.w,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      'asset/login_icon/naver.png',
+                      width: 33.w,
+                      height: 33.w,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: ClipOval(
+                      child: Image.asset(
+                        'asset/login_icon/facebook.png',
+                        width: 33.w,
+                        height: 33.w,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
