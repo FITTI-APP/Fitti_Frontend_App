@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
 
 Widget _splashLoadingWidget(AsyncSnapshot<Object?> snapshot) {
   if (snapshot.hasError) {
-    return const Text("Error!!");
+    return Text("Error(snapshot): ${snapshot.error}");
   } else if (snapshot.hasData) {
     var userInfo = snapshot.data;
     // todo : userInfo 검증 필요
