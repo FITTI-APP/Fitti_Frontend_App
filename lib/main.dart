@@ -58,6 +58,8 @@ class MyApp extends StatelessWidget {
           return "";
         }(),
         builder: (context, snapshot) {
+          if (snapshot.data == null) return const IntroPage();
+
           return AnimatedSwitcher(
               duration: const Duration(milliseconds: 1000),
               child: _splashLoadingWidget(snapshot));
