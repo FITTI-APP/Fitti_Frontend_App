@@ -10,6 +10,7 @@
 .svn/
 migrate_working_dir/
 .vscode/
+.env
 
 # IntelliJ related
 *.iml
@@ -31,7 +32,6 @@ migrate_working_dir/
 .packages
 .pub-cache/
 .pub/
-/build/
 
 # Symbolication related
 app.*.symbols
@@ -52,7 +52,7 @@ amplify/mock-data
 amplify/mock-api-resources
 amplify/backend/amplify-meta.json
 amplify/backend/.temp
-build/
+/build/*
 dist/
 node_modules/
 aws-exports.js
@@ -65,3 +65,5 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+!/build/web/
