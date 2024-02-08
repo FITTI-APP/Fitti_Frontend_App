@@ -40,23 +40,28 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
         future: () async {
-          WidgetsFlutterBinding.ensureInitialized();
+          try {
+            WidgetsFlutterBinding.ensureInitialized();
 
-          var myExerciseRecord = context.read<MyExerciseRecordService>();
-          var exerciseListProvider = context.read<ExerciseListProvider>();
+            var myExerciseRecord = context.read<MyExerciseRecordService>();
+            var exerciseListProvider = context.read<ExerciseListProvider>();
 
-          await myExerciseRecord.initDateTimeToDayExerciseRecordMap();
-          await exerciseListProvider.initExerciseList();
+            await myExerciseRecord.initDateTimeToDayExerciseRecordMap();
+            await exerciseListProvider.initExerciseList();
 
-          await initializeDateFormatting();
-          await dotenv.load(fileName: 'asset/config/.env');
+            await initializeDateFormatting();
+            await dotenv.load(fileName: 'asset/config/.env');
 
-          var userInfoKey = dotenv.env['USER_INFO']!;
-          var userInfo = await storage.read(key: userInfoKey);
-          if (userInfo != null) {
-            return userInfo;
+            var userInfoKey = dotenv.env['USER_INFO']!;
+            var userInfo = await storage.read(key: userInfoKey);
+            if (userInfo != null) {
+              return userInfo;
+            }
+            return "";
+          } catch (e) {
+            print(e); // 에러 출력
+            throw e; // 오류를 다시 던져서 FutureBuilder에서 잡을 수 있게 합니다.
           }
-          return "";
         }(),
         builder: (context, snapshot) {
           return AnimatedSwitcher(
