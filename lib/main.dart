@@ -1,5 +1,6 @@
 import 'package:fitti_frontend_app/class/service/auth_service.dart';
 import 'package:fitti_frontend_app/class/service/exercise_list_service.dart';
+import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:fitti_frontend_app/page/menu_routing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -50,11 +51,11 @@ class MyApp extends StatelessWidget {
           await initializeDateFormatting();
           await dotenv.load(fileName: 'asset/config/.env');
 
-          // var userInfoKey = dotenv.env['USER_INFO']!;
-          // var userInfo = await storage.read(key: userInfoKey);
-          // if (userInfo != null) {
-          //   return userInfo;
-          // }
+          var userInfoKey = dotenv.env['USER_INFO']!;
+          var userInfo = await storage.read(key: userInfoKey);
+          if (userInfo != null) {
+            return userInfo;
+          }
           return "";
         }(),
         builder: (context, snapshot) {
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-Widget _splashLoadingWidget(AsyncSnapshot<Object?> snapshot) {
+Widget _splashLoadingWidget(AsyncSnapshot snapshot) {
   if (snapshot.hasError) {
     return Text("Error(snapshot): ${snapshot.error}");
   } else if (snapshot.hasData) {
@@ -76,7 +77,7 @@ Widget _splashLoadingWidget(AsyncSnapshot<Object?> snapshot) {
     if (userInfo != "") {
       return const MenuRoutingPage();
     }
-    return const MenuRoutingPage();
+    return const LoginPage();
   } else {
     return const IntroPage();
   }
