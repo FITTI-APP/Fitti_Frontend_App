@@ -70,15 +70,18 @@ class MyApp extends StatelessWidget {
 
 Widget _splashLoadingWidget(AsyncSnapshot snapshot) {
   if (snapshot.hasError) {
-    return Text("Error(snapshot): ${snapshot.error}");
+    return Text("Error1: ${snapshot.error}");
   } else if (snapshot.hasData) {
     var userInfo = snapshot.data;
-    // todo : userInfo 검증 필요
     if (userInfo != "") {
+      // already logged in (token exists)
       return const MenuRoutingPage();
+    } else {
+      // not logged in (token does not exist)
+      return LoginPage();
     }
-    return const LoginPage();
   } else {
+    // loading
     return const IntroPage();
   }
 }
