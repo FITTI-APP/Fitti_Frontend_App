@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     # (2)
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - uses: subosito/flutter-action@v2
         with:
@@ -31,6 +31,6 @@ jobs:
           chmod u+x "${GITHUB_WORKSPACE}/createandcopytofolder.sh"
           bash "${GITHUB_WORKSPACE}/createandcopytofolder.sh"
       # (4)
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Commit the artifacts.
