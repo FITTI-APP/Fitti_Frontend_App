@@ -13,8 +13,6 @@ import 'class/service/my_exercise_record_service.dart';
 import 'page/intro_page.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => MyExerciseRecordService()),
@@ -42,6 +40,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
         future: () async {
+          WidgetsFlutterBinding.ensureInitialized();
+
           var myExerciseRecord = context.read<MyExerciseRecordService>();
           var exerciseListProvider = context.read<ExerciseListProvider>();
 
