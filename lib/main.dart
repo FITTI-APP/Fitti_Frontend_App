@@ -59,6 +59,8 @@ class MyApp extends StatelessWidget {
             }
             return "";
           } catch (e) {
+            Text("Error2: $e");
+            Duration(seconds: 2);
             print(e); // 에러 출력
             throw e; // 오류를 다시 던져서 FutureBuilder에서 잡을 수 있게 합니다.
           }
