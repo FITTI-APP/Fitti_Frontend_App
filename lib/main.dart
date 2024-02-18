@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'class/service/my_exercise_record_service.dart';
 import 'page/intro_page.dart';
 
+// ㅇㄹㄹㅇㄹ
 void main() async {
   runApp(MultiProvider(
     providers: [
