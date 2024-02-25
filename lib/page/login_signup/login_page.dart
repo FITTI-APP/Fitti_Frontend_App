@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _isChecked = false;
+  bool isSaveLoginInfo = true;
   bool isHidden = true;
   final idController = TextEditingController();
   final pswController = TextEditingController();
@@ -173,10 +173,10 @@ class _LoginPageState extends State<LoginPage> {
                           height: 18,
                           width: 18,
                           child: Checkbox(
-                            value: _isChecked,
+                            value: isSaveLoginInfo,
                             onChanged: (value) {
                               setState(() {
-                                _isChecked = value!;
+                                isSaveLoginInfo = value!;
                               });
                             },
                             side: BorderSide(width: 0.5.w),
@@ -209,24 +209,27 @@ class _LoginPageState extends State<LoginPage> {
                               Get.snackbar("로그인 실패", err);
                             },
                             onSuccess: (val) async {
-                              await storage.write(key: "userInfo", value: val);
+                              if (isSaveLoginInfo) {
+                                await storage.write(
+                                    key: "userInfo", value: val);
+                              }
                               Get.off(() => const MenuRoutingPage());
                             },
                           );
                         },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0.0,
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.w),
+                          ),
+                        ),
                         child: Text(
                           '로그인',
                           style: TextStyle(
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0.0,
-                          backgroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.w),
                           ),
                         ),
                       ),
