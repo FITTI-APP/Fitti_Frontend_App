@@ -10,7 +10,6 @@
 .svn/
 migrate_working_dir/
 .vscode/
-.env
 
 # IntelliJ related
 *.iml
@@ -32,7 +31,6 @@ migrate_working_dir/
 .packages
 .pub-cache/
 .pub/
-/build/
 
 # Symbolication related
 app.*.symbols

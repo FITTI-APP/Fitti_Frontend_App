@@ -1,0 +1,40 @@
+<variant
+    name="release"
+    package="com.example.fitti_frontend_app"
+    minSdkVersion="18"
+    targetSdkVersion="33"
+    shrinking="true"
+    mergedManifest="/Users/dicohy27/source/Fitti-Frontend-App/build/app/intermediates/merged_manifest/release/AndroidManifest.xml"
+    proguardFiles="/Users/dicohy27/source/Fitti-Frontend-App/build/app/intermediates/default_proguard_files/global/proguard-android.txt-7.3.0:/Users/dicohy27/Developments/flutter/packages/flutter_tools/gradle/flutter_proguard_rules.pro:proguard-rules.pro"
+    partialResultsDir="/Users/dicohy27/source/Fitti-Frontend-App/build/app/intermediates/lint_vital_partial_results/release/out"
+    desugaredMethodsFiles="/Users/dicohy27/.gradle/caches/transforms-3/bd65921de16db1d78bd37241e498ab28/transformed/D8BackportedDesugaredMethods.txt">
+  <buildFeatures
+      namespacing="REQUIRED"/>
+  <sourceProviders>
+    <sourceProvider
+        manifest="src/main/AndroidManifest.xml"
+        javaDirectories="src/main/java:src/main/kotlin"
+        resDirectories="src/main/res"
+        assetsDirectories="src/main/assets"/>
+    <sourceProvider
+        manifest="src/release/AndroidManifest.xml"
+        javaDirectories="src/release/java:src/release/kotlin"
+        resDirectories="src/release/res"
+        assetsDirectories="src/release/assets"/>
+  </sourceProviders>
+  <testSourceProviders>
+  </testSourceProviders>
+  <testFixturesSourceProviders>
+  </testFixturesSourceProviders>
+  <manifestPlaceholders>
+    <placeholder
+        name="applicationName"
+        value="android.app.Application" />
+  </manifestPlaceholders>
+  <mainArtifact
+      classOutputs="/Users/dicohy27/source/Fitti-Frontend-App/build/app/intermediates/javac/release/classes:/Users/dicohy27/source/Fitti-Frontend-App/build/app/tmp/kotlin-classes/release:/Users/dicohy27/source/Fitti-Frontend-App/build/app/kotlinToolingMetadata:/Users/dicohy27/source/Fitti-Frontend-App/build/app/intermediates/compile_and_runtime_not_namespaced_r_class_jar/release/R.jar"
+      applicationId="com.example.fitti_frontend_app"
+      generatedSourceFolders="/Users/dicohy27/source/Fitti-Frontend-App/build/app/generated/ap_generated_sources/release/out:/Users/dicohy27/source/Fitti-Frontend-App/build/app/generated/aidl_source_output_dir/release/out:/Users/dicohy27/source/Fitti-Frontend-App/build/app/generated/source/buildConfig/release:/Users/dicohy27/source/Fitti-Frontend-App/build/app/generated/renderscript_source_output_dir/release/out"
+      generatedResourceFolders="/Users/dicohy27/source/Fitti-Frontend-App/build/app/generated/res/rs/release:/Users/dicohy27/source/Fitti-Frontend-App/build/app/generated/res/resValues/release">
+  </mainArtifact>
+</variant>

@@ -1,0 +1,45 @@
+name: On Website Deploy
+"on":
+  push:
+    # (1)
+    branches:
+      - "develop"
+jobs:
+
+  build_and_deploy_web:
+    name: Build & Deploy Flutter to Web
+    runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.test
+      contents: write
+    # (2)
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TOKEN }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+
+      - name: 🌍 Enable Web
+        run: flutter config --enable-web
+
+      - name: 📦 Get packages
+        run: flutter pub get
+
+      - name: 🏭 Build Web Application
+        run: flutter build web --release
+
+      # (3)
+      - name: Make copy of artifacts
+        run: |
+          chmod u+x "${GITHUB_WORKSPACE}/createandcopytofolder.sh"
+          bash "${GITHUB_WORKSPACE}/createandcopytofolder.sh"
+      # (4)
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Commit the artifacts.
+          branch: develop
+          commit_user_name: GitHub Actions

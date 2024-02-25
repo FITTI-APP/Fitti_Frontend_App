@@ -1,5 +1,6 @@
 import 'package:fitti_frontend_app/class/service/auth_service.dart';
 import 'package:fitti_frontend_app/class/service/exercise_list_service.dart';
+import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:fitti_frontend_app/page/menu_routing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -13,9 +14,8 @@ import 'package:provider/provider.dart';
 import 'class/service/my_exercise_record_service.dart';
 import 'page/intro_page.dart';
 
+// ㅇㄹㄹㅇㄹ
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => MyExerciseRecordService()),
@@ -60,21 +60,30 @@ class MyApp extends StatelessWidget {
         },
         home: FutureBuilder(
           future: () async {
-            var myExerciseRecord = context.read<MyExerciseRecordService>();
-            var exerciseListProvider = context.read<ExerciseListProvider>();
+            try {
+              WidgetsFlutterBinding.ensureInitialized();
 
-            await myExerciseRecord.initDateTimeToDayExerciseRecordMap();
-            await exerciseListProvider.initExerciseList();
+              var myExerciseRecord = context.read<MyExerciseRecordService>();
+              var exerciseListProvider = context.read<ExerciseListProvider>();
 
-            await initializeDateFormatting();
-            await dotenv.load(fileName: 'asset/config/.env');
+              await myExerciseRecord.initDateTimeToDayExerciseRecordMap();
+              await exerciseListProvider.initExerciseList();
 
-            var userInfoKey = dotenv.env['USER_INFO']!;
-            var userInfo = await storage.read(key: userInfoKey);
-            if (userInfo != null) {
-              return userInfo;
+              await initializeDateFormatting();
+              await dotenv.load(fileName: 'asset/config/.env');
+
+              var userInfoKey = dotenv.env['USER_INFO']!;
+              var userInfo = await storage.read(key: userInfoKey);
+              if (userInfo != null) {
+                return userInfo;
+              }
+              return "";
+            } catch (e) {
+              Text("Error2: $e");
+              Duration(seconds: 2);
+              print(e); // 에러 출력
+              throw e; // 오류를 다시 던져서 FutureBuilder에서 잡을 수 있게 합니다.
             }
-            return "";
           }(),
           builder: (context, snapshot) {
             return AnimatedSwitcher(
@@ -87,17 +96,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-Widget _splashLoadingWidget(AsyncSnapshot<Object?> snapshot) {
+Widget _splashLoadingWidget(AsyncSnapshot snapshot) {
   if (snapshot.hasError) {
-    return const Text("Error!!");
+    return Text("Error1: ${snapshot.error}");
   } else if (snapshot.hasData) {
     var userInfo = snapshot.data;
-    // todo : userInfo 검증 필요
     if (userInfo != "") {
+      // already logged in (token exists)
       return const MenuRoutingPage();
+    } else {
+      // not logged in (token does not exist)
+      return LoginPage();
     }
-    return const MenuRoutingPage();
   } else {
+    // loading
     return const IntroPage();
   }
 }
