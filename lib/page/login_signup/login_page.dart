@@ -1,11 +1,12 @@
 import 'package:fitti_frontend_app/class/service/auth_service.dart';
-import 'package:fitti_frontend_app/page/login_signup/signup_page.dart';
+import 'package:fitti_frontend_app/page/login_signup/signup_name_page.dart';
 import 'package:fitti_frontend_app/page/menu_routing_page.dart';
 import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isChecked = false;
+  bool isHidden = true;
   final idController = TextEditingController();
   final pswController = TextEditingController();
   static const storage = FlutterSecureStorage();
@@ -36,26 +38,60 @@ class _LoginPageState extends State<LoginPage> {
                       'FITTI',
                       style: TextStyle(
                         fontSize: 40.sp,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Roboto Condensed',
+                        fontWeight: FontWeight.bold,
+                        fontFamily: GoogleFonts.robotoCondensed().fontFamily,
                       ),
                     ),
                     SizedBox(height: 39.w),
                     SizedBox(
                       width: 212.w,
                       height: 34.h,
-                      child: TextFormField(
+                      child: TextField(
                         controller: idController,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(width: 0.5),
+                          contentPadding: EdgeInsets.zero,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                              width: 0.5.w,
+                            ),
+                            borderRadius: BorderRadius.circular(5.w),
                           ),
-                          labelText: 'ID',
-                          labelStyle: TextStyle(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Roboto',
+                          border: const OutlineInputBorder(),
+                          prefixIcon: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              SizedBox(
+                                width: 32.w,
+                                child: Text(
+                                  'ID',
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 18.h,
+                                child: VerticalDivider(
+                                  width: 1.w,
+                                  thickness: 1.w,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                            ],
+                          ),
+                          // prefix 항상 보이게 고정
+                          prefixIconConstraints: const BoxConstraints(
+                            minWidth: 0,
+                            minHeight: 0,
                           ),
                         ),
                       ),
@@ -64,22 +100,69 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       width: 212.w,
                       height: 34.h,
-                      child: TextFormField(
+                      child: TextField(
                         controller: pswController,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 8.w),
+                          enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              width: 0.5,
+                              color: Colors.black,
+                              width: 0.5.w,
+                            ),
+                            borderRadius: BorderRadius.circular(5.w),
+                          ),
+                          border: const OutlineInputBorder(),
+                          prefixIcon: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              SizedBox(
+                                width: 32.w,
+                                child: Text(
+                                  'PSW',
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 18.h,
+                                child: VerticalDivider(
+                                  width: 1.w,
+                                  thickness: 1.w,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                            ],
+                          ),
+                          // prefix 항상 보이게 고정
+                          prefixIconConstraints: const BoxConstraints(
+                            minWidth: 0,
+                            minHeight: 0,
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                isHidden = !isHidden;
+                              });
+                            },
+                            icon: Icon(
+                              isHidden
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                              color: Colors.black,
+                              size: 15.w,
                             ),
                           ),
-                          labelText: 'PSW',
-                          labelStyle: TextStyle(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Roboto',
-                          ),
                         ),
+                        obscureText: isHidden,
                       ),
                     ),
                     SizedBox(height: 8.w),
@@ -96,9 +179,9 @@ class _LoginPageState extends State<LoginPage> {
                                 _isChecked = value!;
                               });
                             },
-                            side: BorderSide(width: 0.5),
+                            side: BorderSide(width: 0.5.w),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(0),
+                              borderRadius: BorderRadius.circular(0.w),
                             ),
                           ),
                         ),
@@ -107,7 +190,6 @@ class _LoginPageState extends State<LoginPage> {
                           '로그인 유지',
                           style: TextStyle(
                             fontSize: 10.sp,
-                            fontFamily: 'Roboto',
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -137,15 +219,14 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w600,
-                            fontFamily: 'Roboto',
-                            color: whiteColor,
+                            color: Colors.white,
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
                           elevation: 0.0,
-                          backgroundColor: blackColor,
+                          backgroundColor: Colors.black,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(10.w),
                           ),
                         ),
                       ),
@@ -159,7 +240,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Get.to(() => const SignupPage());
+                      Get.to(() => SignupNamePage());
                     },
                     style: TextButton.styleFrom(
                       minimumSize: Size.zero,
@@ -171,7 +252,6 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
-                        fontFamily: 'Roboto',
                         decoration: TextDecoration.underline,
                         color: Colors.black,
                       ),
@@ -183,9 +263,9 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 10.h,
                     child: VerticalDivider(
-                      width: 1,
-                      thickness: 1,
-                      color: blackColor,
+                      width: 1.w,
+                      thickness: 1.w,
+                      color: Colors.black,
                     ),
                   ),
                   SizedBox(
@@ -203,9 +283,8 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
-                        fontFamily: 'Roboto',
                         decoration: TextDecoration.underline,
-                        color: blackColor,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -218,8 +297,8 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Expanded(
                       child: Divider(
-                        thickness: 1,
-                        color: grayColor,
+                        thickness: 1.w,
+                        color: greyColor,
                       ),
                     ),
                     SizedBox(
@@ -230,8 +309,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
-                        fontFamily: 'Roboto',
-                        color: grayColor,
+                        color: greyColor,
                       ),
                     ),
                     SizedBox(
@@ -239,8 +317,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Expanded(
                       child: Divider(
-                        thickness: 1,
-                        color: grayColor,
+                        thickness: 1.w,
+                        color: greyColor,
                       ),
                     ),
                   ],
