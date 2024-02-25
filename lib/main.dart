@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'class/service/my_exercise_record_service.dart';
@@ -40,7 +41,17 @@ class MyApp extends StatelessWidget {
           // 앱에서 지원하는 언어 목록을 설정
           Locale('ko', 'KR'), // 한국어
         ],
-        theme: ThemeData(useMaterial3: true),
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+            shadowColor: Color.fromARGB(71, 0, 0, 0),
+            elevation: 4,
+          ),
+          shadowColor: const Color(0x3F000000),
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
         debugShowCheckedModeBanner: false,
         builder: (context, child) {
           return MediaQuery(
