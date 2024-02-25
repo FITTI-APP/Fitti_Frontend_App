@@ -40,7 +40,7 @@ dependencies:
     table_calendar: ^3.0.9
     intl: ^0.18.0
     get: ^4.6.5
-    google_fonts: ^5.1.0
+    google_fonts: ^6.1.0
     http: ^1.1.0
     fluttertoast: ^8.2.2
     provider: ^6.0.5
@@ -52,6 +52,7 @@ dependencies:
     dio: ^5.3.2
     dart_jsonwebtoken: ^2.11.0
     flutter_native_splash: ^2.3.2
+    flutter_screenutil: ^5.9.0
 
 dev_dependencies:
     flutter_test:
@@ -86,6 +87,7 @@ flutter:
         - asset/workout4.jpg
         - asset/workout5.jpg
         - asset/config/.env
+        - asset/login_icon/
 
     # To add assets to your application, add an assets section, like this:
     # assets:

@@ -2,6 +2,7 @@ import 'package:fitti_frontend_app/page/calendar_menu/calendar_page.dart';
 import 'package:fitti_frontend_app/page/change_menu/changes_page.dart';
 import 'package:fitti_frontend_app/page/home_page/home_page.dart';
 import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
+import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -54,7 +55,7 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
                         switch (value) {
                           case MenuType.logOut:
                             storage.delete(key: "userInfo");
-                            Get.off(() => const LoginPage());
+                            Get.off(() => LoginPage());
                             break;
                           case MenuType.setting:
                             break;
