@@ -2,7 +2,9 @@ import 'package:fitti_frontend_app/page/calendar_menu/calendar_page.dart';
 import 'package:fitti_frontend_app/page/change_menu/changes_page.dart';
 import 'package:fitti_frontend_app/page/home_page/home_page.dart';
 import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
+import 'package:fitti_frontend_app/widget/common/menu_routing_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
@@ -20,9 +22,9 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
   List<Widget> navBarPages = [
     const HomePage(),
     const CalendarPage(),
-    // const Text('add'),
+    const Text('FITTI'),
     const ChangesPage(),
-    const Text('MY'),
+    const Text('Menu'),
   ];
 
   static const storage = FlutterSecureStorage();
@@ -67,52 +69,10 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
         title: const Center(child: Text('FITTI')),
       ),
       body: navBarPages[selectedIndex],
-      bottomNavigationBar: NavigationBar(
-          height: 60,
-          backgroundColor: Colors.white,
-          onDestinationSelected: onBottomNavTap,
-          selectedIndex: selectedIndex,
-          destinations: const <Widget>[
-            NavigationDestination(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.calendar_month),
-              label: 'Calendar',
-            ),
-            // todo : 출시 이후 다시 활성화
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     InkWell(
-            //       borderRadius: BorderRadius.circular(30),
-            //       onTap: () => onBottomNavTap(2),
-            //       child: Container(
-            //         decoration: const BoxDecoration(
-            //           shape: BoxShape.circle,
-            //           color: Colors.blue,
-            //         ),
-            //         padding: const EdgeInsets.all(8.0),
-            //         margin: const EdgeInsets.all(5),
-            //         child: const Icon(
-            //           Icons.add,
-            //           color: Colors.white,
-            //           size: 30,
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
-            NavigationDestination(
-              icon: Icon(Icons.area_chart_outlined),
-              label: 'Changes',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.abc),
-              label: 'MY',
-            ),
-          ]),
+      bottomNavigationBar: MenuRoutingBottomBar(
+        currentTab: selectedIndex,
+        onBarTap: onBottomNavTap,
+      ),
     );
   }
 }
