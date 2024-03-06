@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class SignupNamePage extends StatelessWidget {
+  const SignupNamePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -13,7 +15,7 @@ class SignupNamePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Get.back();
             },
@@ -78,7 +80,7 @@ class SignupNamePage extends StatelessWidget {
                 onPressed: () {
                   // Handle next button press
                 },
-                child: Text(
+                child: const Text(
                   '다음',
                   style: TextStyle(
                     color: Colors.white,

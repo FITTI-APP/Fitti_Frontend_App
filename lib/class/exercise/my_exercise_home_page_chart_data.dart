@@ -80,17 +80,17 @@ class MyExerciseHomePageChartData {
     if (isUpperBody) {
       return [
         RadarDataSet(
-          fillColor: Color.fromARGB(100, 48, 144, 222),
+          fillColor: const Color.fromARGB(100, 48, 144, 222),
           borderColor: Colors.blue,
           entryRadius: 0,
           dataEntries: [
-            RadarEntry(value: 1),
-            RadarEntry(value: 2),
-            RadarEntry(value: 3),
-            RadarEntry(value: 4),
-            RadarEntry(value: 5),
-            RadarEntry(value: 6),
-            RadarEntry(value: 7),
+            const RadarEntry(value: 1),
+            const RadarEntry(value: 2),
+            const RadarEntry(value: 3),
+            const RadarEntry(value: 4),
+            const RadarEntry(value: 5),
+            const RadarEntry(value: 6),
+            const RadarEntry(value: 7),
           ],
           borderWidth: 1,
         )
@@ -98,13 +98,13 @@ class MyExerciseHomePageChartData {
     } else {
       return [
         RadarDataSet(
-          fillColor: Color.fromARGB(100, 48, 144, 222),
+          fillColor: const Color.fromARGB(100, 48, 144, 222),
           borderColor: Colors.blue,
           entryRadius: 0,
           dataEntries: [
-            RadarEntry(value: 1),
-            RadarEntry(value: 2),
-            RadarEntry(value: 3),
+            const RadarEntry(value: 1),
+            const RadarEntry(value: 2),
+            const RadarEntry(value: 3),
           ],
           borderWidth: 1,
         )

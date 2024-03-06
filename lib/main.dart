@@ -80,9 +80,9 @@ class MyApp extends StatelessWidget {
               return "";
             } catch (e) {
               Text("Error2: $e");
-              Duration(seconds: 2);
+              const Duration(seconds: 2);
               print(e); // 에러 출력
-              throw e; // 오류를 다시 던져서 FutureBuilder에서 잡을 수 있게 합니다.
+              rethrow; // 오류를 다시 던져서 FutureBuilder에서 잡을 수 있게 합니다.
             }
           }(),
           builder: (context, snapshot) {
@@ -106,7 +106,7 @@ Widget _splashLoadingWidget(AsyncSnapshot snapshot) {
       return const MenuRoutingPage();
     } else {
       // not logged in (token does not exist)
-      return LoginPage();
+      return const LoginPage();
     }
   } else {
     // loading

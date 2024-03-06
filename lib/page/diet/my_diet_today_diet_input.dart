@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../widget/diet/diet_circle_graph_widget.dart';
@@ -180,7 +179,7 @@ class _MyDietTodayDietInputState extends State<MyDietTodayDietInput> {
                   Radius.circular(20),
                 ),
               ),
-              child: Column(
+              child: const Column(
                 children: [
                   Text("현재비율"),
                   Text("목표비율"),
