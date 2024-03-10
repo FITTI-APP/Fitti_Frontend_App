@@ -1,8 +1,10 @@
 import 'package:fitti_frontend_app/page/diet/my_diet_home_page.dart';
 import 'package:fitti_frontend_app/page/exercise/my_exercise_home_page.dart';
 import 'package:fitti_frontend_app/class/home_page_chart_data.dart';
+import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
@@ -78,44 +80,117 @@ class _HomePageState extends State<HomePage>
         MyHomeWidget(
           title: "My 운동",
           nextPage: const MyExerciseHomePage(),
-          body: Center(
-              child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(height: 150, width: 200, child: barChart),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("총 볼륨 : 19045 kg"),
-                  Text("총 세트 : 2974 세트"),
-                ],
-              ),
-            ],
-          )),
+          body: Padding(
+            padding: EdgeInsets.only(top: 21.h, left: 28.w),
+            child: Row(
+              children: [
+                SizedBox(width: 129.w, height: 87.h, child: barChart),
+                SizedBox(width: 27.w),
+                Text.rich(
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w600,
+                    height: 1.36,
+                  ),
+                  const TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '총 볼륨 : ',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '19045',
+                        style: TextStyle(
+                          color: greenColor,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ' kg\n총 세트 : ',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '2974',
+                        style: TextStyle(
+                          color: greenColor,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ' 세트',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
         const SizedBox(height: 10),
         MyHomeWidget(
             title: "My 식단",
             nextPage: const MyDietHomePage(),
-            body: Row(
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.blue,
+            body: Padding(
+              padding: EdgeInsets.only(top: 22.h, left: 20.w),
+              child: Row(
+                children: [
+                  Container(
+                    width: 81.w,
+                    height: 81.w,
+                    decoration: BoxDecoration(
+                        border: Border.fromBorderSide(
+                          BorderSide(
+                            color: const Color(0xFFD9D9D9),
+                            width: 4.26.w,
+                          ),
+                        ),
+                        shape: BoxShape.circle,
+                        color: Colors.white),
+                    child: Center(
+                      child: Text.rich(
+                        style: const TextStyle(
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w600,
+                          color: greenColor,
+                        ),
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '2350',
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                              ),
+                            ),
+                            TextSpan(
+                              text: '\n',
+                              style: TextStyle(
+                                fontSize: 17.sp,
+                              ),
+                            ),
+                            TextSpan(
+                              text: 'kcal',
+                              style: TextStyle(
+                                fontSize: 13.sp,
+                              ),
+                            ),
+                          ],
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
-                  child: const Center(
-                    child: Text("2350\nKcal"),
+                  const Expanded(
+                    child: Center(
+                      child: Text("차트"),
+                    ),
                   ),
-                ),
-                const Expanded(
-                  child: Center(
-                    child: Text("차트"),
-                  ),
-                ),
-              ],
+                ],
+              ),
             )),
       ],
     );
@@ -136,39 +211,96 @@ class MyHomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
+      width: 340.w,
+      height: 170.h,
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        shadows: const [
+          BoxShadow(
+            color: shadowColor,
+            blurRadius: 4,
+          )
+        ],
+      ),
       child: SizedBox(
         child: Center(
             child: Column(
           children: [
-            Row(
+            Stack(
               children: [
-                Text(title),
-                Expanded(
-                  child: Column(
+                Padding(
+                  padding: EdgeInsets.only(top: 14.h),
+                  child: Row(
                     children: [
-                      const SizedBox(height: 10),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.to(() => nextPage);
-                          },
-                          child: const Text(
-                            "자세히 보기",
-                            style: TextStyle(fontSize: 10),
-                          ),
+                      SizedBox(
+                        width: 29.w,
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const Divider(
-                        thickness: 1,
-                        indent: 5,
-                        endIndent: 0,
-                        color: Colors.black,
+                      SizedBox(
+                        width: 11.w,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 7.h),
+                        child: Container(
+                          width: 227.w,
+                          decoration: const ShapeDecoration(
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                width: 0.25,
+                                strokeAlign: BorderSide.strokeAlignCenter,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
+                Positioned(
+                  top: 10.h,
+                  left: 267.w,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => nextPage);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 5.w, vertical: 3.h),
+                        child: Row(
+                          children: [
+                            Text(
+                              "자세히 보기",
+                              style: TextStyle(
+                                  fontSize: 9.sp,
+                                  color: greyColor,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 2),
+                              child: Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 10.w,
+                                color: greyColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
             body,
