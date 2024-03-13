@@ -1,6 +1,7 @@
 import 'package:fitti_frontend_app/page/diet/my_diet_home_page.dart';
 import 'package:fitti_frontend_app/page/exercise/my_exercise_home_page.dart';
 import 'package:fitti_frontend_app/class/home_page_chart_data.dart';
+import 'package:fitti_frontend_app/page/home_page/my_home_widget.dart';
 import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -133,180 +134,155 @@ class _HomePageState extends State<HomePage>
         ),
         const SizedBox(height: 10),
         MyHomeWidget(
-            title: "My 식단",
-            nextPage: const MyDietHomePage(),
-            body: Padding(
-              padding: EdgeInsets.only(top: 22.h, left: 20.w),
-              child: Row(
-                children: [
-                  Container(
-                    width: 81.w,
-                    height: 81.w,
-                    decoration: BoxDecoration(
-                        border: Border.fromBorderSide(
-                          BorderSide(
-                            color: const Color(0xFFD9D9D9),
-                            width: 4.26.w,
-                          ),
+          title: "My 식단",
+          nextPage: const MyDietHomePage(),
+          body: Padding(
+            padding: EdgeInsets.only(top: 22.h, left: 20.w),
+            child: Row(
+              children: [
+                Container(
+                  width: 81.w,
+                  height: 81.w,
+                  decoration: BoxDecoration(
+                      border: Border.fromBorderSide(
+                        BorderSide(
+                          color: const Color(0xFFD9D9D9),
+                          width: 4.26.w,
                         ),
-                        shape: BoxShape.circle,
-                        color: Colors.white),
-                    child: Center(
-                      child: Text.rich(
-                        style: const TextStyle(
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w600,
-                          color: greenColor,
-                        ),
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: '2350',
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                            TextSpan(
-                              text: '\n',
-                              style: TextStyle(
-                                fontSize: 17.sp,
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'kcal',
-                              style: TextStyle(
-                                fontSize: 13.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                        textAlign: TextAlign.center,
                       ),
+                      shape: BoxShape.circle,
+                      color: Colors.white),
+                  child: Center(
+                    child: Text.rich(
+                      style: const TextStyle(
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w600,
+                        color: greenColor,
+                      ),
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '2350',
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                            ),
+                          ),
+                          TextSpan(
+                            text: '\n',
+                            style: TextStyle(
+                              fontSize: 17.sp,
+                            ),
+                          ),
+                          TextSpan(
+                            text: 'kcal',
+                            style: TextStyle(
+                              fontSize: 13.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                  const Expanded(
-                    child: Center(
-                      child: Text("차트"),
-                    ),
-                  ),
-                ],
-              ),
-            )),
+                ),
+                SizedBox(width: 20.w),
+                PcfChart(carbohydrate: 45, protein: 30, fat: 25),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
 }
 
-class MyHomeWidget extends StatelessWidget {
-  const MyHomeWidget({
-    super.key,
-    required this.title,
-    required this.nextPage,
-    required this.body,
-  });
+class PcfChart extends StatelessWidget {
+  const PcfChart(
+      {super.key,
+      required this.carbohydrate,
+      required this.protein,
+      required this.fat});
 
-  final String title;
-  final Widget nextPage;
-  final Widget body;
+  //kcal
+  final double carbohydrate;
+  final double protein;
+  final double fat;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 340.w,
-      height: 170.h,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        shadows: const [
-          BoxShadow(
-            color: shadowColor,
-            blurRadius: 4,
-          )
-        ],
-      ),
-      child: SizedBox(
-        child: Center(
-            child: Column(
-          children: [
-            Stack(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 14.h),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 29.w,
-                      ),
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 11.w,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 7.h),
-                        child: Container(
-                          width: 227.w,
-                          decoration: const ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                width: 0.25,
-                                strokeAlign: BorderSide.strokeAlignCenter,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+    //탄단지 비율에 맞게 막대 차트를 그려주는 위젯 반환
+    const width = 172.0;
+
+    double total = carbohydrate + protein + fat;
+    double carbohydrateProportion = carbohydrate / total;
+    double proteinProportion = protein / total;
+    double fatProportion = fat / total;
+
+    double carbohydrateWidth = width * carbohydrateProportion;
+    double proteinWidth = width * proteinProportion;
+    double fatWidth = width * fatProportion;
+
+    return Stack(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 2.h),
+          child: Row(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  color: blueColor,
                 ),
-                Positioned(
-                  top: 10.h,
-                  left: 267.w,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () {
-                        Get.to(() => nextPage);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 5.w, vertical: 3.h),
-                        child: Row(
-                          children: [
-                            Text(
-                              "자세히 보기",
-                              style: TextStyle(
-                                  fontSize: 9.sp,
-                                  color: greyColor,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 2),
-                              child: Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                size: 10.w,
-                                color: greyColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ],
+                width: carbohydrateWidth.w,
+                height: 4.h,
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: greenColor,
+                ),
+                width: proteinWidth.w,
+                height: 4.h,
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: redColor,
+                ),
+                width: fatWidth.w,
+                height: 4.h,
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          right: proteinWidth.w + fatWidth.w + 2.w,
+          child: Text(
+            "${(carbohydrateProportion * 100).toInt()}",
+            style: TextStyle(
+              fontSize: 8.sp,
+              fontWeight: FontWeight.w600,
             ),
-            body,
-          ],
-        )),
-      ),
+          ),
+        ),
+        Positioned(
+          right: fatWidth.w + 2.w,
+          child: Text(
+            "${(proteinProportion * 100).toInt()}",
+            style: TextStyle(
+              fontSize: 8.sp,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        Positioned(
+          right: 2.w,
+          child: Text(
+            "${(fatProportion * 100).toInt()}",
+            style: TextStyle(
+              fontSize: 8.sp,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
