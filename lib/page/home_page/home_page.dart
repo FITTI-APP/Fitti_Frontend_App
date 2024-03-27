@@ -1,7 +1,9 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:fitti_frontend_app/page/diet/my_diet_home_page.dart';
 import 'package:fitti_frontend_app/page/exercise/my_exercise_home_page.dart';
 import 'package:fitti_frontend_app/class/home_page_chart_data.dart';
 import 'package:fitti_frontend_app/page/home_page/my_home_widget.dart';
+import 'package:fitti_frontend_app/page/home_page/pcf_bar_chart.dart';
 import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -185,8 +187,13 @@ class _HomePageState extends State<HomePage>
                     ),
                   ),
                 ),
-                SizedBox(width: 20.w),
-                PcfChart(carbohydrate: 45, protein: 30, fat: 25),
+                SizedBox(width: 10.w),
+                CalorieRatioComparisonWidget(
+                  currentPgfValue:
+                      PgfValue(carbohydrate: 45, protein: 30, fat: 25),
+                  goalPgfValue:
+                      PgfValue(carbohydrate: 45, protein: 35, fat: 20),
+                ),
               ],
             ),
           ),
@@ -196,93 +203,84 @@ class _HomePageState extends State<HomePage>
   }
 }
 
-class PcfChart extends StatelessWidget {
-  const PcfChart(
-      {super.key,
-      required this.carbohydrate,
-      required this.protein,
-      required this.fat});
+class CalorieRatioComparisonWidget extends StatelessWidget {
+  const CalorieRatioComparisonWidget(
+      {super.key, required this.currentPgfValue, required this.goalPgfValue});
 
-  //kcal
+  final PgfValue currentPgfValue;
+  final PgfValue goalPgfValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 32.69.w, top: 10.h),
+          child: SizedBox(
+            width: 181.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                for (int i = 0; i < 5; i++)
+                  Column(
+                    children: [
+                      DottedLine(
+                        direction: Axis.vertical,
+                        lineLength: 51.23.h,
+                        lineThickness: 1.5.w,
+                        dashLength: 4.h,
+                        dashGapLength: 2.h,
+                      ),
+                      SizedBox(
+                        height: 4.8.h,
+                      ),
+                      Text(
+                        "${i * 25}",
+                        style: TextStyle(
+                          fontSize: 9.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+              ],
+            ),
+          ),
+        ),
+        Column(
+          children: [
+            SizedBox(height: 13.54.h),
+            Row(
+              children: [
+                Text("현재비율", style: TextStyle(fontSize: 8.sp)),
+                SizedBox(
+                  width: 6.w,
+                ),
+                PcfBarChart(carbohydrate: 45, protein: 30, fat: 25),
+              ],
+            ),
+            SizedBox(
+              height: 20.27.h,
+            ),
+            Row(
+              children: [
+                Text("목표비율", style: TextStyle(fontSize: 8.sp)),
+                SizedBox(
+                  width: 6.w,
+                ),
+                PcfBarChart(carbohydrate: 45, protein: 35, fat: 20),
+              ],
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class PgfValue {
   final double carbohydrate;
   final double protein;
   final double fat;
 
-  @override
-  Widget build(BuildContext context) {
-    //탄단지 비율에 맞게 막대 차트를 그려주는 위젯 반환
-    const width = 172.0;
-
-    double total = carbohydrate + protein + fat;
-    double carbohydrateProportion = carbohydrate / total;
-    double proteinProportion = protein / total;
-    double fatProportion = fat / total;
-
-    double carbohydrateWidth = width * carbohydrateProportion;
-    double proteinWidth = width * proteinProportion;
-    double fatWidth = width * fatProportion;
-
-    return Stack(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 2.h),
-          child: Row(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: blueColor,
-                ),
-                width: carbohydrateWidth.w,
-                height: 4.h,
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  color: greenColor,
-                ),
-                width: proteinWidth.w,
-                height: 4.h,
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  color: redColor,
-                ),
-                width: fatWidth.w,
-                height: 4.h,
-              ),
-            ],
-          ),
-        ),
-        Positioned(
-          right: proteinWidth.w + fatWidth.w + 2.w,
-          child: Text(
-            "${(carbohydrateProportion * 100).toInt()}",
-            style: TextStyle(
-              fontSize: 8.sp,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        Positioned(
-          right: fatWidth.w + 2.w,
-          child: Text(
-            "${(proteinProportion * 100).toInt()}",
-            style: TextStyle(
-              fontSize: 8.sp,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        Positioned(
-          right: 2.w,
-          child: Text(
-            "${(fatProportion * 100).toInt()}",
-            style: TextStyle(
-              fontSize: 8.sp,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+  PgfValue({this.carbohydrate = 0, this.protein = 0, this.fat = 0});
 }
