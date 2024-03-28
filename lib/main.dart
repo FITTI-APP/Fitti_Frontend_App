@@ -106,7 +106,7 @@ Widget _splashLoadingWidget(AsyncSnapshot snapshot) {
       return const MenuRoutingPage();
     } else {
       // not logged in (token does not exist)
-      return const LoginPage();
+      return MenuRoutingPage();
     }
   } else {
     // loading

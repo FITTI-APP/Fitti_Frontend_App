@@ -46,6 +46,7 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
         ),
         actions: <Widget>[
           PopupMenuButton(
+            icon: const Icon(Icons.settings),
             itemBuilder: ((context) => [
                   for (final value in MenuType.values)
                     PopupMenuItem(
@@ -65,7 +66,12 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
                 ]),
           )
         ],
-        title: const Center(child: Text('FITTI')),
+        title: Image.asset(
+          'asset/appbar/fitti.png',
+          fit: BoxFit.contain,
+          height: 50,
+          width: 86,
+        ),
       ),
       body: navBarPages[selectedIndex],
       bottomNavigationBar: MenuRoutingBottomBar(
