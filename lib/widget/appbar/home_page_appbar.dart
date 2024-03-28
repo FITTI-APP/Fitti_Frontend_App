@@ -11,11 +11,13 @@ PreferredSizeWidget homePageAppBar() => AppBar(
       centerTitle: true,
       leading: IconButton(
         onPressed: () {},
+        color: Colors.black.withOpacity(0.5),
         icon: const Icon(Icons.notifications_none),
       ),
       actions: [
         IconButton(
           onPressed: () {},
+          color: Colors.black.withOpacity(0.5),
           icon: const Icon(Icons.settings),
         ),
       ],

@@ -16,14 +16,17 @@ PreferredSizeWidget customAppBar(
         Text(
           title,
           style: TextStyle(
+            color: Colors.black.withOpacity(0.5),
             fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.w500,
           ),
         ),
       ]),
       centerTitle: true,
       actions: icons.map((icon) {
         return IconButton(
+          color: Colors.black.withOpacity(0.5),
           padding: EdgeInsets.zero,
           iconSize: 24.sp,
           onPressed: () {},
