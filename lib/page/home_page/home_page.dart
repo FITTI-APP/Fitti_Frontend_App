@@ -4,6 +4,7 @@ import 'package:fitti_frontend_app/page/exercise/my_exercise_home_page.dart';
 import 'package:fitti_frontend_app/class/home_page_chart_data.dart';
 import 'package:fitti_frontend_app/page/home_page/my_home_widget.dart';
 import 'package:fitti_frontend_app/page/home_page/pcf_bar_chart.dart';
+import 'package:fitti_frontend_app/page/home_page/who_week_ranking_widget.dart';
 import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -42,18 +43,7 @@ class _HomePageState extends State<HomePage>
           alignment: Alignment.centerLeft,
           child: Text("여러분의 건강도우미 FITTI입니다."),
         ),
-        const Card(
-          child: SizedBox(
-            height: 50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text("금주의 3대 1위는?"),
-                Text("정재현님"),
-              ],
-            ),
-          ),
-        ),
+        const WhoWeekRankingWidget(),
         Row(
           children: [
             const Align(

@@ -1,6 +1,7 @@
 import 'package:fitti_frontend_app/class/service/auth_service.dart';
 import 'package:fitti_frontend_app/class/service/exercise_list_service.dart';
 import 'package:fitti_frontend_app/page/menu_routing_page.dart';
+import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -41,6 +42,10 @@ class MyApp extends StatelessWidget {
           Locale('ko', 'KR'), // 한국어
         ],
         theme: ThemeData(
+          colorScheme: ColorScheme.light(
+            primary: Colors.white,
+            secondary: greenColor.withOpacity(0.1),
+          ),
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
