@@ -1,5 +1,8 @@
+import 'package:fitti_frontend_app/style/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WhoWeekRankingWidget extends StatefulWidget {
   const WhoWeekRankingWidget({
@@ -14,46 +17,49 @@ class _WhoWeekRankingWidgetState extends State<WhoWeekRankingWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 340,
-      height: 96,
+      width: 340.w,
+      height: 96.h,
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        shadows: const [
+          BoxShadow(
+            color: shadowColor,
+            blurRadius: 4,
+          )
+        ],
+      ),
       child: Stack(
         children: [
-          Positioned(
-            left: 23,
-            top: 58,
+          Padding(
+            padding: EdgeInsets.only(top: 61.h, left: 21.w),
             child: Container(
-              width: 116,
-              decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    width: 1,
-                    strokeAlign: BorderSide.strokeAlignCenter,
-                  ),
-                ),
-              ),
+              width: 125.w,
+              height: 2.h,
+              color: Colors.black,
             ),
           ),
-          Positioned(
-            left: 21,
-            top: 38,
+          Padding(
+            padding: EdgeInsets.only(top: 38.h, left: 21.w),
             child: Text(
               '금주의 3대 1위는?',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.w600,
                 height: 0,
               ),
             ),
           ),
-          Positioned(
-            left: 214,
-            top: 0,
+          Padding(
+            padding: EdgeInsets.only(left: 214.w),
             child: Container(
-              width: 96,
-              height: 96,
+              width: 96.w,
+              height: 96.h,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('asset/homepage/ranking.png'),
@@ -61,17 +67,16 @@ class _WhoWeekRankingWidgetState extends State<WhoWeekRankingWidget> {
               ),
             ),
           ),
-          Positioned(
-            left: 237,
-            top: 33,
+          Padding(
+            padding: EdgeInsets.only(left: 237.w, top: 33.h),
             child: Text.rich(
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '로니콜만',
+                    text: processText('로니콜만'),
                     style: TextStyle(
-                      color: Color(0xFF0AA00D),
-                      fontSize: 11,
+                      color: greenColor,
+                      fontSize: 11.sp,
                       fontFamily: 'Roboto',
                       fontWeight: FontWeight.w600,
                       height: 0,
@@ -81,7 +86,7 @@ class _WhoWeekRankingWidgetState extends State<WhoWeekRankingWidget> {
                     text: '님\n',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 11,
+                      fontSize: 11.sp,
                       fontFamily: 'Roboto',
                       fontWeight: FontWeight.w600,
                       height: 0,
@@ -91,10 +96,9 @@ class _WhoWeekRankingWidgetState extends State<WhoWeekRankingWidget> {
                     text: '(3대: 680kg)',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 9,
+                      fontSize: 8.sp,
                       fontFamily: 'Roboto',
                       fontWeight: FontWeight.w600,
-                      height: 0,
                     ),
                   ),
                 ],
@@ -106,4 +110,11 @@ class _WhoWeekRankingWidgetState extends State<WhoWeekRankingWidget> {
       ),
     );
   }
+}
+
+String processText(String originalText, {int limit = 4}) {
+  if (originalText.length > limit) {
+    return '${originalText.substring(0, limit)}..';
+  }
+  return originalText;
 }

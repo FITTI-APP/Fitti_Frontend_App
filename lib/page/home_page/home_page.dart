@@ -62,9 +62,9 @@ class _HomePageState extends State<HomePage>
                     ),
                   ),
                   onPressed: () {},
-                  child: const Text(
+                  child: Text(
                     "이번 달 조회하기",
-                    style: TextStyle(fontSize: 10),
+                    style: TextStyle(fontSize: 10.sp),
                   ),
                 ),
               ),

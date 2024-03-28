@@ -114,6 +114,7 @@ class MenuRoutingBottomBar extends StatelessWidget {
               color: Colors.white,
             ),
             child: FloatingActionButton(
+              shape: const CircleBorder(),
               elevation: 0,
               backgroundColor: Colors.white,
               onPressed: () {
