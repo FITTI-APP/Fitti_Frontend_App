@@ -31,7 +31,8 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     BarChart barChart = HomePageChartData().getMyExerciseBarChart();
-    return Column(
+    return Expanded(
+        child: Column(
       children: [
         const Align(
           alignment: Alignment.centerLeft,
@@ -134,7 +135,7 @@ class _HomePageState extends State<HomePage>
             ),
           ),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: 10.h),
         MyHomeWidget(
           title: "My 식단",
           nextPage: const MyDietHomePage(),
@@ -144,7 +145,7 @@ class _HomePageState extends State<HomePage>
               children: [
                 Container(
                   width: 81.w,
-                  height: 81.w,
+                  height: 81.h,
                   decoration: BoxDecoration(
                       border: Border.fromBorderSide(
                         BorderSide(
@@ -199,7 +200,7 @@ class _HomePageState extends State<HomePage>
           ),
         ),
       ],
-    );
+    ));
   }
 }
 

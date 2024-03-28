@@ -17,7 +17,8 @@ class MyHomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Flexible(
+        child: Container(
       width: 340.w,
       height: 170.h,
       decoration: ShapeDecoration(
@@ -94,7 +95,7 @@ class MyHomeWidget extends StatelessWidget {
                                   fontWeight: FontWeight.w600),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 2),
+                              padding: EdgeInsets.only(bottom: 2.h),
                               child: Icon(
                                 Icons.arrow_forward_ios_rounded,
                                 size: 10.w,
@@ -113,6 +114,6 @@ class MyHomeWidget extends StatelessWidget {
           ],
         )),
       ),
-    );
+    ));
   }
 }
