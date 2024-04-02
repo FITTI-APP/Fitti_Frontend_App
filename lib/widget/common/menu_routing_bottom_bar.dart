@@ -45,8 +45,9 @@ class MenuRoutingBottomBar extends StatelessWidget {
               ],
             ),
             child: NavigationBar(
-              height: 50.h,
+              height: 60.h,
               backgroundColor: Colors.white,
+              indicatorColor: Colors.transparent,
               onDestinationSelected: onBarTap,
               selectedIndex: currentTab,
               destinations: const <Widget>[
@@ -113,6 +114,7 @@ class MenuRoutingBottomBar extends StatelessWidget {
               color: Colors.white,
             ),
             child: FloatingActionButton(
+              shape: const CircleBorder(),
               elevation: 0,
               backgroundColor: Colors.white,
               onPressed: () {
