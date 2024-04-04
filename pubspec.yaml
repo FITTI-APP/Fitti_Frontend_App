@@ -89,6 +89,8 @@ flutter:
         - asset/workout5.jpg
         - asset/config/.env
         - asset/login_icon/
+        - asset/appbar/
+        - asset/homepage/
 
     # To add assets to your application, add an assets section, like this:
     # assets:

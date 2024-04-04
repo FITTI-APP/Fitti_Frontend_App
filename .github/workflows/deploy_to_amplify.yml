@@ -1,7 +1,6 @@
 name: On Website Deploy
-"on":
+on:
   push:
-    # (1)
     branches:
       - "develop"
 jobs:
