@@ -1,5 +1,6 @@
 import 'package:fitti_frontend_app/class/service/auth_service.dart';
 import 'package:fitti_frontend_app/class/service/exercise_list_service.dart';
+import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:fitti_frontend_app/page/menu_routing_page.dart';
 import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,7 @@ Widget _splashLoadingWidget(AsyncSnapshot snapshot) {
       return const MenuRoutingPage();
     } else {
       // not logged in (token does not exist)
-      return MenuRoutingPage();
+      return const LoginPage();
     }
   } else {
     return const IntroPage();
