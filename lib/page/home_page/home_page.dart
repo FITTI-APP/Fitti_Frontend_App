@@ -32,8 +32,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     BarChart barChart = HomePageChartData().getMyExerciseBarChart();
-    return Expanded(
-        child: Column(
+    return Column(
       children: [
         const Align(
           alignment: Alignment.centerLeft,
@@ -190,7 +189,7 @@ class _HomePageState extends State<HomePage>
           ),
         ),
       ],
-    ));
+    );
   }
 }
 
