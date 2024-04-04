@@ -2,6 +2,7 @@ import 'package:fitti_frontend_app/class/service/auth_service.dart';
 import 'package:fitti_frontend_app/class/service/exercise_list_service.dart';
 import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:fitti_frontend_app/page/menu_routing_page.dart';
+import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -42,6 +43,10 @@ class MyApp extends StatelessWidget {
           Locale('ko', 'KR'), // 한국어
         ],
         theme: ThemeData(
+          colorScheme: ColorScheme.light(
+            primary: Colors.white,
+            secondary: greenColor.withOpacity(0.1),
+          ),
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
@@ -55,7 +60,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         builder: (context, child) {
           return MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: const TextScaler.linear(1.0)),
               child: child!);
         },
         home: FutureBuilder(
@@ -80,9 +86,9 @@ class MyApp extends StatelessWidget {
               return "";
             } catch (e) {
               Text("Error2: $e");
-              Duration(seconds: 2);
+              const Duration(seconds: 2);
               print(e); // 에러 출력
-              throw e; // 오류를 다시 던져서 FutureBuilder에서 잡을 수 있게 합니다.
+              rethrow; // 오류를 다시 던져서 FutureBuilder에서 잡을 수 있게 합니다.
             }
           }(),
           builder: (context, snapshot) {
@@ -106,10 +112,9 @@ Widget _splashLoadingWidget(AsyncSnapshot snapshot) {
       return const MenuRoutingPage();
     } else {
       // not logged in (token does not exist)
-      return LoginPage();
+      return const LoginPage();
     }
   } else {
-    // loading
     return const IntroPage();
   }
 }

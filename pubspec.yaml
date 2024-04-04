@@ -53,6 +53,7 @@ dependencies:
     dart_jsonwebtoken: ^2.11.0
     flutter_native_splash: ^2.3.2
     flutter_screenutil: ^5.9.0
+    dotted_line: ^3.2.2
 
 dev_dependencies:
     flutter_test:
@@ -90,6 +91,8 @@ flutter:
         - asset/config/.env
         - asset/login_icon/
         - asset/logo/
+        - asset/appbar/
+        - asset/homepage/
 
     # To add assets to your application, add an assets section, like this:
     # assets:

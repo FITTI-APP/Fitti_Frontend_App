@@ -10,6 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -243,7 +245,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Get.to(() => SignupNamePage());
+                      Get.to(() => const SignupNamePage());
                     },
                     style: TextButton.styleFrom(
                       minimumSize: Size.zero,
