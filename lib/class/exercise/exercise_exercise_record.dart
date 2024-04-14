@@ -1,10 +1,10 @@
-import 'package:fitti_frontend_app/class/exercise/exercise.dart';
+import 'package:fitti_frontend_app/class/exercise/exercise_.dart';
 import 'package:fitti_frontend_app/class/exercise/exercise_session_record.dart';
 import 'package:fitti_frontend_app/class/exercise/exercise_set_record.dart';
 
 class ExerciseExerciseRecord {
   ExerciseSessionRecord exerciseSessionRecord;
-  Exercise exercise;
+  Exercise_ exercise;
   int order;
   String memo;
   String id;
@@ -15,7 +15,7 @@ class ExerciseExerciseRecord {
   ExerciseExerciseRecord.fromJson(Map<String, dynamic> json)
       : exerciseSessionRecord =
             ExerciseSessionRecord.fromJson(json['exerciseSessionRecord']),
-        exercise = Exercise.fromJson(json['exercise']),
+        exercise = Exercise_.fromJson(json['exercise']),
         order = json['order'],
         memo = json['memo'],
         id = json['id'],
