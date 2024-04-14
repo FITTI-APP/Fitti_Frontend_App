@@ -1,12 +1,18 @@
+import 'package:fitti_frontend_app/class/exercise/exercise_kind.dart';
+
 class Exercise {
   String name;
-  bool isCreated;
-  Exercise(this.name, this.isCreated);
+  ExerciseKind exerciseKind;
+  String id;
+
+  Exercise(this.name, this.exerciseKind, this.id);
   Exercise.fromJson(Map<String, dynamic> json)
       : name = json['name'],
-        isCreated = json['isCreated'];
+        exerciseKind = ExerciseKind.fromJson(json['exerciseKind']),
+        id = json['id'];
   Map<String, dynamic> toJson() => {
         'name': name,
-        'isCreated': isCreated,
+        'exerciseKind': exerciseKind.toJson(),
+        'id': id,
       };
 }
