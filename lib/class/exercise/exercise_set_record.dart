@@ -1,15 +1,13 @@
-import 'dart:ffi';
-
 import 'package:fitti_frontend_app/class/exercise/exercise_exercise_record.dart';
 
 class ExerciseSetRecord {
   ExerciseExerciseRecord exerciseExerciseRecord;
   int order;
-  Float weight;
+  double weight;
   int reps;
   Duration totalTime;
   String memo;
-  Float distance;
+  double distance;
   String id;
 
   ExerciseSetRecord(this.exerciseExerciseRecord, this.order, this.weight,
