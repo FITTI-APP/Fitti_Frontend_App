@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dio/dio.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class AuthService extends ChangeNotifier {
   User? currentUser;
+  String? token;
 
   void setUser(User? user) {
     currentUser = user;
@@ -15,6 +15,7 @@ class AuthService extends ChangeNotifier {
 
   void removeUser() {
     currentUser = null;
+    token = null;
     notifyListeners();
   }
 
@@ -79,12 +80,12 @@ class AuthService extends ChangeNotifier {
         "password": password,
       });
       if (response.statusCode == 200) {
-        String token = response.data["token"];
-        final jwt = JWT.decode(token);
-        Map<String, dynamic> payload = jwt.payload;
-        String email = payload["email"];
-        var val = jsonEncode({"email": email, "token": token});
-        onSuccess(val);
+        token = response.data["token"];
+        // final jwt = JWT.decode(token!);
+        // Map<String, dynamic> payload = jwt.payload;
+        // String email = payload["email"];
+        // var val = jsonEncode({"email": email, "token": token});
+        onSuccess(token!);
         notifyListeners();
       } else {
         onFail("로그인에 실패했습니다.");

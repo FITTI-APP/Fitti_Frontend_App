@@ -6,5 +6,6 @@ class API {
 
   static final login = "$hostConnect/auth/login";
   static final register = "$hostConnect/auth/register";
+  static final graphql = "$hostConnect/graphql";
   // todo : profile
 }
