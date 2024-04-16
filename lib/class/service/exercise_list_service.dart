@@ -1,41 +1,41 @@
 import 'dart:convert';
 
-import 'package:fitti_frontend_app/class/exercise/exercise.dart';
+import 'package:fitti_frontend_app/class/exercise/exercise_.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ExerciseListProvider extends ChangeNotifier {
-  List<Exercise> _exerciseList = [];
+  List<Exercise_> _exerciseList = [];
 
-  List<Exercise> get exerciseList => _exerciseList;
+  List<Exercise_> get exerciseList => _exerciseList;
 
   Future<void> initExerciseList() async {
     var prefs = await SharedPreferences.getInstance();
     var encodedData = prefs.getString('exerciseList');
     if (encodedData == null) {
       _exerciseList = [
-        Exercise("벤치프레스", false),
-        Exercise("스쿼트", false),
-        Exercise("데드리프트", false),
-        Exercise("오버헤드 프레스", false),
-        Exercise("바벨 로우", false),
-        Exercise("풀업", false),
-        Exercise("펜들레이 로우", false),
-        Exercise("라잉 트라이셉스 익스텐션", false),
-        Exercise("바벨 컬", false),
-        Exercise("인클라인 덤벨 벤치프레스", false),
-        Exercise("인클라인 벤치프레스", false),
-        Exercise("덤벨 벤치프레스", false),
-        Exercise("덤벨 플라이", false),
-        Exercise("덤벨 숄더 프레스", false),
-        Exercise("시티드 케이블 로우", false),
-        Exercise("해머 컬", false),
-        Exercise("프론트 레이즈", false),
+        Exercise_("벤치프레스", false),
+        Exercise_("스쿼트", false),
+        Exercise_("데드리프트", false),
+        Exercise_("오버헤드 프레스", false),
+        Exercise_("바벨 로우", false),
+        Exercise_("풀업", false),
+        Exercise_("펜들레이 로우", false),
+        Exercise_("라잉 트라이셉스 익스텐션", false),
+        Exercise_("바벨 컬", false),
+        Exercise_("인클라인 덤벨 벤치프레스", false),
+        Exercise_("인클라인 벤치프레스", false),
+        Exercise_("덤벨 벤치프레스", false),
+        Exercise_("덤벨 플라이", false),
+        Exercise_("덤벨 숄더 프레스", false),
+        Exercise_("시티드 케이블 로우", false),
+        Exercise_("해머 컬", false),
+        Exercise_("프론트 레이즈", false),
       ];
       prefs.setString('exerciseList', jsonEncode(_exerciseList));
     } else {
       _exerciseList = jsonDecode(encodedData)
-          .map<Exercise>((exercise) => Exercise.fromJson(exercise))
+          .map<Exercise_>((exercise) => Exercise_.fromJson(exercise))
           .toList();
     }
   }
@@ -48,7 +48,7 @@ class ExerciseListProvider extends ChangeNotifier {
     return false;
   }
 
-  Future<bool> addExercise(Exercise exercise) async {
+  Future<bool> addExercise(Exercise_ exercise) async {
     if (_isExist(exercise.name)) return false;
 
     _exerciseList.add(exercise);

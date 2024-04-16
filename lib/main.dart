@@ -77,11 +77,11 @@ class MyApp extends StatelessWidget {
 
               await initializeDateFormatting();
               await dotenv.load(fileName: 'asset/config/.env');
+              var tokenKey = dotenv.env['TOKEN_KEY']!;
+              var token = await storage.read(key: tokenKey);
 
-              var userInfoKey = dotenv.env['USER_INFO']!;
-              var userInfo = await storage.read(key: userInfoKey);
-              if (userInfo != null) {
-                return userInfo;
+              if (token != null) {
+                return token;
               }
               return "";
             } catch (e) {
@@ -106,10 +106,10 @@ Widget _splashLoadingWidget(AsyncSnapshot snapshot) {
   if (snapshot.hasError) {
     return Text("Error1: ${snapshot.error}");
   } else if (snapshot.hasData) {
-    var userInfo = snapshot.data;
-    if (userInfo != "") {
+    String token = snapshot.data;
+    if (token != "") {
       // already logged in (token exists)
-      return const MenuRoutingPage();
+      return MenuRoutingPage(token: token);
     } else {
       // not logged in (token does not exist)
       return const LoginPage();

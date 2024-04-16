@@ -3,6 +3,7 @@ import 'package:fitti_frontend_app/page/login_signup/signup_name_page.dart';
 import 'package:fitti_frontend_app/page/menu_routing_page.dart';
 import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -210,12 +211,15 @@ class _LoginPageState extends State<LoginPage> {
                             onFail: (err) {
                               Get.snackbar("로그인 실패", err);
                             },
-                            onSuccess: (val) async {
+                            onSuccess: (token) async {
                               if (isSaveLoginInfo) {
+                                await dotenv.load(
+                                    fileName: 'asset/config/.env');
+                                var tokenKey = dotenv.env['TOKEN_KEY']!;
                                 await storage.write(
-                                    key: "userInfo", value: val);
+                                    key: tokenKey, value: token);
                               }
-                              Get.off(() => const MenuRoutingPage());
+                              Get.off(() => MenuRoutingPage(token: token));
                             },
                           );
                         },

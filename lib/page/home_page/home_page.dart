@@ -9,7 +9,6 @@ import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -245,7 +244,7 @@ class CalorieRatioComparisonWidget extends StatelessWidget {
                 SizedBox(
                   width: 6.w,
                 ),
-                PcfBarChart(carbohydrate: 45, protein: 30, fat: 25),
+                const PcfBarChart(carbohydrate: 45, protein: 30, fat: 25),
               ],
             ),
             SizedBox(
@@ -257,7 +256,7 @@ class CalorieRatioComparisonWidget extends StatelessWidget {
                 SizedBox(
                   width: 6.w,
                 ),
-                PcfBarChart(carbohydrate: 45, protein: 35, fat: 20),
+                const PcfBarChart(carbohydrate: 45, protein: 35, fat: 20),
               ],
             ),
           ],
