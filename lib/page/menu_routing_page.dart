@@ -1,18 +1,21 @@
+import 'package:fitti_frontend_app/api/api.dart';
 import 'package:fitti_frontend_app/page/calendar_menu/calendar_page.dart';
 import 'package:fitti_frontend_app/page/change_menu/changes_page.dart';
+import 'package:fitti_frontend_app/page/fitti_menu/test_page.dart';
 import 'package:fitti_frontend_app/page/home_page/home_page.dart';
-import 'package:fitti_frontend_app/page/login_signup/login_page.dart';
 import 'package:fitti_frontend_app/widget/appbar/custom_appbar.dart';
 import 'package:fitti_frontend_app/widget/appbar/home_page_appbar.dart';
 import 'package:fitti_frontend_app/widget/common/menu_routing_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class MenuRoutingPage extends StatefulWidget {
   const MenuRoutingPage({
     super.key,
+    required this.token,
   });
+
+  final String token;
 
   @override
   State<MenuRoutingPage> createState() => _MenuRoutingPageState();
@@ -20,6 +23,7 @@ class MenuRoutingPage extends StatefulWidget {
 
 class _MenuRoutingPageState extends State<MenuRoutingPage> {
   int selectedIndex = 0;
+  late ValueNotifier<GraphQLClient> client;
   List<List<Widget>> navBarPages = [
     [homePageAppBar(), const HomePage()],
     [
@@ -30,7 +34,7 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
       ]),
       const CalendarPage()
     ],
-    [customAppBar("title", []), const Text('FITTI')],
+    [customAppBar("title", []), const TestPage()],
     [
       customAppBar("My Change Log", const [
         Icon(Icons.share),
@@ -57,13 +61,33 @@ class _MenuRoutingPageState extends State<MenuRoutingPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    final HttpLink httpLink = HttpLink(API.graphql);
+    var authLink = AuthLink(
+      getToken: () async => 'Bearer ${widget.token}',
+    );
+    final Link link = authLink.concat(httpLink);
+    var graphQLClient = GraphQLClient(
+      cache: GraphQLCache(
+          store: InMemoryStore(),
+          partialDataPolicy: PartialDataCachePolicy.accept),
+      link: link,
+    );
+    client = ValueNotifier(graphQLClient);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: navBarPages[selectedIndex][0] as PreferredSizeWidget,
-      body: navBarPages[selectedIndex][1],
-      bottomNavigationBar: MenuRoutingBottomBar(
-        currentTab: selectedIndex,
-        onBarTap: onBottomNavTap,
+    return GraphQLProvider(
+      client: client,
+      child: Scaffold(
+        appBar: navBarPages[selectedIndex][0] as PreferredSizeWidget,
+        body: navBarPages[selectedIndex][1],
+        bottomNavigationBar: MenuRoutingBottomBar(
+          currentTab: selectedIndex,
+          onBarTap: onBottomNavTap,
+        ),
       ),
     );
   }

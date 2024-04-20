@@ -1,4 +1,4 @@
-import 'package:fitti_frontend_app/class/exercise/exercise.dart';
+import 'package:fitti_frontend_app/class/exercise/exercise_.dart';
 import 'package:fitti_frontend_app/class/service/exercise_list_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +29,7 @@ class ExerciseAddPage extends StatelessWidget {
                       context.read<ExerciseListProvider>();
                   var exerciseName = exerciseNameController.text;
                   bool isSuccess = await exerciseListProvider
-                      .addExercise(Exercise(exerciseName, true));
+                      .addExercise(Exercise_(exerciseName, true));
                   if (!isSuccess) {
                     Get.snackbar('운동 추가 실패', '이미 존재하는 운동입니다.',
                         duration: const Duration(seconds: 2));

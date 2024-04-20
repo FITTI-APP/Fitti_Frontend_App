@@ -54,6 +54,7 @@ dependencies:
     flutter_native_splash: ^2.3.2
     flutter_screenutil: ^5.9.0
     dotted_line: ^3.2.2
+    graphql_flutter: ^5.2.0-beta.6
 
 dev_dependencies:
     flutter_test:
