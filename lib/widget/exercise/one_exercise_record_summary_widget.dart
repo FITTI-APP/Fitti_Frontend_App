@@ -2,9 +2,7 @@ import 'dart:math';
 import 'package:fitti_frontend_app/class/exercise/one_exercise_record.dart';
 import 'package:fitti_frontend_app/class/exercise/one_set_record.dart';
 import 'package:fitti_frontend_app/style/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OneExerciseRecordSummaryWidget extends StatefulWidget {
@@ -233,13 +231,13 @@ class _ExpandedExerciseSummaryWidgetState
                               text:
                                   '예상 1RM : ${widget.expected1RM.toStringAsFixed(1)} kg\n',
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: '시작 시간 : \n',
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: '종료 시간 : \n',
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: '운동 시간 : ',
                             ),
                           ],
