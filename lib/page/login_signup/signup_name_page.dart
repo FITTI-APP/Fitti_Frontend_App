@@ -1,4 +1,5 @@
 import 'package:fitti_frontend_app/style/colors.dart';
+import 'package:fitti_frontend_app/widget/text_field/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -42,31 +43,15 @@ class SignupNamePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 23.h),
-            SizedBox(
-              width: 296.w,
-              height: 38.h,
-              child: TextField(
-                decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 10.h,
-                    horizontal: 16.w,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                      width: 0.5.w,
-                    ),
-                    borderRadius: BorderRadius.circular(5.w),
-                  ),
-                  border: const OutlineInputBorder(),
-                  hintText: '사용자 이름',
-                  hintStyle: TextStyle(
-                      fontSize: 14.sp,
-                      color: greyColor,
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
+            TextFieldWidget(
+              width: 296,
+              height: 38,
+              hintText: '사용자 이름',
+              hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w400),
+              isPassword: false,
             ),
             const SizedBox(height: 16),
             Container(
