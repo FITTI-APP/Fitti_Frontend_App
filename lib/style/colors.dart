@@ -6,3 +6,4 @@ const Color skyBlueColor = Color(0xFF82D9FF);
 const Color greenColor = Color(0xFF0AA00D);
 const Color redColor = Color(0xFFFF543C);
 const Color blueColor = Color(0xFF4C53E5);
+const Color startButtonColor = Color.fromARGB(255, 242, 253, 255);

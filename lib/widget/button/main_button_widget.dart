@@ -16,6 +16,7 @@ class MainButton extends StatelessWidget {
     required this.height,
     required this.backgroundColor,
     required this.text,
+    this.textColor = Colors.white,
   });
 
   final void Function() onPressed;
@@ -23,6 +24,7 @@ class MainButton extends StatelessWidget {
   final double height;
   final Color backgroundColor;
   final String text;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class MainButton extends StatelessWidget {
           style: TextStyle(
             fontSize: 13.sp,
             fontWeight: FontWeight.w600,
-            color: Colors.white,
+            color: textColor,
           ),
         ),
       ),

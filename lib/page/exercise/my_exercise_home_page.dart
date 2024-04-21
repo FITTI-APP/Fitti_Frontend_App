@@ -1,9 +1,12 @@
 import 'package:fitti_frontend_app/page/exercise/daily_routine_page.dart';
 import 'package:fitti_frontend_app/class/exercise/my_exercise_home_page_chart_data.dart';
+import 'package:fitti_frontend_app/widget/appbar/custom_appbar.dart';
+import 'package:fitti_frontend_app/widget/common/diff_styled_text_widget.dart';
 import 'package:fitti_frontend_app/widget/common/today_start_widget.dart';
 import 'package:fitti_frontend_app/widget/common/week_calendar_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyExerciseHomePage extends StatefulWidget {
   const MyExerciseHomePage({super.key});
@@ -53,13 +56,28 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
         myExerciseHomePageChartData.getRadarChart(isUpperBody);
     DateTime now = DateTime.now();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("My 운동"),
+      appBar: customAppBar(
+        "My Exercise",
+        const [
+          Icon(Icons.share),
+          Icon(Icons.bar_chart),
+          Icon(Icons.more_vert),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Text("OOO님의 운동 분석"),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: 20.w,
+                  top: 20.h,
+                  bottom: 10.h,
+                ),
+                child: diffStyledTextWidget("박진우", "님의 운동 분석"),
+              ),
+            ),
             TodayStartWidget(
                 now: now,
                 buttonText: "오늘 운동 시작하기",
@@ -67,9 +85,6 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                   selectedDay: now,
                   title: "My 운동",
                 )),
-            const SizedBox(
-              height: 10,
-            ),
             const WeekCalendarWidget(),
             Card(
               child: SizedBox(
