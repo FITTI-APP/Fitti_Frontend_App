@@ -173,18 +173,14 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
             const SizedBox(
               height: 10,
             ),
-            const Card(
+            Card(
               child: SizedBox(
-                height: 50,
-                child: Row(
+                height: 50.h,
+                child: const Row(
                   children: [
                     Text("친구들 중 나는 몇 등?"),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Icon(Icons.arrow_right),
-                      ),
-                    ),
+                    Spacer(),
+                    Icon(Icons.arrow_right),
                   ],
                 ),
               ),
