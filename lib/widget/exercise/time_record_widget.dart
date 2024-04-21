@@ -50,46 +50,31 @@ class TimeRecordWidget extends StatelessWidget {
                   children: [
                     Text.rich(
                       TextSpan(
-                        style: const TextStyle(
+                        style: TextStyle(
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w600,
                         ),
                         children: [
-                          TextSpan(
+                          const TextSpan(
                             text: '시작시간 : ',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                            ),
                           ),
                           TextSpan(
                             text: DateFormat("hh시 mm분").format(startTime),
-                            style: TextStyle(
-                              fontSize: 11.sp,
-                            ),
                           ),
                           const TextSpan(text: '\n'),
-                          TextSpan(
+                          const TextSpan(
                             text: '종료시간 : ',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                            ),
                           ),
                           TextSpan(
                             text: DateFormat("hh시 mm분").format(endTime),
-                            style: TextStyle(
-                              fontSize: 11.sp,
-                            ),
                           ),
                           const TextSpan(text: '\n'),
-                          TextSpan(
+                          const TextSpan(
                             text: '운동시간 : ',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                            ),
                           ),
                           TextSpan(
                             text: '$hh:$mm:$ss',
-                            style: TextStyle(
-                              fontSize: 11.sp,
+                            style: const TextStyle(
                               color: greenColor,
                             ),
                           ),
