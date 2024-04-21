@@ -2,8 +2,8 @@ import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PcfBarChart extends StatelessWidget {
-  const PcfBarChart(
+class PcfBarChartWidget extends StatelessWidget {
+  const PcfBarChartWidget(
       {super.key,
       required this.carbohydrate,
       required this.protein,
