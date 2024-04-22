@@ -69,9 +69,7 @@ class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
           ),
           ElevatedButton(
             onPressed: () {
-              Get.to(() => DailyRoutinePage(
-                  title: DateFormat("yyyy년 MM월 dd일").format(_selectedDay),
-                  selectedDay: _selectedDay));
+              Get.to(() => DailyRoutinePage(selectedDay: _selectedDay));
             },
             child: isDateTimeLaterThanToday(_selectedDay)
                 ? const Text("계획하기")

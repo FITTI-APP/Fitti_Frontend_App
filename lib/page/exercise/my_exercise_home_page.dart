@@ -73,7 +73,6 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                 buttonText: "오늘 운동 시작하기",
                 nextPage: DailyRoutinePage(
                   selectedDay: now,
-                  title: "My 운동",
                 )),
             const WeekCalendarWidget(),
             Padding(
