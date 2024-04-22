@@ -57,8 +57,8 @@ class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
           ),
           Text(
             DateFormat("MM월 dd일").format(_selectedDay),
-            style: const TextStyle(
-              fontSize: 14,
+            style: TextStyle(
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
