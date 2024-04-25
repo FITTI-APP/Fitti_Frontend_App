@@ -107,7 +107,7 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                     padding: EdgeInsets.only(
                       top: 10.h,
                     ),
-                    child: MainButton(
+                    child: MainButtonWidget(
                         onPressed: () async {
                           String? exerciseName =
                               await Get.to(() => const ExerciseListPage());
@@ -242,7 +242,7 @@ class BottomBarWidget extends StatelessWidget {
           Positioned(
             left: 135.w,
             top: 5.h,
-            child: MainButton(
+            child: MainButtonWidget(
               onPressed: () => onCompleteExercise(),
               width: 90,
               height: 35,

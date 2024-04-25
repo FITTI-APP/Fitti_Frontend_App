@@ -53,7 +53,7 @@ class TodayStartWidget extends StatelessWidget {
                   color: shadowColor,
                 ),
               ),
-              MainButton(
+              MainButtonWidget(
                 onPressed: () {
                   Get.to(nextPage);
                 },

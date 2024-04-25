@@ -126,7 +126,7 @@ class OneExerciseRecordWidget extends StatelessWidget {
                       },
                     ),
                   ),
-                  MainButton(
+                  MainButtonWidget(
                     onPressed: () {
                       int kg = oneExerciseRecord.oneSetRecords.isEmpty
                           ? 0

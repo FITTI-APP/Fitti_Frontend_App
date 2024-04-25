@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
-                    MainButton(
+                    MainButtonWidget(
                       width: 212,
                       height: 34,
                       backgroundColor: Colors.black,
@@ -210,7 +210,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: snsList.map((sns) {
                   return Padding(
                     padding: EdgeInsets.only(left: 10.w),
-                    child: SNSLoginButton(
+                    child: SNSLoginButtonWidget(
                       iconPath: 'asset/login_icon/$sns.png',
                     ),
                   );

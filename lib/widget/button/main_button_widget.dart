@@ -9,8 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // 버튼 배경색 입력
 // 버튼 텍스트 입력
 
-class MainButton extends StatelessWidget {
-  const MainButton({
+class MainButtonWidget extends StatelessWidget {
+  const MainButtonWidget({
     super.key,
     required this.onPressed,
     required this.width,
