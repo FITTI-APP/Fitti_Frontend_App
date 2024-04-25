@@ -9,6 +9,7 @@ import 'package:fitti_frontend_app/widget/exercise/one_exercise_record_widget.da
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../../class/exercise/day_exercise_record.dart';
 import 'exercise_list_page.dart';
@@ -85,7 +86,7 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
       ),
       bottomNavigationBar: BottomBarWidget(
         isTimerRunning: _isRunning,
-        timerText: '$_seconds 초',
+        timerText: _seconds,
         onToggleTimer: _startTimer,
         onCompleteExercise: _resetTimer,
       ),
@@ -147,32 +148,6 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                         child: const Text('운동 추가하기',
                             style: TextStyle(color: Colors.black)),
                       ),
-                      // ElevatedButton(
-                      //   onPressed: () async {
-                      //     var recordExistingEntries =
-                      //         allExerciseRecord.recordExistingEntries;
-                      //     recordExistingEntries
-                      //         .sort((a, b) => b.key.compareTo(a.key));
-                      //     var selectedExerciseRecords =
-                      //         await Get.to(() => ExerciseRecordListPage(
-                      //               recordExistingEntries: recordExistingEntries,
-                      //             ));
-                      //     for (var selectedExerciseRecord
-                      //         in selectedExerciseRecords) {
-                      //       selectedDayExerciseRecord.oneExerciseRecords
-                      //           .add(selectedExerciseRecord);
-                      //     }
-                      //     allExerciseRecord.updateExerciseRecordsAndRefreshUi();
-                      //   },
-                      //   style: ElevatedButton.styleFrom(
-                      //     shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(10.0)),
-                      //   ),
-                      //   child: const Text(
-                      //     '불러오기',
-                      //     style: TextStyle(color: Colors.black),
-                      //   ),
-                      // ),
                       ElevatedButton(
                         onPressed: () {
                           var state = selectedDayExerciseRecord.state;
@@ -214,11 +189,12 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
 
 class BottomBarWidget extends StatelessWidget {
   final bool isTimerRunning;
-  final String timerText;
+  final int timerText;
   final Function onToggleTimer;
   final Function onCompleteExercise;
 
-  BottomBarWidget({
+  const BottomBarWidget({
+    super.key,
     required this.isTimerRunning,
     required this.timerText,
     required this.onToggleTimer,
@@ -227,38 +203,162 @@ class BottomBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: const [
-          BoxShadow(
-            color: shadowColor,
-            spreadRadius: 1,
-            blurRadius: 2,
-          ),
-        ],
-        border: Border(
-          top: BorderSide(width: 1.0, color: Colors.grey.shade300),
-        ),
-      ),
-      child: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            IconButton(
-              icon: Icon(isTimerRunning ? Icons.pause : Icons.play_arrow),
-              onPressed: () => onToggleTimer(),
+    return SizedBox(
+      width: 360.w,
+      height: 140.h,
+      child: Stack(
+        children: [
+          Positioned(
+            left: 130.w,
+            top: 0.h,
+            child: Container(
+              width: 100.w,
+              height: 40.h,
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                shadows: const [
+                  BoxShadow(
+                    color: Color(0x3F000000),
+                    blurRadius: 4,
+                    offset: Offset(0, 0),
+                    spreadRadius: 0,
+                  )
+                ],
+              ),
             ),
-            Text(timerText),
-            MainButton(
+          ),
+          Positioned(
+            left: 0.w,
+            top: 20.h,
+            child: Container(
+              width: 360.w,
+              height: 120.h,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x3F000000),
+                    blurRadius: 4,
+                    offset: Offset(0, 0),
+                    spreadRadius: 0,
+                  )
+                ],
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 23.h,
+                    ),
+                    child: Text(
+                      formatTime(timerText),
+                      style: TextStyle(
+                        color: greenColor,
+                        fontSize: 24.sp,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => onToggleTimer(),
+                    child: Icon(
+                      isTimerRunning ? Icons.pause : Icons.play_arrow,
+                      size: 40.h,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 130.w,
+            top: 8.h,
+            child: Container(
+              width: 100.w,
+              height: 20.h,
+              decoration: const ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 135.w,
+            top: 5.h,
+            child: MainButton(
               onPressed: () => onCompleteExercise(),
-              width: 86.w,
-              height: 34.h,
+              width: 90,
+              height: 35,
               backgroundColor: finishExerciseButtonColor,
               text: '운동 완료',
+              fontSize: 12,
+              side: const BorderSide(
+                color: greyColor,
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
+
+    // Container(
+    //   decoration: BoxDecoration(
+    //     boxShadow: const [
+    //       BoxShadow(
+    //         color: shadowColor,
+    //         spreadRadius: 1,
+    //         blurRadius: 2,
+    //       ),
+    //     ],
+    //     border: Border(
+    //       top: BorderSide(width: 1.0, color: Colors.grey.shade300),
+    //     ),
+    //   ),
+    //   child: BottomAppBar(
+    //     child: Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //       children: [
+    //         IconButton(
+    //           icon: Icon(isTimerRunning ? Icons.pause : Icons.play_arrow),
+    //           onPressed: () => onToggleTimer(),
+    //         ),
+    //         Text(timerText),
+    //         MainButton(
+    //           onPressed: () => onCompleteExercise(),
+    //           width: 86.w,
+    //           height: 34.h,
+    //           backgroundColor: finishExerciseButtonColor,
+    //           text: '운동 완료',
+    //           side: const BorderSide(
+    //             color: greyColor,
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
+}
+
+String formatTime(int seconds) {
+  // 시간, 분, 초 계산
+  int hours = seconds ~/ 3600;
+  int minutes = (seconds % 3600) ~/ 60;
+  int sec = seconds % 60;
+
+  // "HH:mm:ss" 형식으로 포매팅
+  String hoursStr = (hours >= 10) ? hours.toString() : "0$hours";
+  String minutesStr = (minutes >= 10) ? minutes.toString() : "0$minutes";
+  String secondsStr = (sec >= 10) ? sec.toString() : "0$sec";
+
+  return "$hoursStr:$minutesStr:$secondsStr";
 }
