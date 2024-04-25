@@ -112,7 +112,7 @@ Widget _splashLoadingWidget(AsyncSnapshot snapshot) {
       return MenuRoutingPage(token: token);
     } else {
       // not logged in (token does not exist)
-      return const MenuRoutingPage(token: "");
+      return const LoginPage();
     }
   } else {
     return const IntroPage();
