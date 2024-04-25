@@ -9,9 +9,7 @@ import 'package:fitti_frontend_app/widget/exercise/one_exercise_record_widget.da
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../../class/exercise/day_exercise_record.dart';
 import 'exercise_list_page.dart';
 
 class DailyRoutinePage extends StatefulWidget {
@@ -24,26 +22,6 @@ class DailyRoutinePage extends StatefulWidget {
 }
 
 class _DailyRoutinePageState extends State<DailyRoutinePage> {
-  Color getStateColor(DayExerciseRecordState state) {
-    if (state == DayExerciseRecordState.before) {
-      return Colors.green;
-    } else if (state == DayExerciseRecordState.ongoing) {
-      return Colors.orange;
-    } else {
-      return Colors.grey;
-    }
-  }
-
-  String getStateString(DayExerciseRecordState state) {
-    if (state == DayExerciseRecordState.before) {
-      return '운동시작';
-    } else if (state == DayExerciseRecordState.ongoing) {
-      return '운동종료';
-    } else {
-      return '운동완료';
-    }
-  }
-
   Timer? _timer;
 
   int _seconds = 0;
@@ -54,7 +32,7 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
     if (_isRunning) {
       _timer?.cancel();
     } else {
-      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         setState(() {
           _seconds++;
         });
@@ -122,13 +100,14 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                       );
                     },
                   ),
-                  if (selectedDayExerciseRecord.oneExerciseRecords.length == 0)
+                  if (selectedDayExerciseRecord.oneExerciseRecords.isEmpty)
                     // to do 디자인 완성후 수정
-                    Text('운동을 추가해주세요'),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
+                    const Text('디자인을 완성해 주세요!'),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 10.h,
+                    ),
+                    child: MainButton(
                         onPressed: () async {
                           String? exerciseName =
                               await Get.to(() => const ExerciseListPage());
@@ -141,41 +120,10 @@ class _DailyRoutinePageState extends State<DailyRoutinePage> {
                                 .updateExerciseRecordsAndRefreshUi();
                           }
                         },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                        ),
-                        child: const Text('운동 추가하기',
-                            style: TextStyle(color: Colors.black)),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          var state = selectedDayExerciseRecord.state;
-                          if (state == DayExerciseRecordState.before) {
-                            selectedDayExerciseRecord.state =
-                                DayExerciseRecordState.ongoing;
-                            selectedDayExerciseRecord.startTime =
-                                DateTime.now();
-                          } else if (state == DayExerciseRecordState.ongoing) {
-                            selectedDayExerciseRecord.state =
-                                DayExerciseRecordState.end;
-                            selectedDayExerciseRecord.endTime = DateTime.now();
-                          } else {
-                            return;
-                          }
-                          allExerciseRecord.updateExerciseRecordsAndRefreshUi();
-                        },
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            backgroundColor:
-                                getStateColor(selectedDayExerciseRecord.state)),
-                        child: Text(
-                          getStateString(selectedDayExerciseRecord.state),
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
+                        width: 240,
+                        height: 35,
+                        backgroundColor: Colors.black,
+                        text: "운동 추가하기"),
                   )
                 ],
               );
@@ -309,43 +257,6 @@ class BottomBarWidget extends StatelessWidget {
         ],
       ),
     );
-
-    // Container(
-    //   decoration: BoxDecoration(
-    //     boxShadow: const [
-    //       BoxShadow(
-    //         color: shadowColor,
-    //         spreadRadius: 1,
-    //         blurRadius: 2,
-    //       ),
-    //     ],
-    //     border: Border(
-    //       top: BorderSide(width: 1.0, color: Colors.grey.shade300),
-    //     ),
-    //   ),
-    //   child: BottomAppBar(
-    //     child: Row(
-    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //       children: [
-    //         IconButton(
-    //           icon: Icon(isTimerRunning ? Icons.pause : Icons.play_arrow),
-    //           onPressed: () => onToggleTimer(),
-    //         ),
-    //         Text(timerText),
-    //         MainButton(
-    //           onPressed: () => onCompleteExercise(),
-    //           width: 86.w,
-    //           height: 34.h,
-    //           backgroundColor: finishExerciseButtonColor,
-    //           text: '운동 완료',
-    //           side: const BorderSide(
-    //             color: greyColor,
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
 
