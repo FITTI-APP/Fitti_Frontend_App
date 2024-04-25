@@ -1,20 +1,28 @@
+import 'dart:async';
+
 import 'package:fitti_frontend_app/class/service/my_exercise_record_service.dart';
 import 'package:fitti_frontend_app/class/exercise/one_exercise_record.dart';
-import 'package:fitti_frontend_app/page/exercise/exercise_record_list_page.dart';
+import 'package:fitti_frontend_app/style/colors.dart';
+import 'package:fitti_frontend_app/widget/appbar/custom_appbar.dart';
+import 'package:fitti_frontend_app/widget/button/main_button_widget.dart';
 import 'package:fitti_frontend_app/widget/exercise/one_exercise_record_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import '../../class/exercise/day_exercise_record.dart';
 import 'exercise_list_page.dart';
 
-class DailyRoutinePage extends StatelessWidget {
-  const DailyRoutinePage(
-      {super.key, required this.title, required this.selectedDay});
+class DailyRoutinePage extends StatefulWidget {
+  const DailyRoutinePage({super.key, required this.selectedDay});
 
-  final String title;
   final DateTime selectedDay;
 
+  @override
+  State<DailyRoutinePage> createState() => _DailyRoutinePageState();
+}
+
+class _DailyRoutinePageState extends State<DailyRoutinePage> {
   Color getStateColor(DayExerciseRecordState state) {
     if (state == DayExerciseRecordState.before) {
       return Colors.green;
@@ -35,21 +43,58 @@ class DailyRoutinePage extends StatelessWidget {
     }
   }
 
+  Timer? _timer;
+
+  int _seconds = 0;
+
+  bool _isRunning = false;
+
+  void _startTimer() {
+    if (_isRunning) {
+      _timer?.cancel();
+    } else {
+      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+        setState(() {
+          _seconds++;
+        });
+      });
+    }
+    setState(() {
+      _isRunning = !_isRunning;
+    });
+  }
+
+  void _resetTimer() {
+    setState(() {
+      _timer?.cancel();
+      _seconds = 0;
+      _isRunning = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: SingleChildScrollView(
-          child: Center(child: Consumer<MyExerciseRecordService>(
+    return Scaffold(
+      appBar: customAppBar(
+        "My Exercise",
+        const [
+          Icon(Icons.share),
+          Icon(Icons.bar_chart),
+          Icon(Icons.more_vert),
+        ],
+      ),
+      bottomNavigationBar: BottomBarWidget(
+        isTimerRunning: _isRunning,
+        timerText: '$_seconds 초',
+        onToggleTimer: _startTimer,
+        onCompleteExercise: _resetTimer,
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Consumer<MyExerciseRecordService>(
             builder: (context, allExerciseRecord, child) {
               var selectedDayExerciseRecord =
-                  allExerciseRecord.getDayExerciseRecord(selectedDay);
+                  allExerciseRecord.getDayExerciseRecord(widget.selectedDay);
               void deleteExerciseRecord(int index) {
                 selectedDayExerciseRecord.oneExerciseRecords.removeAt(index);
                 allExerciseRecord.updateExerciseRecordsAndRefreshUi();
@@ -76,6 +121,9 @@ class DailyRoutinePage extends StatelessWidget {
                       );
                     },
                   ),
+                  if (selectedDayExerciseRecord.oneExerciseRecords.length == 0)
+                    // to do 디자인 완성후 수정
+                    Text('운동을 추가해주세요'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -96,36 +144,35 @@ class DailyRoutinePage extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
                         ),
-                        child: const Text(
-                          '운동 추가하기',
-                        ),
+                        child: const Text('운동 추가하기',
+                            style: TextStyle(color: Colors.black)),
                       ),
-                      ElevatedButton(
-                        onPressed: () async {
-                          var recordExistingEntries =
-                              allExerciseRecord.recordExistingEntries;
-                          recordExistingEntries
-                              .sort((a, b) => b.key.compareTo(a.key));
-                          var selectedExerciseRecords =
-                              await Get.to(() => ExerciseRecordListPage(
-                                    recordExistingEntries:
-                                        recordExistingEntries,
-                                  ));
-                          for (var selectedExerciseRecord
-                              in selectedExerciseRecords) {
-                            selectedDayExerciseRecord.oneExerciseRecords
-                                .add(selectedExerciseRecord);
-                          }
-                          allExerciseRecord.updateExerciseRecordsAndRefreshUi();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                        ),
-                        child: const Text(
-                          '불러오기',
-                        ),
-                      ),
+                      // ElevatedButton(
+                      //   onPressed: () async {
+                      //     var recordExistingEntries =
+                      //         allExerciseRecord.recordExistingEntries;
+                      //     recordExistingEntries
+                      //         .sort((a, b) => b.key.compareTo(a.key));
+                      //     var selectedExerciseRecords =
+                      //         await Get.to(() => ExerciseRecordListPage(
+                      //               recordExistingEntries: recordExistingEntries,
+                      //             ));
+                      //     for (var selectedExerciseRecord
+                      //         in selectedExerciseRecords) {
+                      //       selectedDayExerciseRecord.oneExerciseRecords
+                      //           .add(selectedExerciseRecord);
+                      //     }
+                      //     allExerciseRecord.updateExerciseRecordsAndRefreshUi();
+                      //   },
+                      //   style: ElevatedButton.styleFrom(
+                      //     shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(10.0)),
+                      //   ),
+                      //   child: const Text(
+                      //     '불러오기',
+                      //     style: TextStyle(color: Colors.black),
+                      //   ),
+                      // ),
                       ElevatedButton(
                         onPressed: () {
                           var state = selectedDayExerciseRecord.state;
@@ -158,7 +205,58 @@ class DailyRoutinePage extends StatelessWidget {
                 ],
               );
             },
-          )),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BottomBarWidget extends StatelessWidget {
+  final bool isTimerRunning;
+  final String timerText;
+  final Function onToggleTimer;
+  final Function onCompleteExercise;
+
+  BottomBarWidget({
+    required this.isTimerRunning,
+    required this.timerText,
+    required this.onToggleTimer,
+    required this.onCompleteExercise,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+            color: shadowColor,
+            spreadRadius: 1,
+            blurRadius: 2,
+          ),
+        ],
+        border: Border(
+          top: BorderSide(width: 1.0, color: Colors.grey.shade300),
+        ),
+      ),
+      child: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(isTimerRunning ? Icons.pause : Icons.play_arrow),
+              onPressed: () => onToggleTimer(),
+            ),
+            Text(timerText),
+            MainButton(
+              onPressed: () => onCompleteExercise(),
+              width: 86.w,
+              height: 34.h,
+              backgroundColor: finishExerciseButtonColor,
+              text: '운동 완료',
+            ),
+          ],
         ),
       ),
     );
