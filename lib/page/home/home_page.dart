@@ -145,7 +145,6 @@ class _HomePageState extends State<HomePage>
                   child: Center(
                     child: Text.rich(
                       style: const TextStyle(
-                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w600,
                         color: greenColor,
                       ),

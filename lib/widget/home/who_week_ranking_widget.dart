@@ -47,7 +47,6 @@ class _WhoWeekRankingWidgetState extends State<WhoWeekRankingWidget> {
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16.sp,
-                fontFamily: 'Roboto',
                 fontWeight: FontWeight.w600,
                 height: 0,
               ),
@@ -75,7 +74,6 @@ class _WhoWeekRankingWidgetState extends State<WhoWeekRankingWidget> {
                     style: TextStyle(
                       color: greenColor,
                       fontSize: 11.sp,
-                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.w600,
                       height: 0,
                     ),
@@ -85,7 +83,6 @@ class _WhoWeekRankingWidgetState extends State<WhoWeekRankingWidget> {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 11.sp,
-                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.w600,
                       height: 0,
                     ),
@@ -95,7 +92,6 @@ class _WhoWeekRankingWidgetState extends State<WhoWeekRankingWidget> {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 8.sp,
-                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.w600,
                     ),
                   ),

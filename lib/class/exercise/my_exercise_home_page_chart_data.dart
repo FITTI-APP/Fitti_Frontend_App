@@ -22,7 +22,7 @@ class MyExerciseHomePageChartData {
     "back",
     "abs",
     "shoulders",
-    "biceps",
+    "arms",
     "thighs",
   ];
 

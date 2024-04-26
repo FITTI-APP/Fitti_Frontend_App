@@ -73,7 +73,6 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
                 buttonText: "오늘 운동 시작하기",
                 nextPage: DailyRoutinePage(
                   selectedDay: now,
-                  title: "My 운동",
                 )),
             const WeekCalendarWidget(),
             Padding(
@@ -84,6 +83,8 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
               ),
               child: Card(
                 margin: EdgeInsets.zero,
+                shadowColor: shadowColor,
+                elevation: 4.r,
                 child: SizedBox(
                   child: Column(
                     children: [
@@ -144,6 +145,8 @@ class _MyExerciseHomePageState extends State<MyExerciseHomePage>
               ),
               child: Card(
                 margin: EdgeInsets.zero,
+                shadowColor: shadowColor,
+                elevation: 4.r,
                 child: SizedBox(
                   height: 50.h,
                   child: Row(
