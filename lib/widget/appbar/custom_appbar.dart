@@ -18,7 +18,6 @@ PreferredSizeWidget customAppBar(
           style: TextStyle(
             color: Colors.black.withOpacity(0.5),
             fontSize: 20.sp,
-            fontFamily: 'Roboto',
             fontWeight: FontWeight.w500,
           ),
         ),

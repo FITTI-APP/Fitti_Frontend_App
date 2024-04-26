@@ -60,7 +60,7 @@ class SignupNamePage extends StatelessWidget {
                 isPassword: false,
               ),
             ),
-            MainButton(
+            MainButtonWidget(
               onPressed: () {
                 // Handle next button press
               },

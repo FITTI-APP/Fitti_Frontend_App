@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // SNS 로그인 버튼
 // 이미지 경로 입력
 
-class SNSLoginButton extends StatelessWidget {
-  const SNSLoginButton({
+class SNSLoginButtonWidget extends StatelessWidget {
+  const SNSLoginButtonWidget({
     super.key,
     required this.iconPath,
   });

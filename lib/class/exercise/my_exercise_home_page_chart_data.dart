@@ -7,108 +7,62 @@ class MyExerciseHomePageChartData {
   final ChartData _chartData = ChartData();
 
   List<RadarDataSet> rawDataSetList = [];
-  final upperBodyKo = [
+
+  final bodyKo = [
     "가슴",
     "등",
-    "어깨",
-    "삼두",
-    "이두",
-    "전완",
     "복근",
+    "어깨",
+    "팔",
+    "하체",
   ];
 
-  final upperBody = [
+  final body = [
     "chest",
     "back",
-    "shoulders",
-    "triceps",
-    "biceps",
-    "forearms",
     "abs",
-  ];
-
-  final lowerBodyKo = [
-    "허벅지",
-    "종아리",
-    "엉덩이",
-  ];
-
-  final lowerBody = [
+    "shoulders",
+    "arms",
     "thighs",
-    "calves",
-    "glutes",
   ];
 
-  RadarChart getRadarChart(
-    bool isUpperBody,
-  ) {
+  RadarChart getRadarChart() {
     return RadarChart(
-      makeRadarChart(isUpperBody),
+      makeRadarChart(),
     );
   }
 
-  RadarChartData makeRadarChart(
-    bool isUpperBody,
-  ) {
+  RadarChartData makeRadarChart() {
     return _chartData.makeRadarChartData(
-        getRadarDataSetList(isUpperBody), getTitleByIndexFunction);
+        getRadarDataSetList(), getTitleByIndexFunction);
   }
 
   RadarChartTitle getTitleByIndexFunction(
     int index,
     double angle,
   ) {
-    if (index >= 0 && index < upperBodyKo.length) {
-      return RadarChartTitle(
-        text: upperBodyKo[index],
-        angle: angle,
-      );
-    } else {
-      if (index >= 0 && index < lowerBodyKo.length) {
-        return RadarChartTitle(
-          text: lowerBodyKo[index],
-          angle: angle,
-        );
-      }
-    }
-    return const RadarChartTitle(text: "", angle: 0);
+    return RadarChartTitle(
+      text: bodyKo[index],
+      angle: angle,
+    );
   }
 
-  List<RadarDataSet> getRadarDataSetList(
-    bool isUpperBody,
-  ) {
-    if (isUpperBody) {
-      return [
-        RadarDataSet(
-          fillColor: const Color.fromARGB(100, 48, 144, 222),
-          borderColor: Colors.blue,
-          entryRadius: 0,
-          dataEntries: [
-            const RadarEntry(value: 1),
-            const RadarEntry(value: 2),
-            const RadarEntry(value: 3),
-            const RadarEntry(value: 4),
-            const RadarEntry(value: 5),
-            const RadarEntry(value: 6),
-            const RadarEntry(value: 7),
-          ],
-          borderWidth: 1,
-        )
-      ];
-    } else {
-      return [
-        RadarDataSet(
-          fillColor: const Color.fromARGB(100, 48, 144, 222),
-          borderColor: Colors.blue,
-          entryRadius: 0,
-          dataEntries: [
-            const RadarEntry(value: 1),
-            const RadarEntry(value: 2),
-            const RadarEntry(value: 3),
-          ],
-          borderWidth: 1,
-        )
-      ];
-    }
+  List<RadarDataSet> getRadarDataSetList() {
+    return [
+      RadarDataSet(
+        fillColor: const Color.fromARGB(100, 48, 144, 222),
+        borderColor: Colors.blue,
+        entryRadius: 0,
+        dataEntries: [
+          const RadarEntry(value: 1),
+          const RadarEntry(value: 2),
+          const RadarEntry(value: 3),
+          const RadarEntry(value: 4),
+          const RadarEntry(value: 5),
+          const RadarEntry(value: 6),
+        ],
+        borderWidth: 1,
+      )
+    ];
   }
 }

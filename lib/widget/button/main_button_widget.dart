@@ -1,3 +1,4 @@
+import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,14 +9,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // 버튼 배경색 입력
 // 버튼 텍스트 입력
 
-class MainButton extends StatelessWidget {
-  const MainButton({
+class MainButtonWidget extends StatelessWidget {
+  const MainButtonWidget({
     super.key,
     required this.onPressed,
     required this.width,
     required this.height,
     required this.backgroundColor,
     required this.text,
+    this.textColor = Colors.white,
+    this.side = const BorderSide(
+      color: greyColor,
+    ),
+    this.fontSize = 13,
   });
 
   final void Function() onPressed;
@@ -23,6 +29,9 @@ class MainButton extends StatelessWidget {
   final double height;
   final Color backgroundColor;
   final String text;
+  final Color textColor;
+  final BorderSide side;
+  final int fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +42,7 @@ class MainButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           elevation: 0.0,
+          side: side,
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.w),
@@ -41,9 +51,9 @@ class MainButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 13.sp,
+            fontSize: fontSize.sp,
             fontWeight: FontWeight.w600,
-            color: Colors.white,
+            color: textColor,
           ),
         ),
       ),
