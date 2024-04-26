@@ -1,4 +1,6 @@
+import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 import '../../class/exercise/day_exercise_record.dart';
@@ -19,40 +21,71 @@ class TimeRecordWidget extends StatelessWidget {
     var startTime = selectedDayExerciseRecord.startTime;
     var endTime = selectedDayExerciseRecord.endTime;
     var duration = selectedDayExerciseRecord.exerciseDuration;
-    final HH = (duration.inHours).toString().padLeft(2, '0');
+    final hh = (duration.inHours).toString().padLeft(2, '0');
     final mm = (duration.inMinutes % 60).toString().padLeft(2, '0');
     final ss = (duration.inSeconds % 60).toString().padLeft(2, '0');
 
     return Container(
-      margin: const EdgeInsets.all(10.0),
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
+      margin: EdgeInsets.symmetric(horizontal: 8.w),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 7.0.h),
+      decoration: ShapeDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0),
-        boxShadow: const [
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        shadows: const [
           BoxShadow(
-            color: Colors.black12,
-            offset: Offset(0, 1),
-            blurRadius: 6.0,
-          ),
+            color: shadowColor,
+            blurRadius: 4,
+          )
         ],
       ),
-      child: Center(
-        child: Column(children: [
+      child: Column(
+        children: [
           Row(
             children: [
               SizedBox(
                 child: Column(
                   children: [
-                    Text('시작시간 : ${DateFormat("hh시 mm분").format(startTime)}'),
-                    Text('종료시간 : ${DateFormat("hh시 mm분").format(endTime)}'),
-                    Text('운동시간 : $HH:$mm:$ss'),
+                    Text.rich(
+                      TextSpan(
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        children: [
+                          const TextSpan(
+                            text: '시작시간 : ',
+                          ),
+                          TextSpan(
+                            text: DateFormat("hh시 mm분").format(startTime),
+                          ),
+                          const TextSpan(text: '\n'),
+                          const TextSpan(
+                            text: '종료시간 : ',
+                          ),
+                          TextSpan(
+                            text: DateFormat("hh시 mm분").format(endTime),
+                          ),
+                          const TextSpan(text: '\n'),
+                          const TextSpan(
+                            text: '운동시간 : ',
+                          ),
+                          TextSpan(
+                            text: '$hh:$mm:$ss',
+                            style: const TextStyle(
+                              color: greenColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
             ],
           ),
-        ]),
+        ],
       ),
     );
   }

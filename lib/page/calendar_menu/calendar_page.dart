@@ -2,6 +2,7 @@ import 'package:fitti_frontend_app/page/calendar_menu/tab/my_diet_calendar_tab.d
 import 'package:fitti_frontend_app/page/calendar_menu/tab/my_exercise_calendar_tab.dart';
 import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({
@@ -32,22 +33,30 @@ class _CalendarPageState extends State<CalendarPage>
       children: [
         TabBar(
           controller: tabController,
-          tabs: const [
+          tabs: [
             SizedBox(
-              height: 60,
-              child: Tab(
+              width: double.infinity,
+              height: 52.h,
+              child: const Tab(
                 text: "My 운동",
               ),
             ),
             SizedBox(
-              height: 60,
-              child: Tab(
+              width: double.infinity,
+              height: 52.h,
+              child: const Tab(
                 text: "My 식단",
               ),
             ),
           ],
-          labelColor: Colors.black,
-          unselectedLabelColor: greyColor,
+          labelPadding: EdgeInsets.zero,
+          indicatorColor: greenColor,
+          labelColor: greenColor,
+          unselectedLabelColor: Colors.black,
+          labelStyle: TextStyle(
+            fontSize: 17.sp,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         Expanded(
           child: TabBarView(
