@@ -1,55 +1,79 @@
+import 'dart:async';
+
 import 'package:fitti_frontend_app/class/service/my_exercise_record_service.dart';
 import 'package:fitti_frontend_app/class/exercise/one_exercise_record.dart';
-import 'package:fitti_frontend_app/page/exercise/exercise_record_list_page.dart';
+import 'package:fitti_frontend_app/style/colors.dart';
+import 'package:fitti_frontend_app/widget/appbar/custom_appbar.dart';
+import 'package:fitti_frontend_app/widget/button/main_button_widget.dart';
 import 'package:fitti_frontend_app/widget/exercise/one_exercise_record_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import '../../class/exercise/day_exercise_record.dart';
 import 'exercise_list_page.dart';
 
-class DailyRoutinePage extends StatelessWidget {
-  const DailyRoutinePage(
-      {super.key, required this.title, required this.selectedDay});
+class DailyRoutinePage extends StatefulWidget {
+  const DailyRoutinePage({super.key, required this.selectedDay});
 
-  final String title;
   final DateTime selectedDay;
 
-  Color getStateColor(DayExerciseRecordState state) {
-    if (state == DayExerciseRecordState.before) {
-      return Colors.green;
-    } else if (state == DayExerciseRecordState.ongoing) {
-      return Colors.orange;
+  @override
+  State<DailyRoutinePage> createState() => _DailyRoutinePageState();
+}
+
+class _DailyRoutinePageState extends State<DailyRoutinePage> {
+  Timer? _timer;
+
+  int _seconds = 0;
+
+  bool _isRunning = false;
+
+  void _startTimer() {
+    if (_isRunning) {
+      _timer?.cancel();
     } else {
-      return Colors.grey;
+      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        setState(() {
+          _seconds++;
+        });
+      });
     }
+    setState(() {
+      _isRunning = !_isRunning;
+    });
   }
 
-  String getStateString(DayExerciseRecordState state) {
-    if (state == DayExerciseRecordState.before) {
-      return '운동시작';
-    } else if (state == DayExerciseRecordState.ongoing) {
-      return '운동종료';
-    } else {
-      return '운동완료';
-    }
+  void _resetTimer() {
+    setState(() {
+      _timer?.cancel();
+      _seconds = 0;
+      _isRunning = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: SingleChildScrollView(
-          child: Center(child: Consumer<MyExerciseRecordService>(
+    return Scaffold(
+      appBar: customAppBar(
+        "My Exercise",
+        const [
+          Icon(Icons.share),
+          Icon(Icons.bar_chart),
+          Icon(Icons.more_vert),
+        ],
+      ),
+      bottomNavigationBar: BottomBarWidget(
+        isTimerRunning: _isRunning,
+        timerText: _seconds,
+        onToggleTimer: _startTimer,
+        onCompleteExercise: _resetTimer,
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Consumer<MyExerciseRecordService>(
             builder: (context, allExerciseRecord, child) {
               var selectedDayExerciseRecord =
-                  allExerciseRecord.getDayExerciseRecord(selectedDay);
+                  allExerciseRecord.getDayExerciseRecord(widget.selectedDay);
               void deleteExerciseRecord(int index) {
                 selectedDayExerciseRecord.oneExerciseRecords.removeAt(index);
                 allExerciseRecord.updateExerciseRecordsAndRefreshUi();
@@ -76,10 +100,14 @@ class DailyRoutinePage extends StatelessWidget {
                       );
                     },
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
+                  if (selectedDayExerciseRecord.oneExerciseRecords.isEmpty)
+                    // to do 디자인 완성후 수정
+                    const Text('디자인을 완성해 주세요!'),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 10.h,
+                    ),
+                    child: MainButtonWidget(
                         onPressed: () async {
                           String? exerciseName =
                               await Get.to(() => const ExerciseListPage());
@@ -92,75 +120,152 @@ class DailyRoutinePage extends StatelessWidget {
                                 .updateExerciseRecordsAndRefreshUi();
                           }
                         },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                        ),
-                        child: const Text(
-                          '운동 추가하기',
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () async {
-                          var recordExistingEntries =
-                              allExerciseRecord.recordExistingEntries;
-                          recordExistingEntries
-                              .sort((a, b) => b.key.compareTo(a.key));
-                          var selectedExerciseRecords =
-                              await Get.to(() => ExerciseRecordListPage(
-                                    recordExistingEntries:
-                                        recordExistingEntries,
-                                  ));
-                          for (var selectedExerciseRecord
-                              in selectedExerciseRecords) {
-                            selectedDayExerciseRecord.oneExerciseRecords
-                                .add(selectedExerciseRecord);
-                          }
-                          allExerciseRecord.updateExerciseRecordsAndRefreshUi();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                        ),
-                        child: const Text(
-                          '불러오기',
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          var state = selectedDayExerciseRecord.state;
-                          if (state == DayExerciseRecordState.before) {
-                            selectedDayExerciseRecord.state =
-                                DayExerciseRecordState.ongoing;
-                            selectedDayExerciseRecord.startTime =
-                                DateTime.now();
-                          } else if (state == DayExerciseRecordState.ongoing) {
-                            selectedDayExerciseRecord.state =
-                                DayExerciseRecordState.end;
-                            selectedDayExerciseRecord.endTime = DateTime.now();
-                          } else {
-                            return;
-                          }
-                          allExerciseRecord.updateExerciseRecordsAndRefreshUi();
-                        },
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            backgroundColor:
-                                getStateColor(selectedDayExerciseRecord.state)),
-                        child: Text(
-                          getStateString(selectedDayExerciseRecord.state),
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
+                        width: 240,
+                        height: 35,
+                        backgroundColor: Colors.black,
+                        text: "운동 추가하기"),
                   )
                 ],
               );
             },
-          )),
+          ),
         ),
       ),
     );
   }
+}
+
+class BottomBarWidget extends StatelessWidget {
+  final bool isTimerRunning;
+  final int timerText;
+  final Function onToggleTimer;
+  final Function onCompleteExercise;
+
+  const BottomBarWidget({
+    super.key,
+    required this.isTimerRunning,
+    required this.timerText,
+    required this.onToggleTimer,
+    required this.onCompleteExercise,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 360.w,
+      height: 140.h,
+      child: Stack(
+        children: [
+          Positioned(
+            left: 130.w,
+            top: 0.h,
+            child: Container(
+              width: 100.w,
+              height: 40.h,
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                shadows: const [
+                  BoxShadow(
+                    color: shadowColor,
+                    blurRadius: 4,
+                    offset: Offset(0, 0),
+                    spreadRadius: 0,
+                  )
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 0.w,
+            top: 20.h,
+            child: Container(
+              width: 360.w,
+              height: 120.h,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: shadowColor,
+                    blurRadius: 4,
+                    offset: Offset(0, 0),
+                    spreadRadius: 0,
+                  )
+                ],
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 23.h,
+                    ),
+                    child: Text(
+                      formatTime(timerText),
+                      style: TextStyle(
+                        color: greenColor,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => onToggleTimer(),
+                    child: Icon(
+                      isTimerRunning ? Icons.pause : Icons.play_arrow,
+                      size: 40.h,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 130.w,
+            top: 8.h,
+            child: Container(
+              width: 100.w,
+              height: 20.h,
+              decoration: const ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 135.w,
+            top: 5.h,
+            child: MainButtonWidget(
+              onPressed: () => onCompleteExercise(),
+              width: 90,
+              height: 35,
+              backgroundColor: finishExerciseButtonColor,
+              text: '운동 완료',
+              fontSize: 12,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String formatTime(int seconds) {
+  // 시간, 분, 초 계산
+  int hours = seconds ~/ 3600;
+  int minutes = (seconds % 3600) ~/ 60;
+  int sec = seconds % 60;
+
+  // "HH:mm:ss" 형식으로 포매팅
+  String hoursStr = (hours >= 10) ? hours.toString() : "0$hours";
+  String minutesStr = (minutes >= 10) ? minutes.toString() : "0$minutes";
+  String secondsStr = (sec >= 10) ? sec.toString() : "0$sec";
+
+  return "$hoursStr:$minutesStr:$secondsStr";
 }

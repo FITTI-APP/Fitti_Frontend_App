@@ -2,7 +2,7 @@ import 'package:fitti_frontend_app/api/api.dart';
 import 'package:fitti_frontend_app/page/calendar_menu/calendar_page.dart';
 import 'package:fitti_frontend_app/page/change_menu/changes_page.dart';
 import 'package:fitti_frontend_app/page/fitti_menu/test_page.dart';
-import 'package:fitti_frontend_app/page/home_page/home_page.dart';
+import 'package:fitti_frontend_app/page/home/home_page.dart';
 import 'package:fitti_frontend_app/widget/appbar/custom_appbar.dart';
 import 'package:fitti_frontend_app/widget/appbar/home_page_appbar.dart';
 import 'package:fitti_frontend_app/widget/common/menu_routing_bottom_bar.dart';

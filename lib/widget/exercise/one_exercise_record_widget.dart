@@ -1,7 +1,10 @@
 import 'package:fitti_frontend_app/class/exercise/one_exercise_record.dart';
 import 'package:fitti_frontend_app/class/exercise/one_set_record.dart';
+import 'package:fitti_frontend_app/style/colors.dart';
+import 'package:fitti_frontend_app/widget/button/main_button_widget.dart';
 import 'package:fitti_frontend_app/widget/exercise/one_exercise_records_of_all_date_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'one_set_record_widget.dart';
 
 class OneExerciseRecordWidget extends StatelessWidget {
@@ -26,14 +29,14 @@ class OneExerciseRecordWidget extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(8.h),
       child: Center(
         child: FittedBox(
           fit: BoxFit.fitHeight,
           child: Container(
-              width: 400,
+              width: 344.w,
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.all(10.h),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10.0),
@@ -58,7 +61,7 @@ class OneExerciseRecordWidget extends StatelessWidget {
                               builder: (context) => Dialog(
                                     child: SizedBox(
                                       width: double.infinity,
-                                      height: 550,
+                                      height: 550.h,
                                       child: OneExerciseRecordsOfAllDateWidget(
                                         exersiseName:
                                             oneExerciseRecord.exerciseName,
@@ -70,8 +73,8 @@ class OneExerciseRecordWidget extends StatelessWidget {
                       ),
                       Text(
                         oneExerciseRecord.exerciseName,
-                        style: const TextStyle(
-                          fontSize: 15,
+                        style: TextStyle(
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -83,47 +86,47 @@ class OneExerciseRecordWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: oneExerciseRecord.oneSetRecords.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ClipRect(
-                        child: Dismissible(
-                          key: UniqueKey(),
-                          direction: DismissDirection.endToStart,
-                          onDismissed: (direction) {
-                            deleteSet(index);
-                          },
-                          background: Container(
-                            color: Colors.red,
-                            child: const Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.delete,
-                                  color: Colors.white,
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 10.h,
+                      bottom: 10.h,
+                    ),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: oneExerciseRecord.oneSetRecords.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ClipRect(
+                          child: Dismissible(
+                            key: UniqueKey(),
+                            direction: DismissDirection.endToStart,
+                            onDismissed: (direction) {
+                              deleteSet(index);
+                            },
+                            background: Container(
+                              color: setDeleteRedColor,
+                              child: const Align(
+                                alignment: Alignment.centerRight,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
+                            child: OneSetRecordWidget(
+                              index: index,
+                              oneSetInfo:
+                                  oneExerciseRecord.oneSetRecords[index],
+                            ),
                           ),
-                          child: OneSetRecordWidget(
-                            index: index,
-                            deleteThis: deleteSet,
-                            oneSetInfo: oneExerciseRecord.oneSetRecords[index],
-                          ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ElevatedButton(
+                  MainButtonWidget(
                     onPressed: () {
                       int kg = oneExerciseRecord.oneSetRecords.isEmpty
                           ? 0
@@ -137,16 +140,11 @@ class OneExerciseRecordWidget extends StatelessWidget {
                       oneExerciseRecord.oneSetRecords.add(setRecord);
                       updateExerciseRecords();
                     },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      foregroundColor:
-                          Colors.blue, // Set button background color
-                    ),
-                    child: const Text(
-                      '세트 추가',
-                    ),
-                  )
+                    width: 86.w,
+                    height: 35.h,
+                    backgroundColor: Colors.black,
+                    text: "세트 추가",
+                  ),
                 ],
               )),
         ),

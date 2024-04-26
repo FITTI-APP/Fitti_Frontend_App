@@ -107,9 +107,7 @@ class _MyExerciseCalendarTabState extends State<MyExerciseCalendarTab> {
             height: 34.h,
             child: ElevatedButton(
               onPressed: () {
-                Get.to(() => DailyRoutinePage(
-                    title: DateFormat("yyyy년 MM월 dd일").format(_selectedDay),
-                    selectedDay: _selectedDay));
+                Get.to(() => DailyRoutinePage(selectedDay: _selectedDay));
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.black),
