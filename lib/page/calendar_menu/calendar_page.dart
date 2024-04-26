@@ -1,5 +1,6 @@
 import 'package:fitti_frontend_app/page/calendar_menu/tab/my_diet_calendar_tab.dart';
 import 'package:fitti_frontend_app/page/calendar_menu/tab/my_exercise_calendar_tab.dart';
+import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -46,7 +47,7 @@ class _CalendarPageState extends State<CalendarPage>
             ),
           ],
           labelColor: Colors.black,
-          unselectedLabelColor: Colors.grey,
+          unselectedLabelColor: greyColor,
         ),
         Expanded(
           child: TabBarView(

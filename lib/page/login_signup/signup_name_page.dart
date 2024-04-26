@@ -10,68 +10,70 @@ class SignupNamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-      ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                top: 33.h,
-                bottom: 5.h,
-              ),
-              child: Text(
-                '사용자 이름 입력',
-                style: TextStyle(
-                  fontSize: 19.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            Text(
-              '나중에 언제든지 변경 가능합니다.',
-              style: TextStyle(
-                fontSize: 11.sp,
-                color: greyColor,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 23.h,
-                bottom: 16.h,
-              ),
-              child: TextFieldWidget(
-                width: 296,
-                height: 38,
-                hintText: '사용자 이름',
-                hintStyle: TextStyle(
-                    fontSize: 14.sp,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w400),
-                isPassword: false,
-              ),
-            ),
-            MainButtonWidget(
+    return GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                // Handle next button press
+                Get.back();
               },
-              width: 296,
-              height: 38,
-              backgroundColor: Colors.black,
-              text: "다음",
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+          body: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 33.h,
+                    bottom: 5.h,
+                  ),
+                  child: Text(
+                    '사용자 이름 입력',
+                    style: TextStyle(
+                      fontSize: 19.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                Text(
+                  '나중에 언제든지 변경 가능합니다.',
+                  style: TextStyle(
+                    fontSize: 11.sp,
+                    color: greyColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 23.h,
+                    bottom: 16.h,
+                  ),
+                  child: TextFieldWidget(
+                    width: 296,
+                    height: 38,
+                    hintText: '사용자 이름',
+                    hintStyle: TextStyle(
+                        fontSize: 14.sp,
+                        color: greyColor,
+                        fontWeight: FontWeight.w400),
+                    isPassword: false,
+                  ),
+                ),
+                MainButtonWidget(
+                  onPressed: () {
+                    // Handle next button press
+                  },
+                  width: 296,
+                  height: 38,
+                  backgroundColor: Colors.black,
+                  text: "다음",
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }

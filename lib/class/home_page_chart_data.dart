@@ -1,3 +1,4 @@
+import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:fitti_frontend_app/utility/chart_data.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class HomePageChartData {
 
   BarChartData getMyExerciseChart() {
     const barColor = Colors.green;
-    const backGroundColor = Colors.grey;
+    const backGroundColor = greyColor;
     const reservedSize = 30.0;
 
     return _chartData.makeBarChartData(
