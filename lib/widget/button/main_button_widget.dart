@@ -18,7 +18,9 @@ class MainButtonWidget extends StatelessWidget {
     required this.backgroundColor,
     required this.text,
     this.textColor = Colors.white,
-    this.side = BorderSide.none,
+    this.side = const BorderSide(
+      color: greyColor,
+    ),
     this.fontSize = 13,
   });
 

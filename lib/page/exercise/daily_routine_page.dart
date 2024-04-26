@@ -169,7 +169,7 @@ class BottomBarWidget extends StatelessWidget {
                 ),
                 shadows: const [
                   BoxShadow(
-                    color: Color(0x3F000000),
+                    color: shadowColor,
                     blurRadius: 4,
                     offset: Offset(0, 0),
                     spreadRadius: 0,
@@ -188,7 +188,7 @@ class BottomBarWidget extends StatelessWidget {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0x3F000000),
+                    color: shadowColor,
                     blurRadius: 4,
                     offset: Offset(0, 0),
                     spreadRadius: 0,
@@ -206,7 +206,6 @@ class BottomBarWidget extends StatelessWidget {
                       style: TextStyle(
                         color: greenColor,
                         fontSize: 24.sp,
-                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -249,9 +248,6 @@ class BottomBarWidget extends StatelessWidget {
               backgroundColor: finishExerciseButtonColor,
               text: '운동 완료',
               fontSize: 12,
-              side: const BorderSide(
-                color: greyColor,
-              ),
             ),
           ),
         ],

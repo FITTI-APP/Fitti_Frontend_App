@@ -16,12 +16,12 @@ class TodayStartWidget extends StatelessWidget {
   final DateTime now;
   final String buttonText;
   final Widget nextPage;
-  // 339 - 296 = 43
-  // 76.72 - 49.39 = 27.33
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      shadowColor: shadowColor,
+      elevation: 4.r,
       child: Padding(
         padding: EdgeInsets.only(
           top: 13.665.h,
