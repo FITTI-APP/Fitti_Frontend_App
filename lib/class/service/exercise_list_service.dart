@@ -6,7 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ExerciseListProvider extends ChangeNotifier {
   List<Exercise_> _exerciseList = [];
+  final List<String> _exerciseType = [
+    "가슴",
+    "어깨",
+    "등",
+    "하체",
+    "팔",
+    "복근",
+  ];
 
+  List<String> get exerciseType => _exerciseType;
   List<Exercise_> get exerciseList => _exerciseList;
 
   Future<void> initExerciseList() async {
