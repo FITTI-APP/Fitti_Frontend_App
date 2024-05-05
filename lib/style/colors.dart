@@ -9,3 +9,4 @@ const Color setDeleteRedColor = Color.fromARGB(255, 200, 0, 0);
 const Color finishExerciseButtonColor = Color.fromARGB(255, 149, 0, 0);
 const Color blueColor = Color(0xFF4C53E5);
 const Color startButtonColor = Color.fromARGB(255, 242, 253, 255);
+const Color shadowButtonColor = Color.fromARGB(255, 237, 237, 237);
