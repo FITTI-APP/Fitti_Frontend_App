@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 PreferredSizeWidget customAppBar(
   String title,
@@ -10,7 +11,9 @@ PreferredSizeWidget customAppBar(
       surfaceTintColor: Colors.white,
       leading: Row(children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
           icon: const Icon(Icons.keyboard_arrow_left),
         ),
         Text(
