@@ -1,6 +1,7 @@
 import 'package:fitti_frontend_app/page/diet/my_diet_home_page.dart';
 import 'package:fitti_frontend_app/page/exercise/my_exercise_home_page.dart';
 import 'package:fitti_frontend_app/class/home_page_chart_data.dart';
+import 'package:fitti_frontend_app/widget/button/bordered_button_widget.dart';
 import 'package:fitti_frontend_app/widget/button/main_button_widget.dart';
 import 'package:fitti_frontend_app/widget/common/diff_styled_text_widget.dart';
 import 'package:fitti_frontend_app/widget/home/calorie_ratio_comparison_widget.dart';
@@ -64,16 +65,11 @@ class _HomePageState extends State<HomePage>
                     fontWeight: FontWeight.w600),
               ),
               SizedBox(width: 40.w),
-              Expanded(
-                  child: MainButtonWidget(
-                onPressed: () {},
-                fontSize: 6.sp,
-                width: 80.w,
-                height: 23.h,
-                backgroundColor: Colors.white,
-                textColor: Colors.black,
-                text: "이번달 조회하기",
-              )),
+              SizedBox(
+                  width: 80.w,
+                  height: 23.h,
+                  child: BorderedButtonWidget(
+                      onTodayPressed: () {}, text: "이번달 조회하기")),
             ],
           ),
           SizedBox(height: 10.h),
