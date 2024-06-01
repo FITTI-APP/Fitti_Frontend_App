@@ -1,3 +1,4 @@
+import 'package:fitti_frontend_app/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ PreferredSizeWidget customAppBar(
         Text(
           title,
           style: TextStyle(
-            color: Colors.black.withOpacity(0.5),
+            color: greyColor,
             fontSize: 20.sp,
             fontWeight: FontWeight.w500,
           ),

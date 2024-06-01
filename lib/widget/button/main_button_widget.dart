@@ -31,7 +31,7 @@ class MainButtonWidget extends StatelessWidget {
   final String text;
   final Color textColor;
   final BorderSide side;
-  final int fontSize;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
